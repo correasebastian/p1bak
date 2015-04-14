@@ -16,7 +16,8 @@ app.controller('FotoCtrl', [
   'intermediateService',
   'toastService',
   'zumeroService',
-  function (s, fotosService, $ionicPlatform, $ionicScrollDelegate, fileTransferService, $filter, $stateParams, $ionicNavBarDelegate, copyFileService, checkFileService, titleService, offlineService, errorService, onlineStatusService, intermediateService, toastService, zumeroService) {
+  'momentService',
+  function (s, fotosService, $ionicPlatform, $ionicScrollDelegate, fileTransferService, $filter, $stateParams, $ionicNavBarDelegate, copyFileService, checkFileService, titleService, offlineService, errorService, onlineStatusService, intermediateService, toastService, zumeroService, momentService) {
     $ionicPlatform.ready(function () {
       // s.tittle = '';
       s.tittle = intermediateService.data.placa;
@@ -39,13 +40,20 @@ app.controller('FotoCtrl', [
       // TODO: always use ion-nav-title , para poderle poner los titulos que quiero
       // s.oss = { online: onlineStatusService.isOnline };
       s.photos = fotosService.photos;
-      fotosService.getPhotos(s.idinspeccion).then(function () {
-        s.photos = fotosService.photos;
-        _filterUnsync(0);
+      s.getPhotos = function () {
+        fotosService.getPhotos(s.idinspeccion).then(function () {
+          s.photos = fotosService.photos;
+          _filterUnsync(0);
+        });
+      };
+      s.getPhotos();
+      s.$on('myEvent', function () {
+        console.log('my event occurred');
+        s.getPhotos();
       });
       var _filterUnsync = function (equal) {
         var found = $filter('filter')(s.photos, { sync: equal }, true);
-        console.log(s.photos, found);
+        // console.log(s.photos, found);
         s.imgUnsync = found;
       };
       var updateFoto = function (imageURI, sync, onupload) {
@@ -82,20 +90,20 @@ app.controller('FotoCtrl', [
         var objFoto = searchOneInArray(imageURI);
         objFoto.progress = percentage;
       };
-      var preFileUpload = function (imageURI) {
+      var preFileUpload = function (obj) {
         if (offlineService.data.offlineMode) {
           // TODO: ya noe s necesario por que offline tambien esta en onlilnestatussrervice
           // || !onlineStatusService.isOnline) {
-          updateAfterUpload(imageURI, 0, false);
+          updateAfterUpload(obj.path, 0, false);
         } else {
-          fileTransferService.fileUpload(imageURI).then(function (res) {
+          fileTransferService.fileUpload(obj).then(function (res) {
             console.log(res);
             console.timeEnd('fileUpload');
-            updateAfterUpload(imageURI, 1, false);
+            updateAfterUpload(obj.path, 1, false);
           }, function (e) {
             console.log(e);
             console.timeEnd('fileUpload');
-            updateAfterUpload(imageURI, 0, false);
+            updateAfterUpload(obj.path, 0, false);
             if (e.code === 4) {
               console.log('error en el controller');
               offlineService.data.offlineMode = true;
@@ -110,7 +118,9 @@ app.controller('FotoCtrl', [
           placa: placa,
           path: path,
           sync: sync,
-          onUpload: onUpload  //s.oss.online === true ? true : false
+          onUpload: onUpload,
+          //s.oss.online === true ? true : false
+          rutaSrv: momentService.rutaSrv(path)
         };
         return obj;
       };
@@ -126,7 +136,7 @@ app.controller('FotoCtrl', [
       s.tryUpload = function (foto) {
         var objFoto = searchOneInArray(foto.path);
         objFoto.onUpload = true;
-        preFileUpload(foto.path);
+        preFileUpload(objFoto);
       };
       // s.setOfflineMode = function (bool) {
       //   s.off.offlineMode = bool;
@@ -161,7 +171,8 @@ app.controller('FotoCtrl', [
             insertFoto(res.nativeURL, sync, onupload);
             $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom(true);
             // TODO: es mejor llamar a una funcion, por que asi se ejecuta para cada uno, y se ejecuta bien, en vez de llamar filupload desde aca
-            preFileUpload(res.nativeURL);  // $scope.photos.push(res.nativeURL);
+            //preFileUpload(res.nativeURL);  // $scope.photos.push(res.nativeURL);
+            preFileUpload(obj);
           }, errorService.consoleError);
         }, errorService.consoleError);  // $cordovaCamera.cleanup().then(fnSuccess,errorService.consoleError); // only for FILE_URI  
       };

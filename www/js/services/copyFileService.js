@@ -21,7 +21,8 @@ app.factory('copyFileService', [
       // var path=cordova.file.externalRootDirectory; // imagenes cordova.file.externalCacheDirectory
       var path = mediaURI.substring(0, mediaURI.lastIndexOf('/') + 1);
       console.log(path);
-      var newFileName = 'new_' + FileName;
+      var newFileName = FileName;
+      // 'new_' + FileName;
       return $cordovaFile.copyFile(path, FileName, cordova.file.dataDirectory, newFileName).then(function (FileEntry) {
         // return copyFileServiceFactory.fileEntry=FileEntry;
         return checkFileService.fileDetail(FileEntry);

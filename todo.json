@@ -21,61 +21,61 @@
     "file": "controllers\\FotoController.js",
     "text": "ESTA ESTRATEGIA FUNCIONA BIEN PARA VER EL CAMBIO INMEDIATAMENTE",
     "kind": "TODO",
-    "line": 31
+    "line": 32
   },
   {
     "file": "controllers\\FotoController.js",
     "text": "ESTA ESTRATEGIA REQUIERE OTRO DIGEST PARA QUE FUNCIONE",
     "kind": "TODO",
-    "line": 33
+    "line": 34
   },
   {
     "file": "controllers\\FotoController.js",
     "text": "ESTA ESTRATEGIA FUNCIONA BIEN PARA VER EL CAMBIO INMEDIATAMENTE  ES MEJOR RASTREAR SIEMPRE UN OBJETO",
     "kind": "TODO",
-    "line": 35
+    "line": 36
   },
   {
     "file": "controllers\\FotoController.js",
     "text": "onhold can edit placa, on swipe left delete with confirm",
     "kind": "TODO",
-    "line": 38
+    "line": 39
   },
   {
     "file": "controllers\\FotoController.js",
     "text": "always use ion-nav-title , para poderle poner los titulos que quiero",
     "kind": "TODO",
-    "line": 39
+    "line": 40
   },
   {
     "file": "controllers\\FotoController.js",
     "text": "CUANDO ES UNA SOLA ESTA BIEN, CUENAOD ES UN ARRAY DEBO DE HACER QUE SYNC CON LA ULTIMA FOTO UN .LENTHG PUEDE SER",
     "kind": "TODO",
-    "line": 73
+    "line": 80
   },
   {
     "file": "controllers\\FotoController.js",
     "text": "ya noe s necesario por que offline tambien esta en onlilnestatussrervice",
     "kind": "TODO",
-    "line": 89
+    "line": 95
   },
   {
     "file": "controllers\\FotoController.js",
     "text": "HABRA OTRA FORMA DE FILTAR MAS RAPIDA K EL STRING PATH;",
     "kind": "TODO",
-    "line": 120
+    "line": 128
   },
   {
     "file": "controllers\\FotoController.js",
     "text": "es mejor h¿guardar aqui el sqlite y luego actualizarlo si sube exitoso;",
     "kind": "TODO",
-    "line": 160
+    "line": 168
   },
   {
     "file": "controllers\\FotoController.js",
     "text": "es mejor llamar a una funcion, por que asi se ejecuta para cada uno, y se ejecuta bien, en vez de llamar filupload desde aca",
     "kind": "TODO",
-    "line": 165
+    "line": 173
   },
   {
     "file": "controllers\\InspeccionController.js",
@@ -135,13 +135,13 @@
     "file": "controllers\\VideoController.js",
     "text": "onupload dependera si esta online o no para saber si se intenta subir;",
     "kind": "TODO",
-    "line": 109
+    "line": 111
   },
   {
     "file": "controllers\\VideoController.js",
     "text": "12582912 son 12MB ;",
     "kind": "TODO",
-    "line": 143
+    "line": 144
   },
   {
     "file": "controllers\\loginController.js",
@@ -171,7 +171,7 @@
     "file": "services\\fileTransferService.js",
     "text": "definir un servicio para set el timeout dependiendo si es foto o video;",
     "kind": "TODO",
-    "line": 33
+    "line": 34
   },
   {
     "file": "services\\fotosService.js",
@@ -189,19 +189,19 @@
     "file": "services\\fotosService.js",
     "text": "es el path la mejor forma y mas efectiva de hacer el where de la consulta",
     "kind": "TODO",
-    "line": 81
+    "line": 82
   },
   {
     "file": "services\\fotosService.js",
     "text": "el campo deleted es boolean , pero debe asignarsele 1 o 0",
     "kind": "TODO",
-    "line": 83
+    "line": 84
   },
   {
     "file": "services\\fotosService.js",
     "text": "mucho cuidado por ejemplo el path debe ser nvarchar() NO  NCHAR",
     "kind": "TODO",
-    "line": 84
+    "line": 85
   },
   {
     "file": "services\\getVideoService.js",
@@ -252,6 +252,12 @@
     "line": 26
   },
   {
+    "file": "services\\unsyncService.js",
+    "text": "ya noe s necesario por que offline tambien esta en onlilnestatussrervice",
+    "kind": "TODO",
+    "line": 30
+  },
+  {
     "file": "services\\videoService.js",
     "text": "el campo deleted es boolean , pero debe asignarsele 1 o 0",
     "kind": "TODO",
@@ -261,48 +267,48 @@
     "file": "services\\videoService.js",
     "text": "es el path la mejor forma y mas efectiva de hacer el where de la consulta",
     "kind": "TODO",
-    "line": 53
+    "line": 54
   },
   {
     "file": "services\\videoService.js",
     "text": "el campo deleted es boolean , pero debe asignarsele 1 o 0",
     "kind": "TODO",
-    "line": 55
+    "line": 56
   },
   {
     "file": "services\\videoService.js",
     "text": "mucho cuidado por ejemplo el path debe ser nvarchar() NO  NCHAR",
     "kind": "TODO",
-    "line": 56
+    "line": 57
   },
   {
     "file": "services\\zumeroService.js",
     "text": "DEPENDE SI ESTOY EN MI CASA O EN LA OFICINA'http://192.168.1.13:8080/';",
     "kind": "TODO",
-    "line": 28
+    "line": 30
   },
   {
     "file": "services\\zumeroService.js",
     "text": "recordar k esto es una promesa y desencadena acciones, si es resuelta o si es reject , vallidar",
     "kind": "TODO",
-    "line": 32
+    "line": 34
   },
   {
     "file": "services\\zumeroService.js",
     "text": "abriri el puerto para zumero en el firewall",
     "kind": "TODO",
-    "line": 34
+    "line": 36
   },
   {
     "file": "services\\zumeroService.js",
     "text": "crear una servicio global para de ahi sacar el idinspeccion actual, incusive despues de un zync para saber que es el adecuado",
     "kind": "TODO",
-    "line": 35
+    "line": 37
   },
   {
     "file": "services\\zumeroService.js",
     "text": "me parece mas logico retornar un reject si esta en modo offline",
     "kind": "TODO",
-    "line": 39
+    "line": 41
   }
 ]

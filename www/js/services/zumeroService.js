@@ -5,8 +5,10 @@ app.factory('zumeroService', [
   'offlineService',
   'intermediateService',
   'updateSyncService',
+  'toastService',
+  '$timeout',
   // 'onlineStatusService',
-  function ($q, $cordovaDevice, $cordovaSQLite, offlineService, intermediateService, updateSyncService) {
+  function ($q, $cordovaDevice, $cordovaSQLite, offlineService, intermediateService, updateSyncService, toastService, $timeout) {
     var zumero = null;
     var zumeroServiceFactory = {};
     var _setDbPath = function () {
@@ -41,19 +43,25 @@ app.factory('zumeroService', [
         console.log('offline mode activado');
       } else {
         console.time('zync' + i);
+        var timer = $timeout(function () {
+          toastService.showShortBottom('sincronizando..');
+        }, 2500);
         zumero.sync(zumeroServiceFactory.dbpath, '', zumeroServiceFactory.server, zumeroServiceFactory.dbfile, null, null, null, function () {
           console.log('ok');
           console.timeEnd('zync' + i);
           if (!intermediateService.data.idinspeccionSync && intermediateService.data.placa) {
+            $timeout.cancel(timer);
             // updateSyncService.updateSync(intermediateService.data.placa, true).then(function () {
             updateSyncService.selectIdinspeccionSync(intermediateService.data.placa).then(function () {
               q.resolve('zync ok');
             });  // });
           } else {
+            $timeout.cancel(timer);
             q.resolve('zync ok');
           }
         }, function (error) {
           console.log(error);
+          $timeout.cancel(timer);
           console.timeEnd('zync' + i);
           if (error.code === 456) {
             offlineService.data.offlineMode = true;

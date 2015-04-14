@@ -29,7 +29,7 @@ app.factory('videoService', [
       });
     };
     var _insertVideo = function (idinspeccion, path, sync, thumbnail, onUpload) {
-      var query = 'INSERT INTO idVideos(idinspeccion, path,sync,uuid,thumbnail, onUpload, placa, fecha ) VALUES (?,?,?,?,?,?,?,?)';
+      var query = 'INSERT INTO idVideos(idinspeccion, path,sync,uuid,thumbnail, onUpload, placa, fecha, rutaSrv ) VALUES (?,?,?,?,?,?,?,?, ?)';
       // TODO: el campo deleted es boolean , pero debe asignarsele 1 o 0
       sync = sync ? 1 : 0;
       onUpload = onUpload ? 1 : 0;
@@ -42,7 +42,8 @@ app.factory('videoService', [
         thumbnail,
         onUpload,
         intermediateService.data.placa,
-        momentService.getDateTime()
+        momentService.getDateTime(),
+        momentService.rutaSrv(path)
       ];
       return sqliteService.executeQuery(query, binding).then(function (res) {
       }, function (err) {

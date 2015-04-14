@@ -1,4 +1,4 @@
-app.controller('MainCtrl', function ($scope, $ionicNavBarDelegate, offlineService, titleService, intermediateService, onlineStatusService, zumeroService, toastService) {
+app.controller('MainCtrl', function ($scope, $ionicNavBarDelegate, offlineService, titleService, intermediateService, onlineStatusService, zumeroService, toastService, unsyncService) {
   $scope.off = offlineService.data;
   $scope.intermediate = intermediateService.data;
   $scope.setOfflineMode = function (bool) {
@@ -10,7 +10,10 @@ app.controller('MainCtrl', function ($scope, $ionicNavBarDelegate, offlineServic
     // }
     if (!bool && onlineStatusService.data.isOnline) {
       toastService.showLongBottom('sincronizando');
-      zumeroService.zync(0);
+      unsyncService.syncImages()  // .then(function(){
+                                  //   zumeroService.zync(0);
+                                  // });  // zumeroService.zync(0);
+;
     }
   };
 });

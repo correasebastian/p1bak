@@ -32,5 +32,6 @@ app.factory('updateSyncService', function ($timeout, authService, momentService,
   };
   updateSyncServiceFactory.updateSync = _updateSync;
   updateSyncServiceFactory.selectIdinspeccionSync = _selectIdinspeccionSync;
+  // updateSyncServiceFactory.syncImages = _syncImages;
   return updateSyncServiceFactory;
 });

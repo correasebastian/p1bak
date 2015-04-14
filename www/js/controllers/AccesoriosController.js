@@ -85,18 +85,18 @@ app.controller('AccesoriosCtrl', [
           console.log('en el controller despues de sqlite foto ');
         });
       };
-      var preFileUpload = function (imageURI) {
+      var preFileUpload = function (obj) {
         if (offlineService.data.offlineMode) {
-          updateAfterUpload(imageURI, false, false);
+          updateAfterUpload(obj.path, false, false);
         } else {
-          fileTransferService.fileUpload(imageURI).then(function (res) {
+          fileTransferService.fileUpload(obj).then(function (res) {
             console.log(res);
             console.timeEnd('fileUpload');
-            updateAfterUpload(imageURI, true, false);
+            updateAfterUpload(obj.path, true, false);
           }, function (e) {
             console.log(e);
             console.timeEnd('fileUpload');
-            updateAfterUpload(imageURI, false, false);
+            updateAfterUpload(obj.path, false, false);
             if (e.code === 4) {
               offlineService.data.offlineMode = true;
               toastService.showShortBottom('activado modo offline');
@@ -118,20 +118,21 @@ app.controller('AccesoriosCtrl', [
       };
       $scope.tryUpload = function (foto) {
         foto.onUpload = true;
-        preFileUpload(foto.path);
+        preFileUpload(foto);
       };
       $scope.getPicFile = function () {
         intermediateService.data.isTakingPic = true;
         fotosService.takedpic().then(function (imageURI) {
           copyFileService.copyFile(imageURI).then(function () {
             var res = checkFileService.fileEntry;
-            var sync = false;
+            var sync = 0;
             var onUpload = true;
             $scope.acc.img.sync = sync;
             $scope.acc.img.onUpload = onUpload;
             $scope.acc.img.path = res.nativeURL;
+            $scope.acc.img.rutaSrv = momentService.rutaSrv(res.nativeURL);
             insertFoto(res.nativeURL, sync, onUpload);
-            preFileUpload(res.nativeURL);
+            preFileUpload($scope.acc.img);
           }, errorService.consoleError);
         }, errorService.consoleError);  // $cordovaCamera.cleanup().then(fnSuccess,fnError); // only for FILE_URI  
       };

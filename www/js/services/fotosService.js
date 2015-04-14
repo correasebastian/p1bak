@@ -41,9 +41,8 @@ app.factory('fotosService', [
       var query = 'select * from idfotos where idinspeccion=?';
       var binding = [idinspeccion];
       return sqliteService.executeQuery(query, binding).then(function (res) {
-        fotosServiceFactory.photos = sqliteService.rtnArray(res);
-        // $rootScope.$apply();
-        console.log(fotosServiceFactory.photos);
+        fotosServiceFactory.photos = sqliteService.rtnArray(res);  // $rootScope.$apply();
+                                                                   // console.log(fotosServiceFactory.photos);
       }, function (error) {
         console.log(error);
       });
@@ -57,7 +56,7 @@ app.factory('fotosService', [
       });
     };
     var _insertFoto = function (idinspeccion, imageURI, sync, onUpload) {
-      var query = 'INSERT INTO idfotos(idinspeccion, path,sync,uuid,deleted, onUpload, placa, fecha) VALUES (?,?,?,?,?,?,?,?)';
+      var query = 'INSERT INTO idfotos(idinspeccion, path,sync,uuid,deleted, onUpload, placa, fecha, rutaSrv) VALUES (?,?,?,?,?,?,?,?, ?)';
       // TODO: el campo deleted es boolean , pero debe asignarsele 1 o 0
       // sync = sync ? 1 : 0;
       onUpload = onUpload ? 1 : 0;
@@ -70,7 +69,8 @@ app.factory('fotosService', [
         0,
         onUpload,
         intermediateService.data.placa,
-        momentService.getDateTime()
+        momentService.getDateTime(),
+        momentService.rutaSrv(imageURI)
       ];
       return sqliteService.executeQuery(query, binding).then(function (res) {
       }, function (err) {

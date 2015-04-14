@@ -18,7 +18,8 @@ app.controller('VideoCtrl', [
   'toastService',
   'errorService',
   'zumeroService',
-  function (s, videoService, $ionicPlatform, $ionicScrollDelegate, fileTransferService, $filter, $stateParams, $ionicNavBarDelegate, copyFileService, videoThumbnailService, getVideoService, checkFileService, titleService, offlineService, onlineStatusService, intermediateService, toastService, errorService, zumeroService) {
+  'momentService',
+  function (s, videoService, $ionicPlatform, $ionicScrollDelegate, fileTransferService, $filter, $stateParams, $ionicNavBarDelegate, copyFileService, videoThumbnailService, getVideoService, checkFileService, titleService, offlineService, onlineStatusService, intermediateService, toastService, errorService, zumeroService, momentService) {
     $ionicPlatform.ready(function () {
       titleService.title = intermediateService.data.placa;
       // $stateParams.id;
@@ -59,18 +60,18 @@ app.controller('VideoCtrl', [
         var objVideo = searchOneInArray(imageURI);
         objVideo.progress = percentage;
       };
-      var preFileUpload = function (imageURI) {
+      var preFileUpload = function (obj) {
         if (offlineService.data.offlineMode) {
-          updateAfterUpload(imageURI, false, false);
+          updateAfterUpload(obj.path, false, false);
         } else {
-          fileTransferService.fileUpload(imageURI).then(function (res) {
+          fileTransferService.fileUpload(obj).then(function (res) {
             console.log(res);
             console.timeEnd('fileUpload');
-            updateAfterUpload(imageURI, true, false);
+            updateAfterUpload(obj.path, true, false);
           }, function (e) {
             console.log(e);
             console.timeEnd('fileUpload');
-            updateAfterUpload(imageURI, false, false);
+            updateAfterUpload(obj.path, false, false);
             if (e.code === 4) {
               offlineService.data.offlineMode = true;
               toastService.showShortBottom('activado modo offline');
@@ -78,7 +79,7 @@ app.controller('VideoCtrl', [
           }, function (progress) {
             // constant progress updates
             // console.log(progress);
-            refreshProgress(imageURI, Math.round(progress.loaded / progress.total * 100));
+            // refreshProgress(imageURI, Math.round(progress.loaded / progress.total * 100));
             console.log(Math.round(progress.loaded / progress.total * 100));
           });
         }
@@ -90,7 +91,8 @@ app.controller('VideoCtrl', [
           sync: sync,
           onUpload: onUpload,
           //s.oss.online === true ? true : false
-          thumbnail: thumbnail
+          thumbnail: thumbnail,
+          rutaSrv: momentService.rutaSrv(path)
         };
         return obj;
       };
@@ -102,21 +104,21 @@ app.controller('VideoCtrl', [
           console.log('not found in array search');
         }
       };
-      var loadThumbnail = function (VideoURL) {
-        videoThumbnailService.generateThumbnail(VideoURL).then(function (thumbnailSrc) {
-          searchOneInArray(VideoURL).thumbnail = thumbnailSrc;
+      var loadThumbnail = function (obj) {
+        videoThumbnailService.generateThumbnail(obj.path).then(function (thumbnailSrc) {
+          searchOneInArray(obj.path).thumbnail = thumbnailSrc;
           var sync = false;
           // TODO: onupload dependera si esta online o no para saber si se intenta subir;
           var onUpload = true;
-          insertVideo(VideoURL, sync, thumbnailSrc, onUpload);
+          insertVideo(obj.path, sync, thumbnailSrc, onUpload);
           $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom(true);
-          preFileUpload(VideoURL);
+          preFileUpload(obj);
         }, errorService.consoleError);
       };
       s.tryUpload = function (foto) {
         var objVideo = searchOneInArray(foto.path);
         objVideo.onUpload = true;
-        preFileUpload(foto.path);
+        preFileUpload(objVideo);
       };
       s.getVidFile = function () {
         intermediateService.data.isTakingVid = true;
@@ -127,11 +129,10 @@ app.controller('VideoCtrl', [
             copyFileService.copyFile(value.fullPath).then(function () {
               console.log(checkFileService.fileEntry, checkFileService.file);
               var res = checkFileService.fileEntry;
-              var obj = rtnObjVideo('ABC111', res.nativeURL, false, true, '');
+              var obj = rtnObjVideo(intermediateService.data.placa, res.nativeURL, false, true, '');
               console.log(res, 'copyok');
               s.videos.push(obj);
-              loadThumbnail(res.nativeURL);
-              preFileUpload(res.nativeURL);
+              loadThumbnail(obj);  // preFileUpload(obj);
             }, errorService.consoleError);
           });
         }, errorService.consoleError);  // $cordovaCamera.cleanup().then(fnSuccess,errorService.consoleError); // only for FILE_URI  
@@ -146,10 +147,10 @@ app.controller('VideoCtrl', [
             copyFileService.copyFile(resVideoCompress.nativeURL).then(function () {
               // console.log(copyFileService.fileEntry, copyFileService.file);
               var res = checkFileService.fileEntry;
-              var obj = rtnObjVideo('ABC111', res.nativeURL, false, true, '');
+              var obj = rtnObjVideo(intermediateService.data.placa, res.nativeURL, false, true, '');
               console.log(res, 'copyok');
               s.videos.push(obj);
-              loadThumbnail(res.nativeURL);  // preFileUpload(res.nativeURL);
+              loadThumbnail(obj);  // preFileUpload(res.nativeURL);
             }, errorService.consoleError);
           } else {
             alert('el archivo supera el tama\xF1a maximo permitido. maximo 12MB');

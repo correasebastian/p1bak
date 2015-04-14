@@ -3,10 +3,10 @@ app.factory('fileTransferService', [
   function ($cordovaFileTransfer) {
     var fileTransferServiceFactory = {};
     fileTransferServiceFactory.setTimeOut = 17000;
-    var _fileUpload = function (imageURI) {
-      var FileName = imageURI.replace(/^.*[\\\/]/, '');
+    var _fileUpload = function (obj) {
+      var FileName = obj.path.replace(/^.*[\\\/]/, '');
       console.log(FileName);
-      var fileExt = imageURI.split('.').pop();
+      var fileExt = obj.path.split('.').pop();
       console.log('extension', fileExt);
       var mimetype = 'image/jpeg';
       // fileTransferServiceFactory.setTimeOut = 20000;
@@ -18,15 +18,16 @@ app.factory('fileTransferService', [
       // 'https://www.ajustevsiva.com/auth/api/file';
       var options = {};
       options.fileKey = 'file';
-      options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
+      options.fileName = obj.path.substr(obj.path.lastIndexOf('/') + 1);
       options.mimeType = mimetype;
       /*var authData = localStorageService.get('authorizationData');
-        if (authData) {
-          var headers = { 'Authorization': 'Bearer ' + authData.token };
-          options.headers = headers;
-        }*/
+       if (authData) {
+         var headers = { 'Authorization': 'Bearer ' + authData.token };
+         options.headers = headers;
+       }*/
       var params = {};
-      params.pathFileServer = '2015/March/18/PRUEBA700';
+      params.pathFileServer = obj.rutaSrv.substring(0, obj.rutaSrv.lastIndexOf('/') + 1);
+      // '2015/March/18/PRUEBA700';
       // url;//UpPromise.pathFileServer;
       params.value2 = 'param';
       options.params = params;
@@ -35,7 +36,7 @@ app.factory('fileTransferService', [
       //$scope.data.timeout;
       //500;//30000;//miliseconds
       console.time('fileUpload');
-      return $cordovaFileTransfer.upload(server, imageURI, options).then(function (success) {
+      return $cordovaFileTransfer.upload(server, obj.path, options).then(function (success) {
         console.log('succes en el servicio');
         // console.timeEnd('fileUpload');
         return success;  //TODO: verificar si puedo poner el error aca y disparar el ooflinemode desde aca y no desde todos los controllers
