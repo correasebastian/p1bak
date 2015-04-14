@@ -1,0 +1,302 @@
+[
+  {
+    "file": "app.js",
+    "text": "para que se consideren sanas las ng-src que tengan esta sintaxis;",
+    "kind": "TODO",
+    "line": 111
+  },
+  {
+    "file": "app.js",
+    "text": "verificar si existe en el localstorage alguna bandera que diga si ya se sync alguna vez",
+    "kind": "TODO",
+    "line": 171
+  },
+  {
+    "file": "controllers\\AccesoriosController.js",
+    "text": "AQUI TENDRIA QUE HACER EL UPDATE",
+    "kind": "TODO",
+    "line": 80
+  },
+  {
+    "file": "controllers\\FotoController.js",
+    "text": "ESTA ESTRATEGIA FUNCIONA BIEN PARA VER EL CAMBIO INMEDIATAMENTE",
+    "kind": "TODO",
+    "line": 29
+  },
+  {
+    "file": "controllers\\FotoController.js",
+    "text": "ESTA ESTRATEGIA REQUIERE OTRO DIGEST PARA QUE FUNCIONE",
+    "kind": "TODO",
+    "line": 31
+  },
+  {
+    "file": "controllers\\FotoController.js",
+    "text": "ESTA ESTRATEGIA FUNCIONA BIEN PARA VER EL CAMBIO INMEDIATAMENTE  ES MEJOR RASTREAR SIEMPRE UN OBJETO",
+    "kind": "TODO",
+    "line": 33
+  },
+  {
+    "file": "controllers\\FotoController.js",
+    "text": "onhold can edit placa, on swipe left delete with confirm",
+    "kind": "TODO",
+    "line": 36
+  },
+  {
+    "file": "controllers\\FotoController.js",
+    "text": "always use ion-nav-title , para poderle poner los titulos que quiero",
+    "kind": "TODO",
+    "line": 37
+  },
+  {
+    "file": "controllers\\FotoController.js",
+    "text": "ya noe s necesario por que offline tambien esta en onlilnestatussrervice",
+    "kind": "TODO",
+    "line": 67
+  },
+  {
+    "file": "controllers\\FotoController.js",
+    "text": "HABRA OTRA FORMA DE FILTAR MAS RAPIDA K EL STRING PATH;",
+    "kind": "TODO",
+    "line": 98
+  },
+  {
+    "file": "controllers\\FotoController.js",
+    "text": "es mejor h¿guardar aqui el sqlite y luego actualizarlo si sube exitoso;",
+    "kind": "TODO",
+    "line": 131
+  },
+  {
+    "file": "controllers\\FotoController.js",
+    "text": "es mejor llamar a una funcion, por que asi se ejecuta para cada uno, y se ejecuta bien, en vez de llamar filupload desde aca",
+    "kind": "TODO",
+    "line": 136
+  },
+  {
+    "file": "controllers\\InspeccionController.js",
+    "text": "como esto se sincroniza una sola vez, no hay problema con el idinspeccion, el problema esta en accesorios y en fotos, que se sube uno a uno, entonces podria cambiar, o en accesorios hacer un beforleave de view, mi pregunta es , si no abandona la view, como sincronizo? otra mas si paso a background puedo sincronizar???",
+    "kind": "TODO",
+    "line": 19
+  },
+  {
+    "file": "controllers\\InspeccionController.js",
+    "text": "esta variable me la da la pbase de satos, si ya esta calificado o no",
+    "kind": "TODO",
+    "line": 20
+  },
+  {
+    "file": "controllers\\InspeccionController.js",
+    "text": "para deshabilitar el update, aunque ya esta montado, me preocupa es el zync cada que se haga un update",
+    "kind": "TODO",
+    "line": 56
+  },
+  {
+    "file": "controllers\\InspeccionController.js",
+    "text": "aqui valido si ya se califico o si apenas se va a realizar",
+    "kind": "TODO",
+    "line": 138
+  },
+  {
+    "file": "controllers\\PlacasController.js",
+    "text": "seria bueno que la consulta de placas supiera todo, como por ejemplo si ya se califico, si ya tiene alguna foto o un video, puede ser marcandolo con alguna clase",
+    "kind": "TODO",
+    "line": 50
+  },
+  {
+    "file": "controllers\\PlacasController.js",
+    "text": "puedo poder obj=null, para que me elimine la base de datos si ya esta creada y vuelva a sincronizar, esto seria beneficioso si tengo que hacer un cambio en la base de ddatos que requiera reconstruirla",
+    "kind": "TODO",
+    "line": 53
+  },
+  {
+    "file": "controllers\\PlacasController.js",
+    "text": "organizar el focus en el input del popup",
+    "kind": "TODO",
+    "line": 64
+  },
+  {
+    "file": "controllers\\PlacasController.js",
+    "text": "si las placas son iguales, puede ser que se haya sincronizado y no se haya acyaulizado la lista de placas, entonces se pasaria un idinspeccion que no ,es esto cuando offline creo una placa, me pongo online y luego on pause hago el sync, aunque hayq ue pensar que cuando le pongo online, deberia sincronizar si hay señal 4g o wifi para imagenes o para todo",
+    "kind": "TODO",
+    "line": 112
+  },
+  {
+    "file": "controllers\\PlacasController.js",
+    "text": "aqui podria evaluar si ya se califico o no, si no se ha calificado podria desplegar el modal de clase carroceria",
+    "kind": "TODO",
+    "line": 130
+  },
+  {
+    "file": "controllers\\VideoController.js",
+    "text": "onupload dependera si esta online o no para saber si se intenta subir;",
+    "kind": "TODO",
+    "line": 109
+  },
+  {
+    "file": "controllers\\VideoController.js",
+    "text": "12582912 son 12MB ;",
+    "kind": "TODO",
+    "line": 143
+  },
+  {
+    "file": "controllers\\loginController.js",
+    "text": "verificar si esto se puede hacer en el run, pero con state.go app.placas",
+    "kind": "TODO",
+    "line": 14
+  },
+  {
+    "file": "services\\accesoriosService.js",
+    "text": "una bandera para saber que ya se setio, una vez, y evitar mas consulats, a menos que se haga una actualizacion del servidor",
+    "kind": "TODO",
+    "line": 80
+  },
+  {
+    "file": "services\\accesoriosService.js",
+    "text": "seria bueno iniciar estos ddl sin valores,  pero tendria que validar que si se seleccione algo;",
+    "kind": "TODO",
+    "line": 90
+  },
+  {
+    "file": "services\\cordovaEventsService.js",
+    "text": "evaluar todas las posibilidades de esto aca, por que si la señal es muy mala que puede pasar, aunque el zync de bases de datos nunca hasido muy grande en informacion",
+    "kind": "TODO",
+    "line": 19
+  },
+  {
+    "file": "services\\fileTransferService.js",
+    "text": "definir un servicio para set el timeout dependiendo si es foto o video;",
+    "kind": "TODO",
+    "line": 33
+  },
+  {
+    "file": "services\\fotosService.js",
+    "text": "revisar para que sirve esta opcion",
+    "kind": "TODO",
+    "line": 32
+  },
+  {
+    "file": "services\\fotosService.js",
+    "text": "el campo deleted es boolean , pero debe asignarsele 1 o 0",
+    "kind": "TODO",
+    "line": 61
+  },
+  {
+    "file": "services\\fotosService.js",
+    "text": "es el path la mejor forma y mas efectiva de hacer el where de la consulta",
+    "kind": "TODO",
+    "line": 81
+  },
+  {
+    "file": "services\\fotosService.js",
+    "text": "el campo deleted es boolean , pero debe asignarsele 1 o 0",
+    "kind": "TODO",
+    "line": 83
+  },
+  {
+    "file": "services\\fotosService.js",
+    "text": "mucho cuidado por ejemplo el path debe ser nvarchar() NO  NCHAR",
+    "kind": "TODO",
+    "line": 84
+  },
+  {
+    "file": "services\\getVideoService.js",
+    "text": "esto se debe de llamar dentro de la misma funcion, por que si lo inicializamos por fuera, el pugin no ha cargado y obtengo camera is not defined",
+    "kind": "TODO",
+    "line": 8
+  },
+  {
+    "file": "services\\getVideoService.js",
+    "text": "create getVideoServiceFactory.fileEntry y .file, para devolver la promesa sin data y referenciar el controlador con la propiedad dedl servicio todd mot",
+    "kind": "TODO",
+    "line": 20
+  },
+  {
+    "file": "services\\inspeccionService.js",
+    "text": "logica para saber si ya fue calificado",
+    "kind": "TODO",
+    "line": 38
+  },
+  {
+    "file": "services\\inspeccionService.js",
+    "text": "para la implementacion de pesados y motos, ya si debe ser una consulta",
+    "kind": "TODO",
+    "line": 121
+  },
+  {
+    "file": "services\\inspeccionService.js",
+    "text": "ASI NO SIRVE , no se actualiza el expuesto ,,_clases = sqliteService.rtnArray(res);",
+    "kind": "TODO",
+    "line": 136
+  },
+  {
+    "file": "services\\inspeccionService.js",
+    "text": "el json de controlJson devuelve un value= \"\" string, ver si se puede mejorar;",
+    "kind": "TODO",
+    "line": 179
+  },
+  {
+    "file": "services\\onlineStatusService.js",
+    "text": "evaluar todas las posibilidades de esto aca, por que si la señal es muy mala que puede pasar, aunque el zync de bases de datos nunca hasido muy grande en informacion",
+    "kind": "TODO",
+    "line": 31
+  },
+  {
+    "file": "services\\sqliteService.js",
+    "text": "si yo cambio el tipo de dato de una columna, ejemplo string to int, debo reestablecer la base de datos zumero, para agregar una columna no tengo problema",
+    "kind": "TODO",
+    "line": 26
+  },
+  {
+    "file": "services\\videoService.js",
+    "text": "el campo deleted es boolean , pero debe asignarsele 1 o 0",
+    "kind": "TODO",
+    "line": 33
+  },
+  {
+    "file": "services\\videoService.js",
+    "text": "es el path la mejor forma y mas efectiva de hacer el where de la consulta",
+    "kind": "TODO",
+    "line": 53
+  },
+  {
+    "file": "services\\videoService.js",
+    "text": "el campo deleted es boolean , pero debe asignarsele 1 o 0",
+    "kind": "TODO",
+    "line": 55
+  },
+  {
+    "file": "services\\videoService.js",
+    "text": "mucho cuidado por ejemplo el path debe ser nvarchar() NO  NCHAR",
+    "kind": "TODO",
+    "line": 56
+  },
+  {
+    "file": "services\\zumeroService.js",
+    "text": "DEPENDE SI ESTOY EN MI CASA O EN LA OFICINA'http://192.168.1.13:8080/';",
+    "kind": "TODO",
+    "line": 28
+  },
+  {
+    "file": "services\\zumeroService.js",
+    "text": "recordar k esto es una promesa y desencadena acciones, si es resuelta o si es reject , vallidar",
+    "kind": "TODO",
+    "line": 32
+  },
+  {
+    "file": "services\\zumeroService.js",
+    "text": "abriri el puerto para zumero en el firewall",
+    "kind": "TODO",
+    "line": 34
+  },
+  {
+    "file": "services\\zumeroService.js",
+    "text": "crear una servicio global para de ahi sacar el idinspeccion actual, incusive despues de un zync para saber que es el adecuado",
+    "kind": "TODO",
+    "line": 35
+  },
+  {
+    "file": "services\\zumeroService.js",
+    "text": "me parece mas logico retornar un reject si esta en modo offline",
+    "kind": "TODO",
+    "line": 39
+  }
+]

@@ -1,0 +1,46 @@
+<ion-view view-title="inspeccion">
+<ion-nav-title>{{tittle}}</ion-nav-title>
+<div class="float-button fbCamera" ng-hide="alreadySaved">
+  <span class="height-fix">
+    <a on-touch="openModalOne()"  class="button content button-icon ">
+    <!-- ui-sref="add-trip" -->
+      <i class="ion-document-text my-icon"> </i>
+    </a>
+  </span>
+</div>
+  <ion-content on-swipe-left="showNext()" on-swipe-right="showPrev()">
+  
+<!-- ng-init="renderInit(item) " -->
+<ion-list>
+  <ion-item  class='fx-rotate-clock-left fx-speed-1600' collection-repeat="item in items | filter: {customsection:obj.customsection}  | orderBy:['customsection','customorder']" on-tap="showItems(item)"  >
+{{ item.nombre}}
+<span class="item-note" ng-class="{positive:item.dirty}">
+                
+                  {{item.sl.label}}
+                 
+                </span>
+  </ion-item>
+
+</ion-list>
+
+<label class="item item-input" ng-show="sections.length-1===_Index" >
+  <span class="input-label">Kilometraje</span>
+  <input type="text" ng-disabled="alreadySaved" ng-model="data.kilometraje">
+</label>
+
+
+<label class="item item-input item-stacked-label" ng-show="sections.length-1===_Index">
+  <span class="input-label">Observaciones</span>
+
+  <textarea placeholder="" rows="16" cols="10" ng-disabled="alreadySaved" ng-model="data.observacion">
+  </textarea >
+</label>
+
+<button class="button button-full button-calm" on-tap="save(items)" ng-show="sections.length-1===_Index && !alreadySaved">
+  Guardar
+</button>
+    
+   
+
+  </ion-content>
+</ion-view>

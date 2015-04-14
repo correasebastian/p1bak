@@ -1,0 +1,135 @@
+<ion-view class="fancy-select-items modal">
+              <ion-header-bar class="bar-positive">
+
+                <button ng-click="hideItems()" class="button button-positive button-icon ion-android-arrow-back"></button>
+
+                <h1 class="title">Accesorio</h1>
+
+             <!--    <button ng-click="validate()" class="button button-positive button-icon ion-checkmark"></button> -->
+
+              </ion-header-bar>
+              <div class="float-button fbVideoCompress" ng-hide="acc.img.path!=''">
+                    <span class="height-fix">
+                      <a on-touch="getPicFile()"  class="button content button-icon ">
+                      <!-- ui-sref="add-trip" -->
+                        <i class="ion-camera my-icon"> </i>
+                      </a>
+                    </span>
+                  </div>
+                  <div class="float-button fbCamera" >
+                  <span class="height-fix">
+                    <a ng-hide="modshow" on-touch="closeModal()"  class="button content button-icon ">
+                    <!-- ui-sref="add-trip" -->
+                      <i class="ion-plus-round my-icon"> </i>
+                    </a>
+                    <a ng-show="modshow" on-touch="closeActModal()"  class="button content button-icon ">
+                    <!-- ui-sref="add-trip" -->
+                      <i class="ion-checkmark-round my-icon"> </i>
+                    </a>
+                  </span>
+                </div>
+              <ion-content>
+               <!--  <div class="list">
+                 
+                 
+
+                 
+                  <label
+                         ng-repeat="opcion in item.controlJson"
+                         
+                         class="item item-text-wrap "
+                         ng-class="{positive:opcion.id===item.sl.value}"
+                         on-tap='validateSingle(opcion)'>
+                 
+                    {{opcion.text}}
+                  </label>
+                </div> -->
+
+<!-- {{options}} -->
+                        <div class="list">
+
+                          <label class="item item-input item-select">
+                            <div class="input-label">
+                              Nombre
+                            </div>
+                            <select ng-options="item.label for item in options.nombres" ng-model="acc.nombre" />
+                          </label>
+                          <label class="item item-input item-select">
+                            <div class="input-label">
+                              Estado
+                            </div>
+                            <select ng-options="item.label for item in options.estados" ng-model="acc.estado" />
+                          </label>
+                          <label class="item item-input item-select">
+                            <div class="input-label">
+                              Cantidad
+                            </div>
+                            <select ng-options="item.label for item in options.cantidades" ng-model="acc.cantidad" />
+                          </label>
+                           <label class="item item-input ">
+                            <div class="input-label">
+                              Valor
+                            </div>
+                            <!--valid-number  directive-->
+                           <input type="number" ng-model="acc.valor" placeholder="ingrese el valor  (solamente numeros)" />
+                          </label>
+                          
+                         <label class="item item-input ">
+                            <div class="input-label">
+                              Marca
+                            </div>
+                           <input type="text" ng-model="acc.marca" placeholder="ingrese la marca"/>
+                          </label>
+
+                           <label class="item item-input ">
+                            <div class="input-label">
+                              Referencia
+                            </div>
+                           <input type="text" ng-model="acc.referencia" placeholder="ingrese la referencia"/>
+                          </label>
+                        </div>
+                      <!--   <span>{{acc.imgSrc}}</span> -->
+                        <div class="list card" ng-show="acc.img.path!=''">
+                           <div class="item item-image">
+                                <img ng-src="{{acc.img.path}}">
+                              </div>
+                                <div class="item item-icon assertive" >
+                                <!-- ng-disabled="!oss.online" -->
+                                    <button ng-show="!acc.img.sync && !acc.img.onUpload "  on-touch="tryUpload(acc.img)" class="button button-icon  " ng-disabled="!oss.isOnline">
+                                      <i  class="icon ion-refresh red"></i>
+                                    </button>
+
+                                    <i  ng-show="acc.img.sync" class="icon ion-checkmark-round green"></i>
+                                    <ion-spinner ng-show="acc.img.onUpload"></ion-spinner><span ng-show="acc.img.onUpload"></span>
+                                </div>
+
+                        </div>
+                        
+
+                    <!--     <fancy-select            header-text="Nombre"
+                                                  allow-empty='false'
+                                                  value="nombres[0].id"
+                                                  text="nombres[0].text"
+                                                  note-text="Nombre"
+                                                  items="nombres">
+                            </fancy-select>
+                             <fancy-select            header-text="Estado"
+                                                  allow-empty='false'
+                                                  value="estados[0].id"
+                                                  text="estados[0].text"
+                                                  note-text="Estado"
+                                                  items="estados">
+                            </fancy-select> -->
+
+
+                          <!-- <button class="button button-full button-energized" ng-hide="modshow" on-tap="closeModal()">Done</button> -->
+                          <!-- <button class="button button-full button-energized" ng-show="modshow" ng-click="closeActModal()">Actualizar</button> -->
+              </ion-content>
+           <!--    <div class="bar bar-footer bar-positive">
+
+                <div class="title">Footer</div>
+              </div> -->
+             <!--  <div class="bar bar-footer">
+                <button class="button button-clear button-icon ion-plus-round pull-left">Left</button>
+              </div> -->
+            </ion-view>

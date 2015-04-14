@@ -1,0 +1,59 @@
+<ion-view view-title="video">
+<ion-nav-title>{{tittle}}</ion-nav-title>
+
+<!-- <div class="float-button fbAdd">
+  <span class="height-fix">
+    <a on-touch="addPlaca()"  class="button content button-icon ">
+    
+      <i class="ion-plus-round my-icon"> </i>
+    </a>
+  </span>
+</div> -->
+<div class="float-button fbVideoCompress">
+  <span class="height-fix">
+    <a on-touch="getVidFileCompress()"  class="button content button-icon ">
+    <!-- ui-sref="add-trip" -->
+      <i class="ion-images my-icon"> </i>
+    </a>
+  </span>
+</div>
+<div class="float-button fbCamera">
+  <span class="height-fix">
+    <a on-touch="getVidFile()"  class="button content button-icon ">
+    <!-- ui-sref="add-trip" -->
+      <i class="ion-videocamera my-icon"> </i>
+    </a>
+  </span>
+</div>
+  <ion-content delegate-handle="mainScroll">
+  <!-- {{videos}} -->
+    	<div class="list card mt" ng-repeat="p in videos | unique" >
+		<!--   <div class="item item-avatar">
+		    <img src="avatar.jpg">
+		    <h2>{{p.src}}</h2>
+		    <p>{{p.onUpload}}  on upload</p>
+		    <p>{{p.sync}}  on sync</p>
+		  </div> -->
+
+		  <div class="item item-image">
+		    <img ng-src={{p.thumbnail}}>
+		  </div>
+
+		  <div class="item item-icon assertive" >
+			  <button ng-show="!p.sync && !p.onUpload " ng-disabled="!oss.isOnline" on-touch="tryUpload(p)" class="button button-icon  ">
+			    <i  class="icon ion-refresh red"></i>
+			  </button>
+
+		    <i  ng-show="p.sync && !p.onUpload" class="icon ion-checkmark-round green"></i>
+		    <ion-spinner ng-show="p.onUpload"></ion-spinner><span ng-show="p.onUpload">{{p.percentage}}</span>
+	      </div>
+ 
+		    
+		  
+
+	</div>
+	<!-- <button class="button button-block " on-touch="getPicFile()">
+	  getpic
+	</button> -->
+  </ion-content>
+</ion-view>

@@ -1,0 +1,58 @@
+<ion-view class="fancy-select-items modal">
+  <ion-header-bar class="bar-positive">
+
+    <button ng-click="closeModalOne()" class="button button-positive button-icon ion-android-arrow-back"></button>
+
+    <h1 class="title">Placa</h1>
+
+  <!--   <button ng-click="validate()" class="button button-positive button-icon ion-checkmark"></button> -->
+
+  </ion-header-bar>
+      <ion-content>
+
+       <div class="list">
+
+      <label class="item item-input item-select">
+        <div class="input-label">
+          Tipo
+        </div>
+         <select id="ddltipoveh" name="D0" ng-model="cl.tipo" ng-options="item.value as item.label for item in tipos" ng-change="getClases(cl.tipo)" >                    
+               
+              </select> 
+      </label>
+
+        <label class="item item-input item-select" ng-hide="clases.length <1 || cl.tipo==null">
+        <div class="input-label">
+          Clase
+        </div>
+          <select  ng-model="cl.idclase" ng-change="getCarrocerias(cl.idclase)" ng-options="item.value as item.label for item in clases" >                    
+                </select> 
+      </label>
+
+
+        <label class="item item-input item-select" ng-hide="carrocerias.length <1 || cl.idclase==null">
+        <div class="input-label">
+          Carroceria
+        </div>
+        <select  ng-model="cl.idcarroceria" ng-options="item.value as item.label for item in carrocerias" ng-change="setIdClaCa()">
+                </select> 
+      </label>
+
+
+        <label class="item item-input item-select" ng-show="cl.tipo==844">
+        <div class="input-label">
+          Info adicional
+        </div>
+         <select ng-model="cl.conjuntoPanel" name="D3"  >
+                                        <option value="500">Conjunto</option>
+                                        <option value="550">Panel</option>
+           </select>
+      </label>
+
+  </div>
+
+
+      <!--  <button class="button button-full button-energized" ng-hide="modshow" ng-click="closeModal()">Ok</button>-->
+       
+    </ion-content>
+    </ion-view>

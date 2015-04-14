@@ -1,0 +1,92 @@
+/* Empty. Add your own CSS if you like */
+/* Empty. Add your own CSS if you like */
+.red{
+  color: red;
+}
+.green {
+  color: green;
+  font-size: 25px;
+}
+
+
+.float-button {
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  width: 30px;
+  padding: 30px;
+  font-size: 40px;
+  /*background: $warning;*/
+  position: fixed;
+ 
+  right: 10px; /* Adjust to where you want it */
+  z-index: 9999;
+}
+.fbCamera{
+  bottom: 20px;
+  background:  rgb(72, 239, 53);
+}
+.fbVideoCompress{
+  bottom: 80px;
+  background:  rgb(72, 239, 53);
+}
+.fbAdd{
+  bottom: 20px;
+  background:  yellow;
+}
+
+.float-button .height_fix {
+  margin-top: 100%;
+}
+
+.float-button .content {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  margin-top: -20px; /* Note, this must be half the font size */
+  color: $light;
+}
+// The path for our ionicons font files, relative to the built CSS in www/css
+$ionicons-font-path: "../lib/ionic/fonts" !default;
+
+// Include all of Ionic
+@import "www/lib/ionic/scss/ionic";
+
+.platform-android .float-button {
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  width: 30px;
+  padding: 30px;
+  font-size: 30px;
+  background: $assertive;
+  position: absolute;
+  /*bottom: 20px;*/
+  right: 20px;
+  z-index: 9999;
+}
+
+.platform-ios .float-button {
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  width: 30px;
+  padding: 30px;
+  font-size: 30px;
+  background: $assertive;
+  position: absolute;
+  bottom: 60px;
+  right: 20px;
+  z-index: 9999;
+}
+
+.my-icon{
+    font-size: 30px;
+}
+
+.ml120{
+  margin-left: 120px;
+}

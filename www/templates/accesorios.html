@@ -1,0 +1,32 @@
+<ion-view view-title="Accesorios">
+<ion-nav-title>{{tittle}}</ion-nav-title>
+<div class="float-button fbCamera">
+  <span class="height-fix">
+    <a on-touch="showModalNew()"  class="button content button-icon ">
+    <!-- ui-sref="add-trip" -->
+      <i class="ion-plus-round my-icon"> </i>
+    </a>
+  </span>
+</div>
+  <ion-content>
+    <!-- {{acces}} -->
+    <div class="list">
+<!-- on-tap="mod(acc)" -->
+    <a ng-repeat="acc in acces" class="item item-thumbnail-left" >
+      <img ng-src="{{acc.imgSrc}}">
+      <h2>{{acc.nombre}}</h2>
+      <p>{{acc.estado}}</p>
+      <p>{{acc.cantidad}}</p>
+      <p>{{acc.marca}}</p>
+      <p>{{acc.referencia}}</p>
+      <span class="item-note">
+      valor: {{acc.valor}}
+      </span>
+
+    </a>
+
+    
+
+</div>
+  </ion-content>
+</ion-view>
