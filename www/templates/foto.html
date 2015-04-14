@@ -18,6 +18,15 @@
     </a>
   </span>
 </div> -->
+
+<div class="float-button fbVideoCompress" ng-show="imgUnsync.length>0 && !off.offlineMode && oss.isOnline">
+  <span class="height-fix">
+    <a on-touch="syncImgUnsync()"  class="button content button-icon ">
+    <!-- ui-sref="add-trip" -->
+      <i class="ion-android-upload my-icon"> </i>
+    </a>
+  </span>
+</div>
 <div class="float-button fbCamera">
   <span class="height-fix">
     <a on-touch="getPicFile()"  class="button content button-icon ">
@@ -52,7 +61,8 @@
 		  
 
 	</div>
-
+{{imgUnsync}}
+{{photos}}
 <!-- 	<button class="button button-calm" ng-show="oss.online">
 	  button-calm
 	</button> -->

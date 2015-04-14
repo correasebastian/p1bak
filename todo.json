@@ -9,7 +9,7 @@
     "file": "app.js",
     "text": "verificar si existe en el localstorage alguna bandera que diga si ya se sync alguna vez",
     "kind": "TODO",
-    "line": 171
+    "line": 173
   },
   {
     "file": "controllers\\AccesoriosController.js",
@@ -21,55 +21,55 @@
     "file": "controllers\\FotoController.js",
     "text": "ESTA ESTRATEGIA FUNCIONA BIEN PARA VER EL CAMBIO INMEDIATAMENTE",
     "kind": "TODO",
-    "line": 29
+    "line": 30
   },
   {
     "file": "controllers\\FotoController.js",
     "text": "ESTA ESTRATEGIA REQUIERE OTRO DIGEST PARA QUE FUNCIONE",
     "kind": "TODO",
-    "line": 31
+    "line": 32
   },
   {
     "file": "controllers\\FotoController.js",
     "text": "ESTA ESTRATEGIA FUNCIONA BIEN PARA VER EL CAMBIO INMEDIATAMENTE  ES MEJOR RASTREAR SIEMPRE UN OBJETO",
     "kind": "TODO",
-    "line": 33
+    "line": 34
   },
   {
     "file": "controllers\\FotoController.js",
     "text": "onhold can edit placa, on swipe left delete with confirm",
     "kind": "TODO",
-    "line": 36
+    "line": 37
   },
   {
     "file": "controllers\\FotoController.js",
     "text": "always use ion-nav-title , para poderle poner los titulos que quiero",
     "kind": "TODO",
-    "line": 37
+    "line": 38
   },
   {
     "file": "controllers\\FotoController.js",
     "text": "ya noe s necesario por que offline tambien esta en onlilnestatussrervice",
     "kind": "TODO",
-    "line": 67
+    "line": 75
   },
   {
     "file": "controllers\\FotoController.js",
     "text": "HABRA OTRA FORMA DE FILTAR MAS RAPIDA K EL STRING PATH;",
     "kind": "TODO",
-    "line": 98
+    "line": 106
   },
   {
     "file": "controllers\\FotoController.js",
     "text": "es mejor h¿guardar aqui el sqlite y luego actualizarlo si sube exitoso;",
     "kind": "TODO",
-    "line": 131
+    "line": 144
   },
   {
     "file": "controllers\\FotoController.js",
     "text": "es mejor llamar a una funcion, por que asi se ejecuta para cada uno, y se ejecuta bien, en vez de llamar filupload desde aca",
     "kind": "TODO",
-    "line": 136
+    "line": 149
   },
   {
     "file": "controllers\\InspeccionController.js",
@@ -213,25 +213,25 @@
     "file": "services\\inspeccionService.js",
     "text": "logica para saber si ya fue calificado",
     "kind": "TODO",
-    "line": 38
+    "line": 39
   },
   {
     "file": "services\\inspeccionService.js",
     "text": "para la implementacion de pesados y motos, ya si debe ser una consulta",
     "kind": "TODO",
-    "line": 121
+    "line": 122
   },
   {
     "file": "services\\inspeccionService.js",
     "text": "ASI NO SIRVE , no se actualiza el expuesto ,,_clases = sqliteService.rtnArray(res);",
     "kind": "TODO",
-    "line": 136
+    "line": 137
   },
   {
     "file": "services\\inspeccionService.js",
     "text": "el json de controlJson devuelve un value= \"\" string, ver si se puede mejorar;",
     "kind": "TODO",
-    "line": 179
+    "line": 180
   },
   {
     "file": "services\\onlineStatusService.js",

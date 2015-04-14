@@ -59,7 +59,7 @@ app.factory('fotosService', [
     var _insertFoto = function (idinspeccion, imageURI, sync, onUpload) {
       var query = 'INSERT INTO idfotos(idinspeccion, path,sync,uuid,deleted, onUpload, placa, fecha) VALUES (?,?,?,?,?,?,?,?)';
       // TODO: el campo deleted es boolean , pero debe asignarsele 1 o 0
-      sync = sync ? 1 : 0;
+      // sync = sync ? 1 : 0;
       onUpload = onUpload ? 1 : 0;
       console.log();
       var binding = [
@@ -82,7 +82,7 @@ app.factory('fotosService', [
       var query = 'UPDATE idfotos set sync=? , onUpload= ? WHERE path=?';
       // TODO: el campo deleted es boolean , pero debe asignarsele 1 o 0
       // TODO:  mucho cuidado por ejemplo el path debe ser nvarchar() NO  NCHAR
-      sync = sync ? 1 : 0;
+      // sync = sync ? 1 : 0;
       onUpload = onUpload ? 1 : 0;
       var binding = [
         sync,

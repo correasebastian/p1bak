@@ -116,7 +116,7 @@ var serviceBase = 'http://190.145.39.138/auth/';
 app.constant('ngAuthSettings', {
   apiServiceBaseUri: serviceBase,
   clientId: 'ngAuthApp'
-}).run(function ($ionicPlatform, $localStorage, $cordovaSQLite, checkFileService, videoThumbnailService, $cordovaCamera, fileTransferService, zumeroService, $cordovaFile, easyDirService, getVideoService, copyFileService, accesoriosService, inspeccionService, placasService, onlineStatusService, cordovaEventsService, toastService, offlineService, momentService, firstInitService, authService, deviceService, localStorageService, $state, intermediateService) {
+}).run(function ($ionicPlatform, $localStorage, $cordovaSQLite, checkFileService, videoThumbnailService, $cordovaCamera, fileTransferService, zumeroService, $cordovaFile, easyDirService, getVideoService, copyFileService, accesoriosService, inspeccionService, placasService, onlineStatusService, cordovaEventsService, toastService, offlineService, momentService, firstInitService, authService, deviceService, localStorageService, $state, intermediateService, unsyncService, fotosService) {
   $ionicPlatform.ready(function () {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -138,6 +138,7 @@ app.constant('ngAuthSettings', {
     services.checkFileService = checkFileService;
     services.accesoriosService = accesoriosService;
     services.inspeccionService = inspeccionService;
+    services.unsyncService = unsyncService;
     services.placasService = placasService;
     services.onlineStatusService = onlineStatusService;
     services.cordovaEventsService = cordovaEventsService;
@@ -149,6 +150,7 @@ app.constant('ngAuthSettings', {
     services.authService = authService;
     services.deviceService = deviceService;
     services.intermediateService = intermediateService;
+    services.fotosService = fotosService;
     ngCordova.cordovaSQLite = $cordovaSQLite;
     ngCordova.cordovaFile = $cordovaFile;
     ngCordova.cordovaCamera = $cordovaCamera;

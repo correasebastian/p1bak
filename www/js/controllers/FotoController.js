@@ -20,12 +20,13 @@ app.controller('FotoCtrl', [
     $ionicPlatform.ready(function () {
       // s.tittle = '';
       s.tittle = intermediateService.data.placa;
+      s.imgUnsync = [];
       //$stateParams.id;
       titleService.title = intermediateService.data.placa;
       // $stateParams.id;
       s.idinspeccion = intermediateService.data.idinspeccion;
       // $stateParams.id;
-      // s.off = offlineService.data;
+      s.off = offlineService.data;
       // TODO: ESTA ESTRATEGIA FUNCIONA BIEN PARA VER EL CAMBIO INMEDIATAMENTE
       // s.onlineStatus = onlineStatusService;
       // TODO: ESTA ESTRATEGIA REQUIERE OTRO DIGEST PARA QUE FUNCIONE
@@ -39,10 +40,17 @@ app.controller('FotoCtrl', [
       s.photos = fotosService.photos;
       fotosService.getPhotos(s.idinspeccion).then(function () {
         s.photos = fotosService.photos;
+        _filterUnsync(0);
       });
+      var _filterUnsync = function (equal) {
+        var found = $filter('filter')(s.photos, { sync: equal }, true);
+        console.log(s.photos, found);
+        s.imgUnsync = found;
+      };
       var updateFoto = function (imageURI, sync, onupload) {
         fotosService.updateFoto(s.idinspeccion, imageURI, sync, onupload).then(function () {
           console.log('en el controller despues de update sqlite foto ');
+          _filterUnsync(0);
         });
       };
       var updateAfterUpload = function (imageURI, sync, onupload) {
@@ -66,16 +74,16 @@ app.controller('FotoCtrl', [
         if (offlineService.data.offlineMode) {
           // TODO: ya noe s necesario por que offline tambien esta en onlilnestatussrervice
           // || !onlineStatusService.isOnline) {
-          updateAfterUpload(imageURI, false, false);
+          updateAfterUpload(imageURI, 0, false);
         } else {
           fileTransferService.fileUpload(imageURI).then(function (res) {
             console.log(res);
             console.timeEnd('fileUpload');
-            updateAfterUpload(imageURI, true, false);
+            updateAfterUpload(imageURI, 1, false);
           }, function (e) {
             console.log(e);
             console.timeEnd('fileUpload');
-            updateAfterUpload(imageURI, false, false);
+            updateAfterUpload(imageURI, 0, false);
             if (e.code === 4) {
               console.log('error en el controller');
               offlineService.data.offlineMode = true;
@@ -116,6 +124,11 @@ app.controller('FotoCtrl', [
       //     $ionicNavBarDelegate.title(titleService.title);
       //   }
       // };
+      s.syncImgUnsync = function () {
+        angular.forEach(s.imgUnsync, function (obj, key) {
+          s.tryUpload(obj);
+        });
+      };
       s.getPicFile = function () {
         intermediateService.data.isTakingPic = true;
         fotosService.takedpic().then(function (imageURI) {
@@ -126,10 +139,10 @@ app.controller('FotoCtrl', [
             // console.log(res, 'copyok');
             console.log(checkFileService.fileEntry, checkFileService.file);
             var res = checkFileService.fileEntry;
-            var sync = false;
+            var sync = 0;
             var onupload = true;
             // TODO: es mejor h¿guardar aqui el sqlite y luego actualizarlo si sube exitoso;
-            var obj = rtnObjectFoto('ABC111', res.nativeURL, sync, onupload);
+            var obj = rtnObjectFoto(intermediateService.data.placa, res.nativeURL, sync, onupload);
             s.photos.push(obj);
             insertFoto(res.nativeURL, sync, onupload);
             $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom(true);

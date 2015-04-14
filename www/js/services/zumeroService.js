@@ -55,6 +55,9 @@ app.factory('zumeroService', [
         }, function (error) {
           console.log(error);
           console.timeEnd('zync' + i);
+          if (error.code === 456) {
+            offlineService.data.offlineMode = true;
+          }
           q.reject(error);
         });
       }
