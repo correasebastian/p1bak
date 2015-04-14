@@ -4,7 +4,8 @@ app.factory('inspeccionService', [
   '$filter',
   'errorService',
   'momentService',
-  function (sqliteService, $q, $filter, errorService, momentService) {
+  'zumeroService',
+  function (sqliteService, $q, $filter, errorService, momentService, zumeroService) {
     var inspeccionServiceFactory = {};
     inspeccionServiceFactory.all = [];
     inspeccionServiceFactory.sections = [];
@@ -266,7 +267,7 @@ app.factory('inspeccionService', [
       ];
       return sqliteService.executeQuery(query, binding).then(function (res) {
         inspeccionServiceFactory.alreadySaved = true;
-        _cl.tipo = null;
+        zumeroService.zync(3);  // inspeccionServiceFactory.cl.tipo = null;
       }, errorService.consoleError);
     };
     inspeccionServiceFactory.getItems = _getItems;

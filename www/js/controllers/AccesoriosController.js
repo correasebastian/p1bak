@@ -60,7 +60,7 @@ app.controller('AccesoriosCtrl', [
         accesoriosService.save().then(function () {
           console.log('en el controller');
           $scope.setItems();
-          zumeroService.zync(3);
+          zumeroService.zync(4);
           $scope.modal.hide();
           $ionicScrollDelegate.scrollTop();
         });  // $scope.acces.push($scope.acc);

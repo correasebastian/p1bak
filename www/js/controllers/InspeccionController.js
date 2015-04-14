@@ -1,4 +1,4 @@
-app.controller('InspeccionCtrl', function ($scope, titleService, inspeccionService, $ionicScrollDelegate, $stateParams, $ionicModal, $ionicNavBarDelegate, $ionicLoading, $timeout, $filter, $ionicSideMenuDelegate, sqliteService, $ionicPlatform, intermediateService) {
+app.controller('InspeccionCtrl', function ($scope, titleService, inspeccionService, $ionicScrollDelegate, $stateParams, $ionicModal, $ionicNavBarDelegate, $ionicLoading, $timeout, $filter, $ionicSideMenuDelegate, sqliteService, $ionicPlatform, intermediateService, toastService) {
   $ionicPlatform.ready(function () {
     $ionicSideMenuDelegate.canDragContent(false);
     $scope.idinspeccion = intermediateService.data.idinspeccion;
@@ -80,6 +80,7 @@ app.controller('InspeccionCtrl', function ($scope, titleService, inspeccionServi
       $scope.hideItems();  // Execute callback function
     };
     $scope.save = function (items) {
+      toastService.showLongBottom('Guardando informacion');
       inspeccionService.save().then(function () {
         $scope.alreadySaved = inspeccionService.alreadySaved;
       });

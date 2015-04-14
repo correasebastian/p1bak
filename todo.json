@@ -93,7 +93,7 @@
     "file": "controllers\\InspeccionController.js",
     "text": "aqui valido si ya se califico o si apenas se va a realizar",
     "kind": "TODO",
-    "line": 138
+    "line": 139
   },
   {
     "file": "controllers\\PlacasController.js",
