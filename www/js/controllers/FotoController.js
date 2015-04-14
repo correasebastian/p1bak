@@ -21,6 +21,7 @@ app.controller('FotoCtrl', [
       // s.tittle = '';
       s.tittle = intermediateService.data.placa;
       s.imgUnsync = [];
+      s.massiveUpload = false;
       //$stateParams.id;
       titleService.title = intermediateService.data.placa;
       // $stateParams.id;
@@ -50,7 +51,17 @@ app.controller('FotoCtrl', [
       var updateFoto = function (imageURI, sync, onupload) {
         fotosService.updateFoto(s.idinspeccion, imageURI, sync, onupload).then(function () {
           console.log('en el controller despues de update sqlite foto ');
+          if (s.massiveUpload) {
+            s.massiveLength = s.massiveLength - 1;
+            if (s.massiveLength > 0) {
+              console.log(s.massiveLength);
+              return;
+            }
+          }
           _filterUnsync(0);
+          s.massiveUpload = false;
+          console.log(s.massiveLength, 'sync');
+          zumeroService.zync(2);
         });
       };
       var updateAfterUpload = function (imageURI, sync, onupload) {
@@ -58,7 +69,8 @@ app.controller('FotoCtrl', [
         objVideo.sync = sync;
         objVideo.onUpload = onupload;
         updateFoto(imageURI, sync, onupload);
-        zumeroService.zync(2);
+        //TODO : CUANDO ES UNA SOLA ESTA BIEN, CUENAOD ES UN ARRAY DEBO DE HACER QUE SYNC CON LA ULTIMA FOTO UN .LENTHG PUEDE SER
+        // zumeroService.zync(2);
         intermediateService.data.isTakingPic = false;
       };
       var insertFoto = function (imageURI, sync, onupload) {
@@ -125,6 +137,8 @@ app.controller('FotoCtrl', [
       //   }
       // };
       s.syncImgUnsync = function () {
+        s.massiveUpload = true;
+        s.massiveLength = s.imgUnsync.length;
         angular.forEach(s.imgUnsync, function (obj, key) {
           s.tryUpload(obj);
         });
