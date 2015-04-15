@@ -183,25 +183,25 @@
     "file": "services\\fotosService.js",
     "text": "el campo deleted es boolean , pero debe asignarsele 1 o 0",
     "kind": "TODO",
-    "line": 61
+    "line": 60
   },
   {
     "file": "services\\fotosService.js",
     "text": "es el path la mejor forma y mas efectiva de hacer el where de la consulta",
     "kind": "TODO",
-    "line": 82
+    "line": 81
   },
   {
     "file": "services\\fotosService.js",
     "text": "el campo deleted es boolean , pero debe asignarsele 1 o 0",
     "kind": "TODO",
-    "line": 84
+    "line": 83
   },
   {
     "file": "services\\fotosService.js",
     "text": "mucho cuidado por ejemplo el path debe ser nvarchar() NO  NCHAR",
     "kind": "TODO",
-    "line": 85
+    "line": 84
   },
   {
     "file": "services\\getVideoService.js",
