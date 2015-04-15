@@ -88,16 +88,16 @@ app.controller('AccesoriosCtrl', [
       };
       var preFileUpload = function (obj) {
         if (offlineService.data.offlineMode) {
-          updateAfterUpload(obj.path, false, false);
+          updateAfterUpload(obj.path, 0, false);
         } else {
           fileTransferService.fileUpload(obj).then(function (res) {
             console.log(res);
             console.timeEnd('fileUpload');
-            updateAfterUpload(obj.path, true, false);
+            updateAfterUpload(obj.path, 1, false);
           }, function (e) {
             console.log(e);
             console.timeEnd('fileUpload');
-            updateAfterUpload(obj.path, false, false);
+            updateAfterUpload(obj.path, 0, false);
             if (e.code === 4) {
               offlineService.data.offlineMode = true;
               toastService.showShortBottom('activado modo offline');

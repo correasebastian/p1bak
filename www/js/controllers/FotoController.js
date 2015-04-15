@@ -17,7 +17,8 @@ app.controller('FotoCtrl', [
   'toastService',
   'zumeroService',
   'momentService',
-  function (s, fotosService, $ionicPlatform, $ionicScrollDelegate, fileTransferService, $filter, $stateParams, $ionicNavBarDelegate, copyFileService, checkFileService, titleService, offlineService, errorService, onlineStatusService, intermediateService, toastService, zumeroService, momentService) {
+  'gpsService',
+  function (s, fotosService, $ionicPlatform, $ionicScrollDelegate, fileTransferService, $filter, $stateParams, $ionicNavBarDelegate, copyFileService, checkFileService, titleService, offlineService, errorService, onlineStatusService, intermediateService, toastService, zumeroService, momentService, gpsService) {
     $ionicPlatform.ready(function () {
       // s.tittle = '';
       s.tittle = intermediateService.data.placa;
@@ -156,6 +157,7 @@ app.controller('FotoCtrl', [
       s.getPicFile = function () {
         intermediateService.data.isTakingPic = true;
         fotosService.takedpic().then(function (imageURI) {
+          gpsService.gpsHtml(intermediateService.data.idinspeccion);
           // console.log(imageURI);
           // fotosService.copyFile(imageURI).then(function (res) {
           // copyFileService.copyFile(imageURI).then(function (res) {

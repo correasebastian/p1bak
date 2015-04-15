@@ -43,3 +43,10 @@ INSERT INTO [idpropiedades] ([idinspeccion] ,[idsubproceso] ,[iditem],[idparenti
 
 
            /// por FAVOR USAR NVARCHAR Y NO NCHAR en idvideos, ahi es mejor unprepare , y luego volver a preparar, es mas delicado que cambiar un nombre de columna o agregar una nueva.. y ahi si obtengo un sqlite error
+
+
+
+           ////GPS PERMISSIONS , VERIFICAR COARSE
+           <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />

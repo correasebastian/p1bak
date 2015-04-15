@@ -41,7 +41,7 @@ app.controller('PlacasCtrl', [
         $ionicLoading.hide();
       };
       $scope.getPlacas = function () {
-        toastService.showShortBottom('cargando informacion');
+        // toastService.showShortBottom('cargando informacion');
         placasService.getPlacas().then(function () {
           console.log('en el controller');
           $scope.placas = placasService.all;

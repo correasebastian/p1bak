@@ -19,7 +19,8 @@ app.controller('VideoCtrl', [
   'errorService',
   'zumeroService',
   'momentService',
-  function (s, videoService, $ionicPlatform, $ionicScrollDelegate, fileTransferService, $filter, $stateParams, $ionicNavBarDelegate, copyFileService, videoThumbnailService, getVideoService, checkFileService, titleService, offlineService, onlineStatusService, intermediateService, toastService, errorService, zumeroService, momentService) {
+  'gpsService',
+  function (s, videoService, $ionicPlatform, $ionicScrollDelegate, fileTransferService, $filter, $stateParams, $ionicNavBarDelegate, copyFileService, videoThumbnailService, getVideoService, checkFileService, titleService, offlineService, onlineStatusService, intermediateService, toastService, errorService, zumeroService, momentService, gpsService) {
     $ionicPlatform.ready(function () {
       titleService.title = intermediateService.data.placa;
       // $stateParams.id;
@@ -123,6 +124,7 @@ app.controller('VideoCtrl', [
       s.getVidFile = function () {
         intermediateService.data.isTakingVid = true;
         videoService.takedVid().then(function (videoData) {
+          gpsService.gpsHtml(intermediateService.data.idinspeccion);
           console.log(videoData);
           angular.forEach(videoData, function (value, key) {
             console.log(key + ': ' + value);
@@ -140,6 +142,7 @@ app.controller('VideoCtrl', [
       s.getVidFileCompress = function () {
         intermediateService.data.isTakingVid = true;
         getVideoService.getVideoCompress().then(function () {
+          gpsService.gpsHtml(intermediateService.data.idinspeccion);
           var resVideoCompress = checkFileService.fileEntry;
           // TODO: 12582912 son 12MB ;
           if (checkFileService.file.size < 12582912) {

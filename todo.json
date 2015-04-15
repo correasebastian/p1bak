@@ -9,73 +9,73 @@
     "file": "app.js",
     "text": "verificar si existe en el localstorage alguna bandera que diga si ya se sync alguna vez",
     "kind": "TODO",
-    "line": 173
+    "line": 174
   },
   {
     "file": "controllers\\AccesoriosController.js",
     "text": "AQUI TENDRIA QUE HACER EL UPDATE",
     "kind": "TODO",
-    "line": 80
+    "line": 81
   },
   {
     "file": "controllers\\FotoController.js",
     "text": "ESTA ESTRATEGIA FUNCIONA BIEN PARA VER EL CAMBIO INMEDIATAMENTE",
     "kind": "TODO",
-    "line": 32
+    "line": 33
   },
   {
     "file": "controllers\\FotoController.js",
     "text": "ESTA ESTRATEGIA REQUIERE OTRO DIGEST PARA QUE FUNCIONE",
     "kind": "TODO",
-    "line": 34
+    "line": 35
   },
   {
     "file": "controllers\\FotoController.js",
     "text": "ESTA ESTRATEGIA FUNCIONA BIEN PARA VER EL CAMBIO INMEDIATAMENTE  ES MEJOR RASTREAR SIEMPRE UN OBJETO",
     "kind": "TODO",
-    "line": 36
+    "line": 37
   },
   {
     "file": "controllers\\FotoController.js",
     "text": "onhold can edit placa, on swipe left delete with confirm",
     "kind": "TODO",
-    "line": 39
+    "line": 40
   },
   {
     "file": "controllers\\FotoController.js",
     "text": "always use ion-nav-title , para poderle poner los titulos que quiero",
     "kind": "TODO",
-    "line": 40
+    "line": 41
   },
   {
     "file": "controllers\\FotoController.js",
     "text": "CUANDO ES UNA SOLA ESTA BIEN, CUENAOD ES UN ARRAY DEBO DE HACER QUE SYNC CON LA ULTIMA FOTO UN .LENTHG PUEDE SER",
     "kind": "TODO",
-    "line": 80
+    "line": 81
   },
   {
     "file": "controllers\\FotoController.js",
     "text": "ya noe s necesario por que offline tambien esta en onlilnestatussrervice",
     "kind": "TODO",
-    "line": 95
+    "line": 96
   },
   {
     "file": "controllers\\FotoController.js",
     "text": "HABRA OTRA FORMA DE FILTAR MAS RAPIDA K EL STRING PATH;",
     "kind": "TODO",
-    "line": 128
+    "line": 129
   },
   {
     "file": "controllers\\FotoController.js",
     "text": "es mejor h¿guardar aqui el sqlite y luego actualizarlo si sube exitoso;",
     "kind": "TODO",
-    "line": 168
+    "line": 171
   },
   {
     "file": "controllers\\FotoController.js",
     "text": "es mejor llamar a una funcion, por que asi se ejecuta para cada uno, y se ejecuta bien, en vez de llamar filupload desde aca",
     "kind": "TODO",
-    "line": 173
+    "line": 176
   },
   {
     "file": "controllers\\InspeccionController.js",
@@ -135,13 +135,13 @@
     "file": "controllers\\VideoController.js",
     "text": "onupload dependera si esta online o no para saber si se intenta subir;",
     "kind": "TODO",
-    "line": 111
+    "line": 112
   },
   {
     "file": "controllers\\VideoController.js",
     "text": "12582912 son 12MB ;",
     "kind": "TODO",
-    "line": 144
+    "line": 149
   },
   {
     "file": "controllers\\loginController.js",
@@ -214,6 +214,18 @@
     "text": "create getVideoServiceFactory.fileEntry y .file, para devolver la promesa sin data y referenciar el controlador con la propiedad dedl servicio todd mot",
     "kind": "TODO",
     "line": 20
+  },
+  {
+    "file": "services\\gpsService.js",
+    "text": "aun sin wi fi ni datos el gps sigue funcionando",
+    "kind": "TODO",
+    "line": 22
+  },
+  {
+    "file": "services\\gpsService.js",
+    "text": "por que me dispara el vento de on online, mas que todo con el wifi????",
+    "kind": "TODO",
+    "line": 23
   },
   {
     "file": "services\\inspeccionService.js",
