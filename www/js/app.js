@@ -107,7 +107,7 @@ var app = angular.module('starter', [
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/login');
+  $urlRouterProvider.otherwise('/app/placas');
   // TODO: para que se consideren sanas las ng-src que tengan esta sintaxis;
   $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|file|blob|cdvfile|content):|data:image\//);
   $compileProvider.debugInfoEnabled(true);
@@ -116,7 +116,7 @@ var serviceBase = 'http://190.145.39.138/auth/';
 app.constant('ngAuthSettings', {
   apiServiceBaseUri: serviceBase,
   clientId: 'ngAuthApp'
-}).run(function ($ionicPlatform, $localStorage, $cordovaSQLite, checkFileService, videoThumbnailService, $cordovaCamera, fileTransferService, zumeroService, $cordovaFile, easyDirService, getVideoService, copyFileService, accesoriosService, inspeccionService, placasService, onlineStatusService, cordovaEventsService, toastService, offlineService, momentService, firstInitService, authService, deviceService, localStorageService, $state, intermediateService, unsyncService, fotosService, gpsService) {
+}).run(function ($rootScope, $timeout, $ionicPlatform, $localStorage, $cordovaSQLite, checkFileService, videoThumbnailService, $cordovaCamera, fileTransferService, zumeroService, $cordovaFile, easyDirService, getVideoService, copyFileService, accesoriosService, inspeccionService, placasService, onlineStatusService, cordovaEventsService, toastService, offlineService, momentService, firstInitService, authService, deviceService, localStorageService, $state, intermediateService, unsyncService, fotosService, gpsService) {
   $ionicPlatform.ready(function () {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -127,6 +127,26 @@ app.constant('ngAuthSettings', {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+    authService.fillAuthData();
+    $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+      console.log(event, toState, toParams, fromState, fromParams);
+      var authData = localStorageService.get('authorizationData');
+      if (toState.name === 'app.login') {
+        // doe she/he try to go to login? - let him/her go
+        return;
+      }
+      if (!authData || momentService.diffNow(authData.exp, 'm') > -60) {
+        event.preventDefault();
+        $timeout(function () {
+          console.log('redirect');
+          //Was calling this but commenting out to keep it simple: authService.redirectToLogin();
+          //Changes URL but not the view - goes to original view that I'm trying to redirect
+          //away from now with 1.3. Fine with it but interested in understanding the 
+          //"proper" way to do it now so login view gets redirected to.
+          $state.go('app.login');  //event.preventDefault(); //Nice addition! Can't do any redirect when it's called though
+        }, 0);
+      }
+    });
     // ls = $localStorage;
     // zumero = cordova.require('cordova/plugin/zumero');
     services.zumeroService = zumeroService;

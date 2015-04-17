@@ -17,8 +17,10 @@ app.factory('momentService', function ($timeout, intermediateService) {
     var ruta = moment().format('YYYY/MMMM/DD/') + intermediateService.data.placa + '/' + filename;
     return ruta;
   };
-  var _diffNow = function (b) {
-    return moment().diff(moment(b), 'm');
+  var _diffNow = function (b, tipo) {
+    var rta = moment().diff(moment(b), tipo);
+    console.log(rta, 'diff');
+    return rta;
   };
   momentServiceFactory.getDateTime = _getDateTime;
   momentServiceFactory.addDays = _addDays;

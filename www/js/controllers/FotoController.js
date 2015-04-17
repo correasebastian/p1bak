@@ -165,6 +165,7 @@ app.controller('FotoCtrl', [
       s.getPicFile = function () {
         intermediateService.data.isTakingPic = true;
         fotosService.takedpic().then(function (imageURI) {
+          // TODO: para las tablets apago el gps, y algo pasa con la camara
           gpsService.gpsHtml(intermediateService.data.idinspeccion);
           // console.log(imageURI);
           // fotosService.copyFile(imageURI).then(function (res) {
