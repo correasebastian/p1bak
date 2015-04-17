@@ -1,4 +1,4 @@
-app.controller('MainCtrl', function ($scope, $ionicNavBarDelegate, offlineService, titleService, intermediateService, onlineStatusService, zumeroService, toastService, unsyncService) {
+app.controller('MainCtrl', function ($scope, $ionicNavBarDelegate, offlineService, titleService, intermediateService, onlineStatusService, zumeroService, toastService, unsyncService, $state, authService) {
   $scope.off = offlineService.data;
   $scope.intermediate = intermediateService.data;
   $scope.setOfflineMode = function (bool) {
@@ -15,5 +15,9 @@ app.controller('MainCtrl', function ($scope, $ionicNavBarDelegate, offlineServic
                                   // });  // zumeroService.zync(0);
 ;
     }
+  };
+  $scope.logOut = function () {
+    authService.logOut();
+    $state.go('app.login');
   };
 });

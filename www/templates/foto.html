@@ -43,6 +43,14 @@
 		    <h2>{{p.src}}</h2>
 		    <p>Nine Inch Nails</p>
 		  </div> -->
+	  	  <div class="item  item-select">
+		    <!-- <div class="input-label">
+		      Lightsaber
+		    </div> -->
+		   <select ng-model="p.idtipo" ng-options="nombreImage.IdTipo as nombreImage.Nombre  for nombreImage in names" 	class="pull-left" 
+    		ng-change="setname(p.idtipo, p)">
+        </select> 
+		  </div>
 
 		  <div class="item item-image">
 		    <img ng-src={{p.path}}>

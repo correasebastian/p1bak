@@ -41,9 +41,11 @@ app.controller('FotoCtrl', [
       // TODO: always use ion-nav-title , para poderle poner los titulos que quiero
       // s.oss = { online: onlineStatusService.isOnline };
       s.photos = fotosService.photos;
+      s.names = fotosService.names;
       s.getPhotos = function () {
         fotosService.getPhotos(s.idinspeccion).then(function () {
           s.photos = fotosService.photos;
+          s.names = fotosService.names;
           _filterUnsync(0);
         });
       };
@@ -152,6 +154,12 @@ app.controller('FotoCtrl', [
         s.massiveLength = s.imgUnsync.length;
         angular.forEach(s.imgUnsync, function (obj, key) {
           s.tryUpload(obj);
+        });
+      };
+      s.setname = function (idtipo, foto) {
+        //betadoparapruebasconsole.log(nombre, foto);
+        // console.log(idtipo, foto);
+        fotosService.setName(idtipo, foto).then(function () {
         });
       };
       s.getPicFile = function () {

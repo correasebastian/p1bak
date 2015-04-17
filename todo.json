@@ -51,31 +51,31 @@
     "file": "controllers\\FotoController.js",
     "text": "CUANDO ES UNA SOLA ESTA BIEN, CUENAOD ES UN ARRAY DEBO DE HACER QUE SYNC CON LA ULTIMA FOTO UN .LENTHG PUEDE SER",
     "kind": "TODO",
-    "line": 81
+    "line": 83
   },
   {
     "file": "controllers\\FotoController.js",
     "text": "ya noe s necesario por que offline tambien esta en onlilnestatussrervice",
     "kind": "TODO",
-    "line": 96
+    "line": 98
   },
   {
     "file": "controllers\\FotoController.js",
     "text": "HABRA OTRA FORMA DE FILTAR MAS RAPIDA K EL STRING PATH;",
     "kind": "TODO",
-    "line": 129
+    "line": 131
   },
   {
     "file": "controllers\\FotoController.js",
     "text": "es mejor h¿guardar aqui el sqlite y luego actualizarlo si sube exitoso;",
     "kind": "TODO",
-    "line": 171
+    "line": 178
   },
   {
     "file": "controllers\\FotoController.js",
     "text": "es mejor llamar a una funcion, por que asi se ejecuta para cada uno, y se ejecuta bien, en vez de llamar filupload desde aca",
     "kind": "TODO",
-    "line": 176
+    "line": 183
   },
   {
     "file": "controllers\\InspeccionController.js",
@@ -141,7 +141,7 @@
     "file": "controllers\\VideoController.js",
     "text": "12582912 son 12MB ;",
     "kind": "TODO",
-    "line": 149
+    "line": 147
   },
   {
     "file": "controllers\\loginController.js",
@@ -177,31 +177,31 @@
     "file": "services\\fotosService.js",
     "text": "revisar para que sirve esta opcion",
     "kind": "TODO",
-    "line": 32
+    "line": 33
   },
   {
     "file": "services\\fotosService.js",
     "text": "el campo deleted es boolean , pero debe asignarsele 1 o 0",
     "kind": "TODO",
-    "line": 60
+    "line": 72
   },
   {
     "file": "services\\fotosService.js",
     "text": "es el path la mejor forma y mas efectiva de hacer el where de la consulta",
     "kind": "TODO",
-    "line": 81
+    "line": 93
   },
   {
     "file": "services\\fotosService.js",
     "text": "el campo deleted es boolean , pero debe asignarsele 1 o 0",
     "kind": "TODO",
-    "line": 83
+    "line": 95
   },
   {
     "file": "services\\fotosService.js",
     "text": "mucho cuidado por ejemplo el path debe ser nvarchar() NO  NCHAR",
     "kind": "TODO",
-    "line": 84
+    "line": 96
   },
   {
     "file": "services\\getVideoService.js",

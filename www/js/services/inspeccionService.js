@@ -199,7 +199,7 @@ app.factory('inspeccionService', [
     //   };
     // };
     var _getToInspect = function (idcodigocalificacion) {
-      var query = 'select oif.idservicio , cpc.iditem, idParentItem, nombre,customsection, customorder , controlJson from  viewVdos oif ';
+      var query = 'select oif.idservicio , cpc.iditem, idParentItem, nombre,customsection, customorder , controlJson from  viewV3 oif ';
       //siempre dejar un espacio en blanco  
       query += 'inner join calificacionpiezascodigo cpc on  cpc.iditem= oif.iditem  and oif.tipo=1 ';
       query += 'inner join controlElementos ce on ce.idcontrol =oif.idcontrol ';

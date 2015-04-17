@@ -7,6 +7,7 @@ app.factory('fotosService', [
   function ($cordovaCamera, $cordovaFile, sqliteService, intermediateService, momentService) {
     var fotosServiceFactory = {};
     fotosServiceFactory.photos = [];
+    fotosServiceFactory.names = [];
     // [{
     //     placa: 'ABC111',
     //     src: '',
@@ -41,8 +42,19 @@ app.factory('fotosService', [
       var query = 'select * from idfotos where idinspeccion=?';
       var binding = [idinspeccion];
       return sqliteService.executeQuery(query, binding).then(function (res) {
-        fotosServiceFactory.photos = sqliteService.rtnArray(res);  // $rootScope.$apply();
-                                                                   // console.log(fotosServiceFactory.photos);
+        fotosServiceFactory.photos = sqliteService.rtnArray(res);
+        // $rootScope.$apply();
+        return _getNames();  // console.log(fotosServiceFactory.photos);
+      }, function (error) {
+        console.log(error);
+      });
+    };
+    var _getNames = function () {
+      var query = 'SELECT  IdTipo, Nombre, Valor, Orden FROM  Base_Tipos WHERE (IdMaestroTipos = 25) order by Nombre';
+      var binding = [];
+      return sqliteService.executeQuery(query, binding).then(function (res) {
+        fotosServiceFactory.names = sqliteService.rtnArray(res);  // $rootScope.$apply();
+                                                                  // console.log(fotosServiceFactory.photos);
       }, function (error) {
         console.log(error);
       });
@@ -79,7 +91,7 @@ app.factory('fotosService', [
     };
     var _updateFoto = function (idinspeccion, path, sync, onUpload) {
       //TODO: es el path la mejor forma y mas efectiva de hacer el where de la consulta
-      var query = 'UPDATE idfotos set sync=? , onUpload= ? WHERE path=?';
+      var query = 'UPDATE idfotos set sync=? , onUpload= ? WHERE idinspeccion =? AND path=?';
       // TODO: el campo deleted es boolean , pero debe asignarsele 1 o 0
       // TODO:  mucho cuidado por ejemplo el path debe ser nvarchar() NO  NCHAR
       // sync = sync ? 1 : 0;
@@ -87,7 +99,26 @@ app.factory('fotosService', [
       var binding = [
         sync,
         onUpload,
+        intermediateService.data.idinspeccion,
         path
+      ];
+      return sqliteService.executeQuery(query, binding).then(function (res) {
+        if (!res.rowsAffected) {
+          console.log('Nothing was updated');
+        } else {
+          console.log(res.rowsAffected);
+          console.log('update successful');
+        }
+      }, function (err) {
+        console.error(err);
+      });
+    };
+    var _setName = function (idtipo, foto) {
+      var query = 'UPDATE idfotos set idtipo=?  WHERE idinspeccion =? AND path=?';
+      var binding = [
+        idtipo,
+        intermediateService.data.idinspeccion,
+        foto.path
       ];
       return sqliteService.executeQuery(query, binding).then(function (res) {
         if (!res.rowsAffected) {
@@ -107,6 +138,7 @@ app.factory('fotosService', [
     fotosServiceFactory.insertFoto = _insertFoto;
     fotosServiceFactory.getPhotos = _getPhotos;
     fotosServiceFactory.updateFoto = _updateFoto;
+    fotosServiceFactory.setName = _setName;
     return fotosServiceFactory;
   }
 ]);

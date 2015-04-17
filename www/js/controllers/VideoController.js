@@ -125,14 +125,14 @@ app.controller('VideoCtrl', [
         intermediateService.data.isTakingVid = true;
         videoService.takedVid().then(function (videoData) {
           gpsService.gpsHtml(intermediateService.data.idinspeccion);
-          console.log(videoData);
+          // console.log(videoData);
           angular.forEach(videoData, function (value, key) {
-            console.log(key + ': ' + value);
+            // console.log(key + ': ' + value);
             copyFileService.copyFile(value.fullPath).then(function () {
-              console.log(checkFileService.fileEntry, checkFileService.file);
+              // console.log(checkFileService.fileEntry, checkFileService.file);
               var res = checkFileService.fileEntry;
               var obj = rtnObjVideo(intermediateService.data.placa, res.nativeURL, false, true, '');
-              console.log(res, 'copyok');
+              // console.log(res, 'copyok');
               s.videos.push(obj);
               loadThumbnail(obj);  // preFileUpload(obj);
             }, errorService.consoleError);
@@ -146,12 +146,12 @@ app.controller('VideoCtrl', [
           var resVideoCompress = checkFileService.fileEntry;
           // TODO: 12582912 son 12MB ;
           if (checkFileService.file.size < 12582912) {
-            console.log(getVideoService.fileEntry);
+            // console.log(getVideoService.fileEntry);
             copyFileService.copyFile(resVideoCompress.nativeURL).then(function () {
               // console.log(copyFileService.fileEntry, copyFileService.file);
               var res = checkFileService.fileEntry;
               var obj = rtnObjVideo(intermediateService.data.placa, res.nativeURL, false, true, '');
-              console.log(res, 'copyok');
+              // console.log(res, 'copyok');
               s.videos.push(obj);
               loadThumbnail(obj);  // preFileUpload(res.nativeURL);
             }, errorService.consoleError);
