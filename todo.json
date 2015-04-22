@@ -9,7 +9,7 @@
     "file": "app.js",
     "text": "verificar si existe en el localstorage alguna bandera que diga si ya se sync alguna vez",
     "kind": "TODO",
-    "line": 194
+    "line": 220
   },
   {
     "file": "controllers\\AccesoriosController.js",
