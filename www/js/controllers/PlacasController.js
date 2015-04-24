@@ -17,7 +17,8 @@ app.controller('PlacasCtrl', [
   '$ionicLoading',
   '$filter',
   'intermediateService',
-  function ($scope, zumeroService, $ionicPlatform, placasService, $ionicNavBarDelegate, $location, $ionicPopup, $ionicScrollDelegate, focus, $state, titleService, $ionicModal, toastService, firstInitService, $localStorage, $ionicLoading, $filter, intermediateService) {
+  '$timeout',
+  function ($scope, zumeroService, $ionicPlatform, placasService, $ionicNavBarDelegate, $location, $ionicPopup, $ionicScrollDelegate, focus, $state, titleService, $ionicModal, toastService, firstInitService, $localStorage, $ionicLoading, $filter, intermediateService, $timeout) {
     $ionicPlatform.ready(function () {
       // $scope.placas = placasService.all;
       // placasService.selectAll();
@@ -47,16 +48,19 @@ app.controller('PlacasCtrl', [
           $scope.placas = placasService.all;
         });
       };
-      // TODO: seria bueno que la consulta de placas supiera todo, como por ejemplo si ya se califico, si ya tiene alguna foto o un video, puede ser marcandolo con alguna clase
-      if (!$localStorage.data) {
-        $scope.show();
-        // TODO: puedo poder obj=null, para que me elimine la base de datos si ya esta creada y vuelva a sincronizar, esto seria beneficioso si tengo que hacer un cambio en la base de ddatos que requiera reconstruirla
+      $scope.fInit = function () {
         firstInitService.init().then(function () {
           $scope.hide();
           $scope.getPlacas();
         }, function () {
           $scope.hide();
         });
+      };
+      // TODO: seria bueno que la consulta de placas supiera todo, como por ejemplo si ya se califico, si ya tiene alguna foto o un video, puede ser marcandolo con alguna clase
+      if (!$localStorage.data) {
+        $scope.show();
+        // TODO: puedo poder obj=null, para que me elimine la base de datos si ya esta creada y vuelva a sincronizar, esto seria beneficioso si tengo que hacer un cambio en la base de ddatos que requiera reconstruirla
+        $timeout($scope.fInit, 300);
       } else {
         $scope.getPlacas();
       }

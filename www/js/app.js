@@ -12,11 +12,12 @@
 // var cf = null;
 // var ed = null;
 // var cc = null;
+// pruebas locales
 var db = null;
-var services = {};
-var ngCordova = {};
-var alreadyInspect = false;
-var rp = null;
+// var services = {};
+// var ngCordova = {};
+// var alreadyInspect = false;
+// var rp = null;
 var app = angular.module('starter', [
   'ionic',
   'starter.controllers',
@@ -107,7 +108,7 @@ var app = angular.module('starter', [
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/placas');
+  $urlRouterProvider.otherwise('/app/login');
   // TODO: para que se consideren sanas las ng-src que tengan esta sintaxis;
   $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|file|blob|cdvfile|content):|data:image\//);
   $compileProvider.debugInfoEnabled(true);
@@ -116,28 +117,29 @@ var serviceBase = 'http://190.145.39.138/auth/';
 app.constant('ngAuthSettings', {
   apiServiceBaseUri: serviceBase,
   clientId: 'ngAuthApp'
-}).config(function ($provide) {
-  $provide.decorator('$exceptionHandler', function ($delegate, $injector) {
-    return function (exception, cause) {
-      $delegate(exception, cause);
-      var sqliteService = $injector.get('sqliteService');
-      var authService = $injector.get('authService');
-      var momentService = $injector.get('momentService');
-      var query = 'INSERT  INTO [logs]([ex],[email],[fecha])  VALUES(?,?,?)';
-      var binding = [
-        angular.toJson(exception),
-        authService.authentication.userName || '',
-        momentService.getDateTime()
-      ];
-      sqliteService.executeQuery(query, binding).then(function (res) {
-      }, function (err) {
-        console.error(err);
-      })  // var alerting = $injector.get("alerting");
-          // alerting.addDanger(exception.message);
-;
-    };
-  });
-}).run(function ($rootScope, $timeout, $ionicPlatform, $localStorage, $cordovaSQLite, checkFileService, videoThumbnailService, $cordovaCamera, fileTransferService, zumeroService, $cordovaFile, easyDirService, getVideoService, copyFileService, accesoriosService, inspeccionService, placasService, onlineStatusService, cordovaEventsService, toastService, offlineService, momentService, firstInitService, authService, deviceService, localStorageService, $state, intermediateService, unsyncService, fotosService, gpsService) {
+})  // .config(function ($provide) {
+    //   $provide.decorator('$exceptionHandler', function ($delegate, $injector) {
+    //     return function (exception, cause) {
+    //       $delegate(exception, cause);
+    //       var sqliteService = $injector.get('sqliteService');
+    //       var authService = $injector.get('authService');
+    //       var momentService = $injector.get('momentService');
+    //       var query = 'INSERT  INTO [logs]([ex],[email],[fecha])  VALUES(?,?,?)';
+    //       var binding = [
+    //         angular.toJson(exception),
+    //         authService.authentication.userName || '',
+    //         momentService.getDateTime()
+    //       ];
+    //       sqliteService.executeQuery(query, binding).then(function (res) {
+    //       }, function (err) {
+    //         console.error(err);
+    //       })  // var alerting = $injector.get("alerting");
+    //           // alerting.addDanger(exception.message);
+    // ;
+    //     };
+    //   });
+    // })
+.run(function ($rootScope, $timeout, $ionicPlatform, $localStorage, $cordovaSQLite, checkFileService, videoThumbnailService, $cordovaCamera, fileTransferService, zumeroService, $cordovaFile, easyDirService, getVideoService, copyFileService, accesoriosService, inspeccionService, placasService, onlineStatusService, cordovaEventsService, toastService, offlineService, momentService, firstInitService, authService, deviceService, localStorageService, $state, intermediateService, unsyncService, fotosService, gpsService) {
   $ionicPlatform.ready(function () {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -149,6 +151,9 @@ app.constant('ngAuthSettings', {
       StatusBar.styleDefault();
     }
     authService.fillAuthData();
+    // $rootScope.$on('$locationChangeStart', function (event, next, current) {
+    //   console.log(event, next, current);
+    // });
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
       console.log(event, toState, toParams, fromState, fromParams);
       var authData = localStorageService.get('authorizationData');
@@ -156,6 +161,7 @@ app.constant('ngAuthSettings', {
         // doe she/he try to go to login? - let him/her go
         return;
       }
+      console.log(authData, momentService.diffNow(authData.exp, 'm'), '> -60');
       if (!authData || momentService.diffNow(authData.exp, 'm') > -60) {
         event.preventDefault();
         $timeout(function () {
@@ -170,32 +176,32 @@ app.constant('ngAuthSettings', {
     });
     // ls = $localStorage;
     // zumero = cordova.require('cordova/plugin/zumero');
-    services.zumeroService = zumeroService;
-    services.getVideoService = getVideoService;
-    services.copyFileService = copyFileService;
-    services.fileTransferService = fileTransferService;
-    services.videoThumbnailService = videoThumbnailService;
-    services.easyDirService = easyDirService;
-    services.checkFileService = checkFileService;
-    services.accesoriosService = accesoriosService;
-    services.inspeccionService = inspeccionService;
-    services.unsyncService = unsyncService;
-    services.placasService = placasService;
-    services.onlineStatusService = onlineStatusService;
-    services.cordovaEventsService = cordovaEventsService;
-    services.toastService = toastService;
-    services.offlineService = offlineService;
-    services.localStorage = $localStorage;
-    services.firstInitService = firstInitService;
-    services.momentService = momentService;
-    services.authService = authService;
-    services.deviceService = deviceService;
-    services.intermediateService = intermediateService;
-    services.fotosService = fotosService;
-    services.gpsService = gpsService;
-    ngCordova.cordovaSQLite = $cordovaSQLite;
-    ngCordova.cordovaFile = $cordovaFile;
-    ngCordova.cordovaCamera = $cordovaCamera;
+    // services.zumeroService = zumeroService;
+    // services.getVideoService = getVideoService;
+    // services.copyFileService = copyFileService;
+    // services.fileTransferService = fileTransferService;
+    // services.videoThumbnailService = videoThumbnailService;
+    // services.easyDirService = easyDirService;
+    // services.checkFileService = checkFileService;
+    // services.accesoriosService = accesoriosService;
+    // services.inspeccionService = inspeccionService;
+    // services.unsyncService = unsyncService;
+    // services.placasService = placasService;
+    // services.onlineStatusService = onlineStatusService;
+    // services.cordovaEventsService = cordovaEventsService;
+    // services.toastService = toastService;
+    // services.offlineService = offlineService;
+    // services.localStorage = $localStorage;
+    // services.firstInitService = firstInitService;
+    // services.momentService = momentService;
+    // services.authService = authService;
+    // services.deviceService = deviceService;
+    // services.intermediateService = intermediateService;
+    // services.fotosService = fotosService;
+    // services.gpsService = gpsService;
+    // ngCordova.cordovaSQLite = $cordovaSQLite;
+    // ngCordova.cordovaFile = $cordovaFile;
+    // ngCordova.cordovaCamera = $cordovaCamera;
     // zs = zumeroService;
     // cs = ;
     // cf = ;
@@ -204,7 +210,8 @@ app.constant('ngAuthSettings', {
     // cc = $cordovaCamera;
     // cc = getVideoService;
     // services.zumeroService.setZumero('zdbfile');
-    services.zumeroService.setZumero('zumerotestdbfile');
+    // services.zumeroService.setZumero('zumerotestdbfile');
+    zumeroService.setZumero('zumerotestdbfile');
     onlineStatusService.onOnline();
     onlineStatusService.onOffline();
     onlineStatusService.isOnline();

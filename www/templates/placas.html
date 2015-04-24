@@ -52,19 +52,20 @@
       <ion-item  collection-repeat="placa in placas | filter:{placa:obj.filter}  | orderBy:'-idinspeccion' track by placa.idinspeccion " type="item-text-wrap" >
       <!-- href="#/tab/placas/{{placa.placa}}" -->
         <!-- <img ng-src="{{placa.face}}"> -->
-        <h2>{{placa.idinspeccion}}</h2>
-        <p>{{placa.placa}}</p>
+        <!-- <h2>{{placa.idinspeccion}}</h2> -->
+        <h2>{{placa.placa}}</h2>
+        <!-- <p>{{placa.placa}}</p> -->
         <span class="item-note">
         {{placa.placa}}
         </span>
         <!-- <i class="icon ion-chevron-right icon-accessory"></i> -->
 
         <ion-option-button class="button-assertive icon ion-camera" on-touch="goFotos(placa)" ></ion-option-button>
-        <ion-option-button class="button-calm icon ion-videocamera" on-touch="goVideo(placa)"></ion-option-button>
+     <!--    <ion-option-button class="button-calm icon ion-videocamera" on-touch="goVideo(placa)"></ion-option-button>
         <ion-option-button class="button-light icon ion-document-text" on-touch="goInspeccion(placa)"></ion-option-button>
-        <ion-option-button class="button-balanced icon ion-chatbubbles" on-touch="goAccesorios(placa)"></ion-option-button>
+        <ion-option-button class="button-balanced icon ion-chatbubbles" on-touch="goAccesorios(placa)"></ion-option-button> -->
       </ion-item>
     </ion-list>
-    <button ng-click="createException()" class="btn btn-default btn-lg">Throw Exception</button>
+    <!-- <button ng-click="createException()" class="btn btn-default btn-lg">Throw Exception</button> -->
   </ion-content>
 </ion-view>

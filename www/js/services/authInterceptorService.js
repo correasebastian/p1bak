@@ -1,10 +1,12 @@
 'use strict';
 app.factory('authInterceptorService', [
   '$q',
-  '$injector',
   '$location',
   'localStorageService',
-  function ($q, $injector, $location, localStorageService) {
+  '$injector',
+  'momentService',
+  'sqliteService',
+  function ($q, $location, localStorageService, $injector, momentService, sqliteService) {
     var authInterceptorServiceFactory = {};
     var _request = function (config) {
       config.headers = config.headers || {};
@@ -15,6 +17,17 @@ app.factory('authInterceptorService', [
       return config;
     };
     var _responseError = function (rejection) {
+      // var authService = $injector.get('authService');
+      // var query = 'INSERT  INTO [logs]([ex],[email],[fecha])  VALUES(?,?,?)';
+      // var binding = [
+      //   angular.toJson(rejection),
+      //   authService.authentication.userName || '',
+      //   momentService.getDateTime()
+      // ];
+      // sqliteService.executeQuery(query, binding).then(function (res) {
+      // }, function (err) {
+      //   console.error(err);
+      // });
       if (rejection.status === 401) {
         var authService = $injector.get('authService');
         var authData = localStorageService.get('authorizationData');

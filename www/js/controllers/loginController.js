@@ -20,7 +20,7 @@ app.controller('loginController', [
           console.log(n.diff(e, 'seconds'));
           if (n.diff(e, 'seconds') < 0) {
             console.log('token redirect placas');
-            // $location.path('/app/placas');
+            $location.path('/app/placas');
             $state.go('app.placas');
           }
         }
