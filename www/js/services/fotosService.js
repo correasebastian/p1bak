@@ -50,7 +50,8 @@ app.factory('fotosService', [
       });
     };
     var _getNames = function () {
-      var query = 'SELECT  IdTipo, Nombre, Valor, Orden FROM  Base_Tipos WHERE (IdMaestroTipos = 25) order by Nombre';
+      var query ='select idTipoFoto, NombreFoto, enabled   from tiposFoto WHERE enabled=1 order by nombrefoto';
+      // var query = 'SELECT  IdTipo, Nombre, Valor, Orden FROM  Base_Tipos WHERE (IdMaestroTipos = 25)  AND enabled=1  order by Nombre';
       var binding = [];
       return sqliteService.executeQuery(query, binding).then(function (res) {
         fotosServiceFactory.names = sqliteService.rtnArray(res);  // $rootScope.$apply();
