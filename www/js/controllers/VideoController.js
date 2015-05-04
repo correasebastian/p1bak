@@ -32,19 +32,19 @@ app.controller('VideoCtrl', [
       s.oss = onlineStatusService.data;
       s.videos = videoService.videos;
       //videoService.all();
-      videoService.getVideos(s.idinspeccion).then(function () {
+      videoService.getVideos(intermediateService.data.idinspeccion).then(function () {
         s.videos = videoService.videos;
       });
       // var errorService.consoleError = function (e) {
       //   console.log('error', e);
       // };
       var insertVideo = function (imageURI, sync, thumbnail, onupload) {
-        videoService.insertVideo(s.idinspeccion, imageURI, sync, thumbnail, onupload).then(function () {
+        videoService.insertVideo(intermediateService.data.idinspeccion, imageURI, sync, thumbnail, onupload).then(function () {
           console.log('en el controller despues de insert sqlite video ');
         });
       };
       var updateVideo = function (imageURI, sync, thumbnail, onupload) {
-        videoService.updateVideo(s.idinspeccion, imageURI, sync, onupload).then(function () {
+        videoService.updateVideo(intermediateService.data.idinspeccion, imageURI, sync, onupload).then(function () {
           console.log('en el controller despues de update sqlite video ');
         });
       };

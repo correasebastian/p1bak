@@ -111,31 +111,31 @@
     "file": "controllers\\PlacasController.js",
     "text": "seria bueno que la consulta de placas supiera todo, como por ejemplo si ya se califico, si ya tiene alguna foto o un video, puede ser marcandolo con alguna clase",
     "kind": "TODO",
-    "line": 61
+    "line": 59
   },
   {
     "file": "controllers\\PlacasController.js",
     "text": "puedo poder obj=null, para que me elimine la base de datos si ya esta creada y vuelva a sincronizar, esto seria beneficioso si tengo que hacer un cambio en la base de ddatos que requiera reconstruirla",
     "kind": "TODO",
-    "line": 64
+    "line": 62
   },
   {
     "file": "controllers\\PlacasController.js",
     "text": "organizar el focus en el input del popup",
     "kind": "TODO",
-    "line": 70
+    "line": 68
   },
   {
     "file": "controllers\\PlacasController.js",
     "text": "si las placas son iguales, puede ser que se haya sincronizado y no se haya acyaulizado la lista de placas, entonces se pasaria un idinspeccion que no ,es esto cuando offline creo una placa, me pongo online y luego on pause hago el sync, aunque hayq ue pensar que cuando le pongo online, deberia sincronizar si hay señal 4g o wifi para imagenes o para todo",
     "kind": "TODO",
-    "line": 118
+    "line": 116
   },
   {
     "file": "controllers\\PlacasController.js",
     "text": "aqui podria evaluar si ya se califico o no, si no se ha calificado podria desplegar el modal de clase carroceria",
     "kind": "TODO",
-    "line": 136
+    "line": 134
   },
   {
     "file": "controllers\\VideoController.js",

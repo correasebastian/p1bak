@@ -82,7 +82,7 @@ app.controller('AccesoriosCtrl', [
         $scope.modal.hide();
       };
       var insertFoto = function (imageURI, sync, onupload) {
-        fotosService.insertFoto($scope.idinspeccion, imageURI, sync, onupload).then(function () {
+        fotosService.insertFoto(intermediateService.data.idinspeccion, imageURI, sync, onupload).then(function () {
           console.log('en el controller despues de sqlite foto ');
         });
       };
@@ -107,7 +107,7 @@ app.controller('AccesoriosCtrl', [
         }
       };
       var updateFoto = function (imageURI, sync, onupload) {
-        fotosService.updateFoto($scope.idinspeccion, imageURI, sync, onupload).then(function () {
+        fotosService.updateFoto(intermediateService.data.idinspeccion, imageURI, sync, onupload).then(function () {
           console.log('en el controller despues de update sqlite foto ');
         });
       };

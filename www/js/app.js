@@ -117,28 +117,30 @@ var serviceBase = 'http://190.145.39.138/auth/';
 app.constant('ngAuthSettings', {
   apiServiceBaseUri: serviceBase,
   clientId: 'ngAuthApp'
-})  // .config(function ($provide) {
-    //   $provide.decorator('$exceptionHandler', function ($delegate, $injector) {
-    //     return function (exception, cause) {
-    //       $delegate(exception, cause);
-    //       var sqliteService = $injector.get('sqliteService');
-    //       var authService = $injector.get('authService');
-    //       var momentService = $injector.get('momentService');
-    //       var query = 'INSERT  INTO [logs]([ex],[email],[fecha])  VALUES(?,?,?)';
-    //       var binding = [
-    //         angular.toJson(exception),
-    //         authService.authentication.userName || '',
-    //         momentService.getDateTime()
-    //       ];
-    //       sqliteService.executeQuery(query, binding).then(function (res) {
-    //       }, function (err) {
-    //         console.error(err);
-    //       })  // var alerting = $injector.get("alerting");
-    //           // alerting.addDanger(exception.message);
-    // ;
-    //     };
-    //   });
-    // })
+}) 
+ .config(function ($provide) {
+      $provide.decorator('$exceptionHandler', function ($delegate, $injector) {
+        return function (exception, cause) {
+          $delegate(exception, cause);
+          if(db){
+          var sqliteService = $injector.get('sqliteService');
+          var authService = $injector.get('authService');
+          var momentService = $injector.get('momentService');
+          var query = 'INSERT  INTO [logs]([ex],[email],[fecha])  VALUES(?,?,?)';
+          var binding = [
+            angular.toJson(exception),
+            authService.authentication.userName || '',
+            momentService.getDateTime()
+          ];
+          sqliteService.executeQuery(query, binding).then(function (res) {
+          }, function (err) {
+            console.error(err);
+          })  // var alerting = $injector.get("alerting");
+              // alerting.addDanger(exception.message);
+          };
+        };
+      });
+    })
 .run(function ($rootScope, $timeout, $ionicPlatform, $localStorage, $cordovaSQLite, checkFileService, videoThumbnailService, $cordovaCamera, fileTransferService, zumeroService, $cordovaFile, easyDirService, getVideoService, copyFileService, accesoriosService, inspeccionService, placasService, onlineStatusService, cordovaEventsService, toastService, offlineService, momentService, firstInitService, authService, deviceService, localStorageService, $state, intermediateService, unsyncService, fotosService, gpsService) {
   $ionicPlatform.ready(function () {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard

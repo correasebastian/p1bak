@@ -43,7 +43,8 @@ app.controller('FotoCtrl', [
       s.photos = fotosService.photos;
       s.names = fotosService.names;
       s.getPhotos = function () {
-        fotosService.getPhotos(s.idinspeccion).then(function () {
+        // TODO: creo k es mejor hacer referencia directamente a intermediateservice.DATA .idinspeccion k a s.idinspeccion;
+        fotosService.getPhotos(intermediateService.data.idinspeccion).then(function () {
           s.photos = fotosService.photos;
           s.names = fotosService.names;
           _filterUnsync(0);
@@ -51,7 +52,7 @@ app.controller('FotoCtrl', [
       };
       s.getPhotos();
       s.$on('myEvent', function () {
-        console.log('my event occurred');
+        console.log('my event occurred', s.idinspeccion, intermediateService.data.idinspeccion);
         s.getPhotos();
       });
       var _filterUnsync = function (equal) {
@@ -60,7 +61,7 @@ app.controller('FotoCtrl', [
         s.imgUnsync = found;
       };
       var updateFoto = function (imageURI, sync, onupload) {
-        fotosService.updateFoto(s.idinspeccion, imageURI, sync, onupload).then(function () {
+        fotosService.updateFoto(intermediateService.data.idinspeccion, imageURI, sync, onupload).then(function () {
           console.log('en el controller despues de update sqlite foto ');
           if (s.massiveUpload) {
             s.massiveLength = s.massiveLength - 1;
@@ -85,7 +86,7 @@ app.controller('FotoCtrl', [
         intermediateService.data.isTakingPic = false;
       };
       var insertFoto = function (imageURI, sync, onupload) {
-        fotosService.insertFoto(s.idinspeccion, imageURI, sync, onupload).then(function () {
+        fotosService.insertFoto(intermediateService.data.idinspeccion, imageURI, sync, onupload).then(function () {
           console.log('en el controller despues de sqlite foto ');
         });
       };

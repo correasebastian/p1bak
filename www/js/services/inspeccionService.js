@@ -4,8 +4,8 @@ app.factory('inspeccionService', [
   '$filter',
   'errorService',
   'momentService',
-  'zumeroService',
-  function (sqliteService, $q, $filter, errorService, momentService, zumeroService) {
+  'zumeroService', 'intermediateService',
+  function (sqliteService, $q, $filter, errorService, momentService, zumeroService,intermediateService) {
     var inspeccionServiceFactory = {};
     inspeccionServiceFactory.all = [];
     inspeccionServiceFactory.sections = [];
@@ -43,7 +43,8 @@ app.factory('inspeccionService', [
     };
     var _rtnBinding = function (obj) {
       var binding = [
-        inspeccionServiceFactory.idinspeccion,
+        // inspeccionServiceFactory.idinspeccion,
+        intermediateService.data.idinspeccion,
         obj.idservicio,
         obj.iditem,
         obj.idParentItem,
@@ -79,7 +80,8 @@ app.factory('inspeccionService', [
     var _insertObservacion = function () {
       var query = 'INSERT INTO [observaciones] ([idinspeccion] ,[idsubproceso]  ,[observacion])   VALUES (?,?,?)';
       var binding = [
-        inspeccionServiceFactory.idinspeccion,
+      intermediateService.data.idinspeccion,
+        // inspeccionServiceFactory.idinspeccion,
         829,
         //_cl.tipo,
         inspeccionServiceFactory.data.observacion
@@ -89,7 +91,8 @@ app.factory('inspeccionService', [
     var _insertKilometraje = function () {
       var query = 'INSERT INTO [kilometrajes]        ([idinspeccion], [kilometraje])      VALUES (?,?)';
       var binding = [
-        inspeccionServiceFactory.idinspeccion,
+        // inspeccionServiceFactory.idinspeccion,
+        intermediateService.data.idinspeccion,
         inspeccionServiceFactory.data.kilometraje
       ];
       return sqliteService.executeQuery(query, binding);
@@ -98,7 +101,8 @@ app.factory('inspeccionService', [
       var binding = [
         parseInt(obj.sl.value),
         obj.sl.label,
-        inspeccionServiceFactory.idinspeccion,
+        intermediateService.data.idinspeccion,
+        // inspeccionServiceFactory.idinspeccion,
         obj.iditem
       ];
       return binding;
@@ -219,7 +223,8 @@ app.factory('inspeccionService', [
       var query = 'SELECT    o.idobservacion,   observacion, kilometraje FROM   observaciones o inner join kilometrajes k on k.idinspeccion=o.idinspeccion ';
       query += 'WHERE     (o.idinspeccion = ?) AND (idsubproceso = ?) Order by o.idobservacion desc limit 1 ';
       var binding = [
-        inspeccionServiceFactory.idinspeccion,
+      intermediateService.data.idinspeccion,
+        // inspeccionServiceFactory.idinspeccion,
         829
       ];
       return sqliteService.executeQuery(query, binding).then(function (res) {
@@ -237,7 +242,8 @@ app.factory('inspeccionService', [
       query += 'inner join idpropiedades idp on idp.idinspeccion=i.idinspeccion and idp.iditem = cpc.iditem ';
       query += 'where  i.idinspeccion =? and oif.idservicio=?    ';
       var binding = [
-        inspeccionServiceFactory.idinspeccion,
+      intermediateService.data.idinspeccion,
+        // inspeccionServiceFactory.idinspeccion,
         829
       ];
       return sqliteService.executeQuery(query, binding).then(function (res) {
@@ -250,7 +256,8 @@ app.factory('inspeccionService', [
       var query = 'UPDATE [idinspeccion]   SET [idClaseCarroceria] =? WHERE idinspeccion=?';
       var binding = [
         inspeccionServiceFactory.idClaseCarroceria,
-        inspeccionServiceFactory.idinspeccion
+        intermediateService.data.idinspeccion,
+        // inspeccionServiceFactory.idinspeccion
       ];
       return sqliteService.executeQuery(query, binding).then(function (res) {
         return _insertState(477);
@@ -259,7 +266,8 @@ app.factory('inspeccionService', [
     var _insertState = function (idestado) {
       var query = 'INSERT INTO [idsubprocesoseguimiento] ([idinspeccion]    ,[idsubproceso]   ,[idestado]   ,[fecha]  )  VALUES    (?,?,?,?)';
       var binding = [
-        inspeccionServiceFactory.idinspeccion,
+      intermediateService.data.idinspeccion,
+        // inspeccionServiceFactory.idinspeccion,
         829,
         //_cl.tipo,
         idestado,
