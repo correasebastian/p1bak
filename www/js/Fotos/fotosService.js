@@ -4,10 +4,13 @@ app.factory('fotosService', [
   'sqliteService',
   'intermediateService',
   'momentService',
-  function ($cordovaCamera, $cordovaFile, sqliteService, intermediateService, momentService) {
+  'rtnFind',
+  '$filter',
+  function ($cordovaCamera, $cordovaFile, sqliteService, intermediateService, momentService, rtnFind, $filter) {
     var fotosServiceFactory = {};
     fotosServiceFactory.photos = [];
     fotosServiceFactory.names = [];
+    fotosServiceFactory.fotosFalt = [];
     fotosServiceFactory.tipoFoto = {};
     // [{
     //     placa: 'ABC111',
@@ -51,14 +54,31 @@ app.factory('fotosService', [
       });
     };
     var _getNames = function () {
-      var query = 'select idTipoFoto, NombreFoto, enabled   from tiposFoto WHERE enabled=1 order by nombrefoto';
-      // var query = 'SELECT  IdTipo, Nombre, Valor, Orden FROM  Base_Tipos WHERE (IdMaestroTipos = 25)  AND enabled=1  order by Nombre';
+      // var query = 'select idTipoFoto, NombreFoto, enabled   from tiposFoto WHERE enabled=1 order by nombrefoto';
+      var query = ' select fc.idTipoFoto, NombreFoto,fc.orden, fc.cantidad ';
+      query += ' from tiposFoto tf ';
+      query += ' inner join fotoscia fc on tf.idTipoFoto=fc.idTipoFoto ';
+      query += ' and tf.enabled=1 and fc.enabled=1 ';
+      query += 'order by fc.orden ';
       var binding = [];
       return sqliteService.executeQuery(query, binding).then(function (res) {
-        fotosServiceFactory.names = sqliteService.rtnArray(res);  // $rootScope.$apply();
-                                                                  // console.log(fotosServiceFactory.photos);
+        fotosServiceFactory.names = sqliteService.rtnArray(res);
+        // $rootScope.$apply();
+        // console.log(fotosServiceFactory.photos);
+        angular.copy(fotosServiceFactory.names, fotosServiceFactory.fotosFalt);
+        // fotosServiceFactory.orderBy(fotosServiceFactory.fotosFalt, 'orden', false);
+        fotosServiceFactory.fotosPendientes();
       }, function (error) {
         console.log(error);
+      });
+    };
+    var _orderBy = function (array, expression, reverse) {
+      array = $filter('orderBy')(array, expression, reverse);
+    };
+    var _fotosPendientes = function () {
+      angular.forEach(fotosServiceFactory.photos, function (obj, key) {
+        var filterObj = { idTipoFoto: obj.idtipo };
+        var subObj = rtnFind.rmObjFromArray(fotosServiceFactory.fotosFalt, filterObj);
       });
     };
     var _copyFile = function (imageURI) {
@@ -142,6 +162,8 @@ app.factory('fotosService', [
     fotosServiceFactory.getPhotos = _getPhotos;
     fotosServiceFactory.updateFoto = _updateFoto;
     fotosServiceFactory.setName = _setName;
+    fotosServiceFactory.fotosPendientes = _fotosPendientes;
+    fotosServiceFactory.orderBy = _orderBy;
     return fotosServiceFactory;
   }
 ]);

@@ -9,13 +9,13 @@
          
           <!-- Single select -->
           <label
-                 ng-repeat="opcion in listPics | orderBy : orden"
+                 ng-repeat="opcion in fotosFalt"
                  
                  class="item item-text-wrap "
                  ng-class="{positive:opcion.value===item.sl.value}"
                  on-tap='setIdTipoFoto(opcion)'>
        
-            {{opcion.nombreFoto}}
+            {{opcion.NombreFoto}}
           </label>
         </div>
       </ion-content>

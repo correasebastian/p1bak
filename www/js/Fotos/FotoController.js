@@ -51,11 +51,13 @@ app.controller('FotoCtrl', [
       // s.oss = { online: onlineStatusService.isOnline };
       s.photos = fotosService.photos;
       s.names = fotosService.names;
+      s.fotosFalt = [];
       s.getPhotos = function () {
         // TODO: creo k es mejor hacer referencia directamente a intermediateservice.DATA .idinspeccion k a s.idinspeccion;
         fotosService.getPhotos(intermediateService.data.idinspeccion).then(function () {
           s.photos = fotosService.photos;
           s.names = fotosService.names;
+          s.fotosFalt = fotosService.fotosFalt;
           _filterUnsync(0);
         });
       };
@@ -100,9 +102,11 @@ app.controller('FotoCtrl', [
       var insertFoto = function (imageURI, sync, onupload) {
         fotosService.insertFoto(intermediateService.data.idinspeccion, imageURI, sync, onupload).then(function () {
           console.log('en el controller despues de sqlite foto ');
-          var index = s.listPics.indexOf(fotosService.tipoFoto);
-          $log.debug(index);
-          s.listPics.splice(index, 1);
+          if (fotosService.tipoFoto.cantidad > 0) {
+            var index = s.fotosFalt.indexOf(fotosService.tipoFoto);
+            $log.debug(index);
+            s.fotosFalt.splice(index, 1);
+          }
         });
       };
       var refreshProgress = function (imageURI, percentage) {
