@@ -82,14 +82,15 @@ app.factory('placasService', [
         //   idinspeccion: res.insertId
         // });
         intermediateService.data.idinspeccion = res.insertId;
-        return zumeroService.zync(1).then(function () {
+        /* return zumeroService.zync(1).then(function () {
           return updateSyncService.selectIdinspeccionSync(placa).then(function () {
             return _getPlacas();
           });
         }, function () {
           console.log('error on zumero sync desde ps');
           return _getPlacas();
-        });
+        });*/
+        return _getPlacas();
       }, function (err) {
         console.error(err);
       });

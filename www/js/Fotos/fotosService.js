@@ -8,6 +8,7 @@ app.factory('fotosService', [
     var fotosServiceFactory = {};
     fotosServiceFactory.photos = [];
     fotosServiceFactory.names = [];
+    fotosServiceFactory.tipoFoto = {};
     // [{
     //     placa: 'ABC111',
     //     src: '',
@@ -50,7 +51,7 @@ app.factory('fotosService', [
       });
     };
     var _getNames = function () {
-      var query ='select idTipoFoto, NombreFoto, enabled   from tiposFoto WHERE enabled=1 order by nombrefoto';
+      var query = 'select idTipoFoto, NombreFoto, enabled   from tiposFoto WHERE enabled=1 order by nombrefoto';
       // var query = 'SELECT  IdTipo, Nombre, Valor, Orden FROM  Base_Tipos WHERE (IdMaestroTipos = 25)  AND enabled=1  order by Nombre';
       var binding = [];
       return sqliteService.executeQuery(query, binding).then(function (res) {
@@ -69,7 +70,7 @@ app.factory('fotosService', [
       });
     };
     var _insertFoto = function (idinspeccion, imageURI, sync, onUpload) {
-      var query = 'INSERT INTO idfotos(idinspeccion, path,sync,uuid,deleted, onUpload, placa, fecha, rutaSrv) VALUES (?,?,?,?,?,?,?,?, ?)';
+      var query = 'INSERT INTO idfotos(idinspeccion, path,sync,uuid,deleted, onUpload, placa, fecha, rutaSrv, idtipo) VALUES (?,?,?,?,?,?,?,?, ?,?)';
       // TODO: el campo deleted es boolean , pero debe asignarsele 1 o 0
       // sync = sync ? 1 : 0;
       onUpload = onUpload ? 1 : 0;
@@ -83,7 +84,8 @@ app.factory('fotosService', [
         onUpload,
         intermediateService.data.placa,
         momentService.getDateTime(),
-        momentService.rutaSrv(imageURI)
+        momentService.rutaSrv(imageURI),
+        fotosServiceFactory.tipoFoto.idTipoFoto
       ];
       return sqliteService.executeQuery(query, binding).then(function (res) {
       }, function (err) {

@@ -18,8 +18,17 @@ app.controller('FotoCtrl', [
   'zumeroService',
   'momentService',
   'gpsService',
-  function (s, fotosService, $ionicPlatform, $ionicScrollDelegate, fileTransferService, $filter, $stateParams, $ionicNavBarDelegate, copyFileService, checkFileService, titleService, offlineService, errorService, onlineStatusService, intermediateService, toastService, zumeroService, momentService, gpsService) {
+  '$log',
+  '$ionicModal',
+  function (s, fotosService, $ionicPlatform, $ionicScrollDelegate, fileTransferService, $filter, $stateParams, $ionicNavBarDelegate, copyFileService, checkFileService, titleService, offlineService, errorService, onlineStatusService, intermediateService, toastService, zumeroService, momentService, gpsService, $log, $ionicModal) {
     $ionicPlatform.ready(function () {
+      $ionicModal.fromTemplateUrl('js/Fotos/fotoModal.html', {
+        scope: s,
+        animation: 'slide-in-up'
+      }).then(function (modal) {
+        s.modal = modal;
+        $log.debug(modal);
+      });
       // s.tittle = '';
       s.tittle = intermediateService.data.placa;
       s.imgUnsync = [];
@@ -85,9 +94,15 @@ app.controller('FotoCtrl', [
         // zumeroService.zync(2);
         intermediateService.data.isTakingPic = false;
       };
+      // var rtnTipoFoto=function(){
+      //   return 
+      // }
       var insertFoto = function (imageURI, sync, onupload) {
         fotosService.insertFoto(intermediateService.data.idinspeccion, imageURI, sync, onupload).then(function () {
           console.log('en el controller despues de sqlite foto ');
+          var index = s.listPics.indexOf(fotosService.tipoFoto);
+          $log.debug(index);
+          s.listPics.splice(index, 1);
         });
       };
       var refreshProgress = function (imageURI, percentage) {
@@ -117,14 +132,15 @@ app.controller('FotoCtrl', [
           });
         }
       };
-      var rtnObjectFoto = function (placa, path, sync, onUpload) {
+      var rtnObjectFoto = function (placa, path, sync, onUpload, idtipo) {
         var obj = {
           placa: placa,
           path: path,
           sync: sync,
           onUpload: onUpload,
           //s.oss.online === true ? true : false
-          rutaSrv: momentService.rutaSrv(path)
+          rutaSrv: momentService.rutaSrv(path),
+          idtipo: idtipo
         };
         return obj;
       };
@@ -136,6 +152,9 @@ app.controller('FotoCtrl', [
         } else {
           console.log('not found in array search');
         }
+      };
+      s.openModal = function () {
+        s.modal.show();
       };
       s.tryUpload = function (foto) {
         var objFoto = searchOneInArray(foto.path);
@@ -178,7 +197,7 @@ app.controller('FotoCtrl', [
             var sync = 0;
             var onupload = true;
             // TODO: es mejor h¿guardar aqui el sqlite y luego actualizarlo si sube exitoso;
-            var obj = rtnObjectFoto(intermediateService.data.placa, res.nativeURL, sync, onupload);
+            var obj = rtnObjectFoto(intermediateService.data.placa, res.nativeURL, sync, onupload, fotosService.tipoFoto.idTipoFoto);
             s.photos.push(obj);
             insertFoto(res.nativeURL, sync, onupload);
             $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom(true);
@@ -188,6 +207,48 @@ app.controller('FotoCtrl', [
           }, errorService.consoleError);
         }, errorService.consoleError);  // $cordovaCamera.cleanup().then(fnSuccess,errorService.consoleError); // only for FILE_URI  
       };
+      s.setIdTipoFoto = function (tipoFoto) {
+        $log.debug(tipoFoto);
+        fotosService.tipoFoto = tipoFoto;
+        s.closeModal();
+        // 
+        s.getPicFile();
+      };
+      s.closeModal = function () {
+        s.modal.hide();
+      };
+      s.listPics = [
+        {
+          'idTipoFoto': 494,
+          'nombreFoto': 'Placa',
+          'orden': '1',
+          'cantidad': '1'
+        },
+        {
+          'idTipoFoto': 625,
+          'nombreFoto': 'Frente Licencia Transito',
+          'orden': 10,
+          'cantidad': '1'
+        },
+        {
+          'idTipoFoto': 495,
+          'nombreFoto': 'Delantera Derecha',
+          'orden': 40,
+          'cantidad': '1'
+        },
+        {
+          'idTipoFoto': 496,
+          'nombreFoto': 'Delantera Izquierda',
+          'orden': 30,
+          'cantidad': '1'
+        },
+        {
+          'idTipoFoto': 497,
+          'nombreFoto': 'Trasera Derecha',
+          'orden': 50,
+          'cantidad': '1'
+        }
+      ];
     });
   }
 ]);

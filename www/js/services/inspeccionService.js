@@ -4,8 +4,9 @@ app.factory('inspeccionService', [
   '$filter',
   'errorService',
   'momentService',
-  'zumeroService', 'intermediateService',
-  function (sqliteService, $q, $filter, errorService, momentService, zumeroService,intermediateService) {
+  'zumeroService',
+  'intermediateService',
+  function (sqliteService, $q, $filter, errorService, momentService, zumeroService, intermediateService) {
     var inspeccionServiceFactory = {};
     inspeccionServiceFactory.all = [];
     inspeccionServiceFactory.sections = [];
@@ -80,7 +81,7 @@ app.factory('inspeccionService', [
     var _insertObservacion = function () {
       var query = 'INSERT INTO [observaciones] ([idinspeccion] ,[idsubproceso]  ,[observacion])   VALUES (?,?,?)';
       var binding = [
-      intermediateService.data.idinspeccion,
+        intermediateService.data.idinspeccion,
         // inspeccionServiceFactory.idinspeccion,
         829,
         //_cl.tipo,
@@ -223,7 +224,7 @@ app.factory('inspeccionService', [
       var query = 'SELECT    o.idobservacion,   observacion, kilometraje FROM   observaciones o inner join kilometrajes k on k.idinspeccion=o.idinspeccion ';
       query += 'WHERE     (o.idinspeccion = ?) AND (idsubproceso = ?) Order by o.idobservacion desc limit 1 ';
       var binding = [
-      intermediateService.data.idinspeccion,
+        intermediateService.data.idinspeccion,
         // inspeccionServiceFactory.idinspeccion,
         829
       ];
@@ -242,7 +243,7 @@ app.factory('inspeccionService', [
       query += 'inner join idpropiedades idp on idp.idinspeccion=i.idinspeccion and idp.iditem = cpc.iditem ';
       query += 'where  i.idinspeccion =? and oif.idservicio=?    ';
       var binding = [
-      intermediateService.data.idinspeccion,
+        intermediateService.data.idinspeccion,
         // inspeccionServiceFactory.idinspeccion,
         829
       ];
@@ -256,8 +257,7 @@ app.factory('inspeccionService', [
       var query = 'UPDATE [idinspeccion]   SET [idClaseCarroceria] =? WHERE idinspeccion=?';
       var binding = [
         inspeccionServiceFactory.idClaseCarroceria,
-        intermediateService.data.idinspeccion,
-        // inspeccionServiceFactory.idinspeccion
+        intermediateService.data.idinspeccion
       ];
       return sqliteService.executeQuery(query, binding).then(function (res) {
         return _insertState(477);
@@ -266,7 +266,7 @@ app.factory('inspeccionService', [
     var _insertState = function (idestado) {
       var query = 'INSERT INTO [idsubprocesoseguimiento] ([idinspeccion]    ,[idsubproceso]   ,[idestado]   ,[fecha]  )  VALUES    (?,?,?,?)';
       var binding = [
-      intermediateService.data.idinspeccion,
+        intermediateService.data.idinspeccion,
         // inspeccionServiceFactory.idinspeccion,
         829,
         //_cl.tipo,

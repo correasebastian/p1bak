@@ -1,0 +1,88 @@
+<ion-view view-title="foto">
+<ion-nav-title>{{tittle}}</ion-nav-title>
+      <!-- <ion-nav-buttons side="right">
+         
+     
+		    <button ng-click="setOfflineMode(true)" ng-show="!off.offlineMode " class="button button-positive button-clear button-icon icon ion-toggle animated" >{{off.offlineMode}}</button>
+		       <button ng-click="setOfflineMode(false)" ng-show="off.offlineMode  " class="button button-positive button-clear button-icon icon ion-toggle-filled animated" >
+		        {{off.offlineMode}}
+		     </button>
+ 
+        </ion-nav-buttons>  -->
+
+<!-- <div class="float-button fbAdd">
+  <span class="height-fix">
+    <a on-touch="addPlaca()"  class="button content button-icon ">
+    
+      <i class="ion-plus-round my-icon"> </i>
+    </a>
+  </span>
+</div> -->
+
+<div class="float-button fbVideoCompress" ng-show="imgUnsync.length>0 && !off.offlineMode && oss.isOnline">
+  <span class="height-fix">
+    <a on-touch="syncImgUnsync()"  class="button content button-icon ">
+    <!-- ui-sref="add-trip" -->
+      <i class="ion-android-upload my-icon"> </i>
+    </a>
+  </span>
+</div>
+<div class="float-button fbCamera">
+  <span class="height-fix">
+    <!-- <a on-touch="getPicFile()"  class="button content button-icon "> -->
+	<a on-touch="openModal()"  class="button content button-icon ">
+    <!-- ui-sref="add-trip" -->
+      <i class="ion-camera my-icon"> </i>
+    </a>
+  </span>
+</div>
+  <ion-content delegate-handle="mainScroll">
+  <!-- {{photos}} -->
+  <!--  <button class="button button-full button-positive" on-touch="openModal()">
+    open
+  </button> -->
+    	<div class="list card mt" ng-repeat="p in photos | unique" >
+		<!--   <div class="item item-avatar">
+		    <img src="avatar.jpg">
+		    <h2>{{p.src}}</h2>
+		    <p>Nine Inch Nails</p>
+		  </div> -->
+	  	  <div class="item  item-select">
+		    <!-- <div class="input-label">
+		      Lightsaber
+		    </div> -->
+		   <select ng-model="p.idtipo" ng-options="nombreImage.idTipoFoto as nombreImage.NombreFoto  for nombreImage in names" 	class="pull-left" 
+    		ng-change="setname(p.idtipo, p)">
+        </select> 
+		  </div>
+
+		  <div class="item item-image">
+		    <img ng-src={{p.path}}>
+		  </div>
+
+		  <div class="item item-icon assertive" >
+			  <button ng-show="!p.sync && !p.onUpload " ng-disabled="!oss.isOnline" on-touch="tryUpload(p)" class="button button-icon  ">
+			    <i  class="icon ion-refresh red"></i>
+			  </button>
+
+		    <i  ng-show="p.sync" class="icon ion-checkmark-round green"></i>
+		    <ion-spinner ng-show="p.onUpload"></ion-spinner><span ng-show="p.onUpload">{{p.percentage}}</span>
+	      </div>
+ 
+		    
+		  
+
+	</div>
+<!-- {{imgUnsync}}
+{{photos}} -->
+<!-- 	<button class="button button-calm" ng-show="oss.online">
+	  button-calm
+	</button> -->
+	<!-- <h2 ng-show="onlineStatus.isOnline">onLine</h2>
+
+	<h2 ng-show="data.isOnline">OBJETO</h2> -->
+	<!-- <button class="button button-block " on-touch="getPicFile()">
+	  getpic
+	</button> -->
+  </ion-content>
+</ion-view>
