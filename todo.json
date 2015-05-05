@@ -69,19 +69,19 @@
     "file": "Fotos\\FotoController.js",
     "text": "para las tablets apago el gps, y algo pasa con la camara",
     "kind": "TODO",
-    "line": 192
+    "line": 193
   },
   {
     "file": "Fotos\\FotoController.js",
     "text": "es mejor h¿guardar aqui el sqlite y luego actualizarlo si sube exitoso;",
     "kind": "TODO",
-    "line": 203
+    "line": 204
   },
   {
     "file": "Fotos\\FotoController.js",
     "text": "es mejor llamar a una funcion, por que asi se ejecuta para cada uno, y se ejecuta bien, en vez de llamar filupload desde aca",
     "kind": "TODO",
-    "line": 208
+    "line": 209
   },
   {
     "file": "Fotos\\fotosService.js",
@@ -93,25 +93,25 @@
     "file": "Fotos\\fotosService.js",
     "text": "el campo deleted es boolean , pero debe asignarsele 1 o 0",
     "kind": "TODO",
-    "line": 94
+    "line": 95
   },
   {
     "file": "Fotos\\fotosService.js",
     "text": "es el path la mejor forma y mas efectiva de hacer el where de la consulta",
     "kind": "TODO",
-    "line": 116
+    "line": 117
   },
   {
     "file": "Fotos\\fotosService.js",
     "text": "el campo deleted es boolean , pero debe asignarsele 1 o 0",
     "kind": "TODO",
-    "line": 118
+    "line": 119
   },
   {
     "file": "Fotos\\fotosService.js",
     "text": "mucho cuidado por ejemplo el path debe ser nvarchar() NO  NCHAR",
     "kind": "TODO",
-    "line": 119
+    "line": 120
   },
   {
     "file": "controllers\\AccesoriosController.js",

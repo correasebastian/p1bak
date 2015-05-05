@@ -184,6 +184,7 @@ app.controller('FotoCtrl', [
         //betadoparapruebasconsole.log(nombre, foto);
         // console.log(idtipo, foto);
         fotosService.setName(idtipo, foto).then(function () {
+          s.fotosFalt = fotosService.fotosFalt;
         });
       };
       s.getPicFile = function () {

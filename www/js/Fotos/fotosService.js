@@ -65,7 +65,7 @@ app.factory('fotosService', [
         fotosServiceFactory.names = sqliteService.rtnArray(res);
         // $rootScope.$apply();
         // console.log(fotosServiceFactory.photos);
-        angular.copy(fotosServiceFactory.names, fotosServiceFactory.fotosFalt);
+        // angular.copy(fotosServiceFactory.names, fotosServiceFactory.fotosFalt);
         // fotosServiceFactory.orderBy(fotosServiceFactory.fotosFalt, 'orden', false);
         fotosServiceFactory.fotosPendientes();
       }, function (error) {
@@ -76,9 +76,10 @@ app.factory('fotosService', [
       array = $filter('orderBy')(array, expression, reverse);
     };
     var _fotosPendientes = function () {
+      angular.copy(fotosServiceFactory.names, fotosServiceFactory.fotosFalt);
       angular.forEach(fotosServiceFactory.photos, function (obj, key) {
         var filterObj = { idTipoFoto: obj.idtipo };
-        var subObj = rtnFind.rmObjFromArray(fotosServiceFactory.fotosFalt, filterObj);
+        rtnFind.rmObjFromArray(fotosServiceFactory.fotosFalt, filterObj);
       });
     };
     var _copyFile = function (imageURI) {
@@ -149,6 +150,7 @@ app.factory('fotosService', [
         } else {
           console.log(res.rowsAffected);
           console.log('update successful');
+          fotosServiceFactory.fotosPendientes();
         }
       }, function (err) {
         console.error(err);
