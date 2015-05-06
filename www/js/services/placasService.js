@@ -44,7 +44,7 @@ app.factory('placasService', [
         // console.log(sqliteService.rtnArray(res));
         placasServiceFactory.all = sqliteService.rtnArray(res);
         // $rootScope.$apply();
-        console.log(placasServiceFactory.all);
+        // console.log(placasServiceFactory.all);
         _insertDevice();
       }, function (error) {
         console.log(error);
@@ -102,7 +102,7 @@ app.factory('placasService', [
         deviceService.data.model
       ];
       sqliteService.executeQuery(query, binding).then(function (res) {
-        console.log('insert device', res);
+        // console.log('insert device', res);
       }, function (err) {
         console.error(err);
       });

@@ -86,7 +86,7 @@ var app = angular.module('starter', [
     url: '/inspeccion/:id/:placa/:calificado',
     views: {
       'menuContent': {
-        templateUrl: 'templates/inspeccion.html',
+        templateUrl: 'js/inspeccion/inspeccion.html',
         controller: 'InspeccionCtrl'
       }
     }
@@ -164,7 +164,7 @@ app.constant('ngAuthSettings', {
     //   console.log(event, next, current);
     // });
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
-      console.log(event, toState, toParams, fromState, fromParams);
+      // console.log(event, toState, toParams, fromState, fromParams);
       var authData = localStorageService.get('authorizationData');
       if (toState.name === 'app.login') {
         // doe she/he try to go to login? - let him/her go

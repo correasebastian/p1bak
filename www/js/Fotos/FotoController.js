@@ -197,7 +197,7 @@ app.controller('FotoCtrl', [
           // copyFileService.copyFile(imageURI).then(function (res) {
           copyFileService.copyFile(imageURI).then(function () {
             // console.log(res, 'copyok');
-            console.log(checkFileService.fileEntry, checkFileService.file);
+            // console.log(checkFileService.fileEntry, checkFileService.file);
             var res = checkFileService.fileEntry;
             var sync = 0;
             var onupload = true;

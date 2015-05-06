@@ -79,22 +79,24 @@ app.factory('inspeccionService', [
       return sqliteService.insertCollection(query, bindings);
     };
     var _insertObservacion = function () {
-      var query = 'INSERT INTO [observaciones] ([idinspeccion] ,[idsubproceso]  ,[observacion])   VALUES (?,?,?)';
+      var query = 'INSERT INTO [observaciones] ([idinspeccion] ,[idsubproceso]  ,[observacion], [placa])   VALUES (?,?,?,?)';
       var binding = [
         intermediateService.data.idinspeccion,
         // inspeccionServiceFactory.idinspeccion,
         829,
         //_cl.tipo,
-        inspeccionServiceFactory.data.observacion
+        inspeccionServiceFactory.data.observacion,
+        intermediateService.data.placa
       ];
       return sqliteService.executeQuery(query, binding);
     };
     var _insertKilometraje = function () {
-      var query = 'INSERT INTO [kilometrajes]        ([idinspeccion], [kilometraje])      VALUES (?,?)';
+      var query = 'INSERT INTO [kilometrajes]        ([idinspeccion], [kilometraje], [placa])      VALUES (?,?,?)';
       var binding = [
         // inspeccionServiceFactory.idinspeccion,
         intermediateService.data.idinspeccion,
-        inspeccionServiceFactory.data.kilometraje
+        inspeccionServiceFactory.data.kilometraje,
+        intermediateService.data.placa
       ];
       return sqliteService.executeQuery(query, binding);
     };

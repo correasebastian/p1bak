@@ -120,30 +120,6 @@
     "line": 81
   },
   {
-    "file": "controllers\\InspeccionController.js",
-    "text": "como esto se sincroniza una sola vez, no hay problema con el idinspeccion, el problema esta en accesorios y en fotos, que se sube uno a uno, entonces podria cambiar, o en accesorios hacer un beforleave de view, mi pregunta es , si no abandona la view, como sincronizo? otra mas si paso a background puedo sincronizar???",
-    "kind": "TODO",
-    "line": 19
-  },
-  {
-    "file": "controllers\\InspeccionController.js",
-    "text": "esta variable me la da la pbase de satos, si ya esta calificado o no",
-    "kind": "TODO",
-    "line": 20
-  },
-  {
-    "file": "controllers\\InspeccionController.js",
-    "text": "para deshabilitar el update, aunque ya esta montado, me preocupa es el zync cada que se haga un update",
-    "kind": "TODO",
-    "line": 56
-  },
-  {
-    "file": "controllers\\InspeccionController.js",
-    "text": "aqui valido si ya se califico o si apenas se va a realizar",
-    "kind": "TODO",
-    "line": 139
-  },
-  {
     "file": "controllers\\PlacasController.js",
     "text": "seria bueno que la consulta de placas supiera todo, como por ejemplo si ya se califico, si ya tiene alguna foto o un video, puede ser marcandolo con alguna clase",
     "kind": "TODO",
@@ -192,6 +168,54 @@
     "line": 14
   },
   {
+    "file": "inspeccion\\InspeccionController.js",
+    "text": "como esto se sincroniza una sola vez, no hay problema con el idinspeccion, el problema esta en accesorios y en fotos, que se sube uno a uno, entonces podria cambiar, o en accesorios hacer un beforleave de view, mi pregunta es , si no abandona la view, como sincronizo? otra mas si paso a background puedo sincronizar???",
+    "kind": "TODO",
+    "line": 19
+  },
+  {
+    "file": "inspeccion\\InspeccionController.js",
+    "text": "esta variable me la da la pbase de satos, si ya esta calificado o no",
+    "kind": "TODO",
+    "line": 20
+  },
+  {
+    "file": "inspeccion\\InspeccionController.js",
+    "text": "para deshabilitar el update, aunque ya esta montado, me preocupa es el zync cada que se haga un update",
+    "kind": "TODO",
+    "line": 56
+  },
+  {
+    "file": "inspeccion\\InspeccionController.js",
+    "text": "aqui valido si ya se califico o si apenas se va a realizar",
+    "kind": "TODO",
+    "line": 139
+  },
+  {
+    "file": "inspeccion\\inspeccionService.js",
+    "text": "logica para saber si ya fue calificado",
+    "kind": "TODO",
+    "line": 40
+  },
+  {
+    "file": "inspeccion\\inspeccionService.js",
+    "text": "para la implementacion de pesados y motos, ya si debe ser una consulta",
+    "kind": "TODO",
+    "line": 129
+  },
+  {
+    "file": "inspeccion\\inspeccionService.js",
+    "text": "ASI NO SIRVE , no se actualiza el expuesto ,,_clases = sqliteService.rtnArray(res);",
+    "kind": "TODO",
+    "line": 144
+  },
+  {
+    "file": "inspeccion\\inspeccionService.js",
+    "text": "el json de controlJson devuelve un value= \"\" string, ver si se puede mejorar;",
+    "kind": "TODO",
+    "line": 187
+  },
+  {
     "file": "services\\accesoriosService.js",
     "text": "una bandera para saber que ya se setio, una vez, y evitar mas consulats, a menos que se haga una actualizacion del servidor",
     "kind": "TODO",
@@ -238,30 +262,6 @@
     "text": "por que me dispara el vento de on online, mas que todo con el wifi????",
     "kind": "TODO",
     "line": 23
-  },
-  {
-    "file": "services\\inspeccionService.js",
-    "text": "logica para saber si ya fue calificado",
-    "kind": "TODO",
-    "line": 40
-  },
-  {
-    "file": "services\\inspeccionService.js",
-    "text": "para la implementacion de pesados y motos, ya si debe ser una consulta",
-    "kind": "TODO",
-    "line": 127
-  },
-  {
-    "file": "services\\inspeccionService.js",
-    "text": "ASI NO SIRVE , no se actualiza el expuesto ,,_clases = sqliteService.rtnArray(res);",
-    "kind": "TODO",
-    "line": 142
-  },
-  {
-    "file": "services\\inspeccionService.js",
-    "text": "el json de controlJson devuelve un value= \"\" string, ver si se puede mejorar;",
-    "kind": "TODO",
-    "line": 185
   },
   {
     "file": "services\\onlineStatusService.js",
