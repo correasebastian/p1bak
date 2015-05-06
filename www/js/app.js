@@ -90,6 +90,14 @@ var app = angular.module('starter', [
         controller: 'InspeccionCtrl'
       }
     }
+  }).state('app.codFas', {
+    url: '/codfas/:id',
+    views: {
+      'menuContent': {
+        templateUrl: 'js/codFas/codfas.html',
+        controller: 'CodFas as vm'
+      }
+    }
   }).state('app.login', {
     url: '/login',
     views: {

@@ -1,0 +1,26 @@
+<ion-view view-title="Codigo fasecolda">
+
+  <ion-content>
+    <!-- {{acces}} -->
+     
+     <div class="list">
+			
+		 
+		  <label class="item item-input">
+		    <span class="input-label">Codigo Fasecolda</span>
+		    <input type="text" ng-model="vm.data.codFasecolda" required>
+		  </label>
+		   
+		 
+	</div>
+
+  </ion-content>
+  <div class="bar bar-footer bar-positive" ng-show="!vm.data.alreadySet && vm.data.codFasecolda.length>5">	 
+	  <button class="button button-clear button-full "  on-tap="vm.setCodFas()">guardar
+	  </button>
+</div>
+ <div class="bar bar-footer bar-positive" ng-show="vm.data.alreadySet && vm.data.codFasecolda.length>5">	 
+	  <button class="button button-clear button-full "  on-tap="vm.updCodFas()">Actualizar
+	  </button>	    
+</div>
+</ion-view>

@@ -142,6 +142,10 @@ app.controller('PlacasCtrl', [
         $scope.setIntData(obj);
         $state.go('app.accesorios', { id: obj.idinspeccion });
       };
+      $scope.goCodFas = function (obj) {
+        $scope.setIntData(obj);
+        $state.go('app.codFas', { id: obj.idinspeccion });
+      };
       $scope.createException = function () {
         throw new Error('Something has gone terribly wrong!');
       };

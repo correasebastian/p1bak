@@ -3,13 +3,13 @@
     "file": "app.js",
     "text": "para que se consideren sanas las ng-src que tengan esta sintaxis;",
     "kind": "TODO",
-    "line": 112
+    "line": 120
   },
   {
     "file": "app.js",
     "text": "verificar si existe en el localstorage alguna bandera que diga si ya se sync alguna vez",
     "kind": "TODO",
-    "line": 223
+    "line": 231
   },
   {
     "file": "Fotos\\FotoController.js",

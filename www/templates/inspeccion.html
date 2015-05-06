@@ -36,11 +36,15 @@
   </textarea >
 </label>
 
-<button class="button button-full button-calm" on-tap="save(items)" ng-show="sections.length-1===_Index && !alreadySaved">
+<!-- <button class="button button-full button-calm" on-tap="save(items)" ng-show="sections.length-1===_Index && !alreadySaved">
   Guardar
 </button>
-    
+     -->
    
 
   </ion-content>
+  <div class="bar bar-footer bar-positive" ng-show="sections.length-1===_Index && !alreadySaved">
+   
+    <button class="button button-clear button-full "  on-tap="save(items)">Guardar</button>
+</div>
 </ion-view>
