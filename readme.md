@@ -53,7 +53,7 @@ INSERT INTO [idpropiedades] ([idinspeccion] ,[idsubproceso] ,[iditem],[idparenti
 
 
     ///////////////////////////////////
-    var f= function(a){
+var f= function(a){
 console.log(a)}
 undefined
 var g= function(f){

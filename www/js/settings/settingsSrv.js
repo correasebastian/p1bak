@@ -15,10 +15,18 @@
   function settingsSrv(intermediateService, sqliteService, momentService, authService, toastService, deviceService, dltFileSrv, errorService, $log, $q) {
     var stFactory = {
       pics: [],
-      getImg2Dlt: getImg2Dlt,
-      dltImgs: dltImgs
+      vds: [],
+      get2Dlt: get2Dlt,
+      dltImgs: dltImgs,
+      dltVds: dltVds
     };
     return stFactory;
+    function get2Dlt() {
+      var qArray = [];
+      qArray.push(getImg2Dlt());
+      qArray.push(getVds2Dlt());
+      return $q.all(qArray);  // body...
+    }
     function getImg2Dlt() {
       var query = 'SELECT   f.idfoto, f.path ';
       query += 'FROM  idinspeccion id ';
@@ -34,6 +42,28 @@
       ];
       return sqliteService.executeQuery(query, binding).then(function (res) {
         stFactory.pics = sqliteService.rtnArray(res);  /* console.log(array);
+        if (array.length) {
+          dltImgs(array);
+        }*/
+      }, function (error) {
+        console.log(error);
+      });
+    }
+    function getVds2Dlt() {
+      var query = 'SELECT   v.idvideo, v.path ';
+      query += 'FROM  idinspeccion id ';
+      query += 'inner join idvideos v on v.idinspeccion=id.idinspeccion ';
+      query += 'WHERE     id.uuid = ? AND id.UserName = ?  ';
+      query += 'and v.sync=1 ';
+      query += 'and v.deleted=0 ';
+      query += 'and id.fecha< ? ORDER BY v.idvideo ';
+      var binding = [
+        deviceService.data.uuid,
+        authService.authentication.userName,
+        momentService.addDays(+1)  // -2
+      ];
+      return sqliteService.executeQuery(query, binding).then(function (res) {
+        stFactory.vds = sqliteService.rtnArray(res);  /* console.log(array);
         if (array.length) {
           dltImgs(array);
         }*/
@@ -82,6 +112,19 @@
           return updateCollection(bindings).then(updOk).catch(errorService.consoleError);
         }
       }).catch(errorService.consoleError)*/;
+    }
+    function dltVds() {
+      toastService.showShortBottom('Eliminando Videos');
+      var query = 'UPDATE [idvideos]SET [deleted] = 1  WHERE idvideo=?';
+      var bindings = [];
+      var qArray = [];
+      angular.forEach(stFactory.vds, function (obj, key) {
+        var binding = [];
+        binding.push(obj.idvideo);
+        bindings.push(binding);
+        qArray.push(iifeDlt(obj.path));
+      });
+      return preUpdateCollection(qArray, query, bindings);
     }
     /*   function insertBinding (idfoto) {
       var binding=[]
