@@ -54,7 +54,7 @@ var app = angular.module('starter', [
     url: '/placas',
     views: {
       'menuContent': {
-        templateUrl: 'templates/placas.html',
+        templateUrl: 'js/placas/placas.html',
         controller: 'PlacasCtrl'
       }
     }
@@ -88,6 +88,15 @@ var app = angular.module('starter', [
       'menuContent': {
         templateUrl: 'js/inspeccion/inspeccion.html',
         controller: 'InspeccionCtrl'
+      }
+    }
+  }).state('app.settings', {
+    url: '/settings',
+    views: {
+      'menuContent': {
+        templateUrl: 'js/settings/settings.html',
+        controller: 'Settings  as St'  // ,
+                           // controllerAs: 'vm'
       }
     }
   }).state('app.codFas', {
@@ -170,7 +179,7 @@ app.constant('ngAuthSettings', {
         // doe she/he try to go to login? - let him/her go
         return;
       }
-      console.log(authData, momentService.diffNow(authData.exp, 'm'), '> -60');
+      // console.log(authData, momentService.diffNow(authData.exp, 'm'), '> -60');
       if (!authData || momentService.diffNow(authData.exp, 'm') > -60) {
         event.preventDefault();
         $timeout(function () {

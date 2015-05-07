@@ -38,9 +38,9 @@
   </ion-side-menu-content>
 
   <ion-side-menu side="left">
-    <ion-header-bar class="bar-stable">
+    <!-- <ion-header-bar class="bar-stable">
       <h1 class="title">Left</h1>
-    </ion-header-bar>
+    </ion-header-bar> -->
     <ion-content>
       <ion-list>
       <!--   <ion-item nav-clear menu-close ng-click="login()">
@@ -55,11 +55,24 @@
         <ion-item nav-clear menu-close href="#/app/playlists">
           Playlists
         </ion-item> -->
-         <ion-item nav-clear menu-close href="#/app/placas">
-          placas
+         <ion-item class="heading-item item item-avatar" nav-clear menu-close >
+          <img ng-src="img/icon.png">
+          <!-- https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg" -->
+          <h2 class="greeting">Ajustev</h2>
+          <p class="message">nada queda oculto</p>
         </ion-item>
-         <ion-item nav-clear menu-close ng-click="logOut()">
-          LogOut
+         <ion-item class="item-icon-left" nav-clear menu-close href="#/app/placas">
+          
+          <i class="icon ion-model-s"></i>
+          <h2 class="menu-text">placas</h2>
+        </ion-item>
+         <ion-item class="item-icon-left" nav-clear menu-close href="#/app/settings">
+          <i class="icon ion-settings"></i>
+          <h2 class="menu-text">Configuracion</h2>
+        </ion-item>
+          <ion-item class="item-icon-left" nav-clear menu-close ng-click="logOut()">
+         <i class="icon ion-unlocked"></i>
+          <h2 class="menu-text">LogOut</h2>
         </ion-item>
       </ion-list>
     </ion-content>

@@ -3,13 +3,13 @@
     "file": "app.js",
     "text": "para que se consideren sanas las ng-src que tengan esta sintaxis;",
     "kind": "TODO",
-    "line": 120
+    "line": 129
   },
   {
     "file": "app.js",
     "text": "verificar si existe en el localstorage alguna bandera que diga si ya se sync alguna vez",
     "kind": "TODO",
-    "line": 231
+    "line": 240
   },
   {
     "file": "Fotos\\FotoController.js",
@@ -120,36 +120,6 @@
     "line": 81
   },
   {
-    "file": "controllers\\PlacasController.js",
-    "text": "seria bueno que la consulta de placas supiera todo, como por ejemplo si ya se califico, si ya tiene alguna foto o un video, puede ser marcandolo con alguna clase",
-    "kind": "TODO",
-    "line": 59
-  },
-  {
-    "file": "controllers\\PlacasController.js",
-    "text": "puedo poder obj=null, para que me elimine la base de datos si ya esta creada y vuelva a sincronizar, esto seria beneficioso si tengo que hacer un cambio en la base de ddatos que requiera reconstruirla",
-    "kind": "TODO",
-    "line": 62
-  },
-  {
-    "file": "controllers\\PlacasController.js",
-    "text": "organizar el focus en el input del popup",
-    "kind": "TODO",
-    "line": 68
-  },
-  {
-    "file": "controllers\\PlacasController.js",
-    "text": "si las placas son iguales, puede ser que se haya sincronizado y no se haya acyaulizado la lista de placas, entonces se pasaria un idinspeccion que no ,es esto cuando offline creo una placa, me pongo online y luego on pause hago el sync, aunque hayq ue pensar que cuando le pongo online, deberia sincronizar si hay señal 4g o wifi para imagenes o para todo",
-    "kind": "TODO",
-    "line": 116
-  },
-  {
-    "file": "controllers\\PlacasController.js",
-    "text": "aqui podria evaluar si ya se califico o no, si no se ha calificado podria desplegar el modal de clase carroceria",
-    "kind": "TODO",
-    "line": 134
-  },
-  {
     "file": "controllers\\VideoController.js",
     "text": "onupload dependera si esta online o no para saber si se intenta subir;",
     "kind": "TODO",
@@ -214,6 +184,36 @@
     "text": "el json de controlJson devuelve un value= \"\" string, ver si se puede mejorar;",
     "kind": "TODO",
     "line": 187
+  },
+  {
+    "file": "placas\\PlacasController.js",
+    "text": "seria bueno que la consulta de placas supiera todo, como por ejemplo si ya se califico, si ya tiene alguna foto o un video, puede ser marcandolo con alguna clase",
+    "kind": "TODO",
+    "line": 59
+  },
+  {
+    "file": "placas\\PlacasController.js",
+    "text": "puedo poder obj=null, para que me elimine la base de datos si ya esta creada y vuelva a sincronizar, esto seria beneficioso si tengo que hacer un cambio en la base de ddatos que requiera reconstruirla",
+    "kind": "TODO",
+    "line": 62
+  },
+  {
+    "file": "placas\\PlacasController.js",
+    "text": "organizar el focus en el input del popup",
+    "kind": "TODO",
+    "line": 68
+  },
+  {
+    "file": "placas\\PlacasController.js",
+    "text": "si las placas son iguales, puede ser que se haya sincronizado y no se haya acyaulizado la lista de placas, entonces se pasaria un idinspeccion que no ,es esto cuando offline creo una placa, me pongo online y luego on pause hago el sync, aunque hayq ue pensar que cuando le pongo online, deberia sincronizar si hay señal 4g o wifi para imagenes o para todo",
+    "kind": "TODO",
+    "line": 116
+  },
+  {
+    "file": "placas\\PlacasController.js",
+    "text": "aqui podria evaluar si ya se califico o no, si no se ha calificado podria desplegar el modal de clase carroceria",
+    "kind": "TODO",
+    "line": 134
   },
   {
     "file": "services\\accesoriosService.js",

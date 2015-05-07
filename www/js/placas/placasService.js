@@ -102,7 +102,6 @@ app.factory('placasService', [
         deviceService.data.model
       ];
       sqliteService.executeQuery(query, binding).then(function (res) {
-        // console.log('insert device', res);
       }, function (err) {
         console.error(err);
       });

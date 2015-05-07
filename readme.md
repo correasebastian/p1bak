@@ -50,3 +50,16 @@ INSERT INTO [idpropiedades] ([idinspeccion] ,[idsubproceso] ,[iditem],[idparenti
            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+
+
+    ///////////////////////////////////
+    var f= function(a){
+console.log(a)}
+undefined
+var g= function(f){
+f('zeta')}
+undefined
+g()
+VM722:3 Uncaught TypeError: f is not a functiong @ VM722:3(anonymous function) @ VM731:2InjectedScript._evaluateOn @ VM100:883InjectedScript._evaluateAndWrap @ VM100:816InjectedScript.evaluate @ VM100:682
+g(f)
+VM681:3 zeta
