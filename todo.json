@@ -334,5 +334,11 @@
     "text": "me parece mas logico retornar un reject si esta en modo offline",
     "kind": "TODO",
     "line": 41
+  },
+  {
+    "file": "settings\\settingsSrv.js",
+    "text": "ejemplo traido de insertcollection fom ngcordova",
+    "kind": "TODO",
+    "line": 94
   }
 ]

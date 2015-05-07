@@ -43,6 +43,7 @@
     }
     function dltImgs() {
       toastService.showShortBottom('Eliminando Fotos');
+      var query = 'UPDATE [idfotos]SET [deleted] = 1  WHERE idfoto=?';
       var bindings = [];
       var qArray = [];
       angular.forEach(stFactory.pics, function (obj, key) {
@@ -57,7 +58,7 @@
         var binding = [];
         binding.push(obj.idfoto);
         bindings.push(binding);
-        (function insertOne() {
+        /*  (function insertOne() {
           var q = $q.defer();
           try {
             dltFileSrv.dltImg(obj.path).then(function () {
@@ -73,13 +74,14 @@
             q.reject(exception);
           }
           qArray.push(q.promise);
-        }());
+        }());*/
+        qArray.push(iifeDlt(obj.path));
       });
-      return $q.all(qArray).then(function () {
+      return preUpdateCollection(qArray, query, bindings)  /* return $q.all(qArray).then(function () {
         if (bindings.length) {
           return updateCollection(bindings).then(updOk).catch(errorService.consoleError);
         }
-      }).catch(errorService.consoleError);
+      }).catch(errorService.consoleError)*/;
     }
     /*   function insertBinding (idfoto) {
       var binding=[]
@@ -87,9 +89,34 @@
       bindings.push(binding);
       
     }*/
-    function updateCollection(bindings) {
+    //TODO: ejemplo traido de insertcollection fom ngcordova
+    function iifeDlt(path) {
+      // return function insertOne() {
+      var q = $q.defer();
+      try {
+        dltFileSrv.dltImg(path).then(function () {
+          q.resolve();
+        }, function (err) {
+          if (err.code !== 1) {
+            q.reject(error);
+            return;
+          }
+          q.resolve();
+        });
+      } catch (exception) {
+        q.reject(exception);
+      }
+      return q.promise;  // }();
+    }
+    function preUpdateCollection(qArray, query, bindings) {
+      return $q.all(qArray).then(function () {
+        if (bindings.length) {
+          return updateCollection(query, bindings).then(updOk).catch(errorService.consoleError);
+        }
+      }).catch(errorService.consoleError);
+    }
+    function updateCollection(query, bindings) {
       $log.debug(bindings);
-      var query = 'UPDATE [idfotos]SET [deleted] = 1  WHERE idfoto=?';
       return sqliteService.insertCollection(query, bindings);  // body...
     }
     function updOk() {
