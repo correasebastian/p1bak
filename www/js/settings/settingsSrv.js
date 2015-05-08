@@ -38,7 +38,7 @@
       var binding = [
         deviceService.data.uuid,
         authService.authentication.userName,
-        momentService.addDays(+1)  // -2
+        momentService.addDays(+1)  // -2 // en 0 seria mejor por si se llena la memoria
       ];
       return sqliteService.executeQuery(query, binding).then(function (res) {
         stFactory.pics = sqliteService.rtnArray(res);  /* console.log(array);

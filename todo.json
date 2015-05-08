@@ -120,18 +120,6 @@
     "line": 81
   },
   {
-    "file": "controllers\\VideoController.js",
-    "text": "onupload dependera si esta online o no para saber si se intenta subir;",
-    "kind": "TODO",
-    "line": 112
-  },
-  {
-    "file": "controllers\\VideoController.js",
-    "text": "12582912 son 12MB ;",
-    "kind": "TODO",
-    "line": 147
-  },
-  {
     "file": "controllers\\loginController.js",
     "text": "verificar si esto se puede hacer en el run, pero con state.go app.placas",
     "kind": "TODO",
@@ -216,12 +204,6 @@
     "line": 134
   },
   {
-    "file": "settings\\settingsSrv.js",
-    "text": "ejemplo traido de insertcollection fom ngcordova",
-    "kind": "TODO",
-    "line": 135
-  },
-  {
     "file": "services\\accesoriosService.js",
     "text": "una bandera para saber que ya se setio, una vez, y evitar mas consulats, a menos que se haga una actualizacion del servidor",
     "kind": "TODO",
@@ -288,30 +270,6 @@
     "line": 30
   },
   {
-    "file": "services\\videoService.js",
-    "text": "el campo deleted es boolean , pero debe asignarsele 1 o 0",
-    "kind": "TODO",
-    "line": 33
-  },
-  {
-    "file": "services\\videoService.js",
-    "text": "es el path la mejor forma y mas efectiva de hacer el where de la consulta",
-    "kind": "TODO",
-    "line": 54
-  },
-  {
-    "file": "services\\videoService.js",
-    "text": "el campo deleted es boolean , pero debe asignarsele 1 o 0",
-    "kind": "TODO",
-    "line": 56
-  },
-  {
-    "file": "services\\videoService.js",
-    "text": "mucho cuidado por ejemplo el path debe ser nvarchar() NO  NCHAR",
-    "kind": "TODO",
-    "line": 57
-  },
-  {
     "file": "services\\zumeroService.js",
     "text": "DEPENDE SI ESTOY EN MI CASA O EN LA OFICINA'http://192.168.1.13:8080/';",
     "kind": "TODO",
@@ -340,5 +298,53 @@
     "text": "me parece mas logico retornar un reject si esta en modo offline",
     "kind": "TODO",
     "line": 41
+  },
+  {
+    "file": "settings\\settingsSrv.js",
+    "text": "ejemplo traido de insertcollection fom ngcordova",
+    "kind": "TODO",
+    "line": 135
+  },
+  {
+    "file": "videos\\VideoController.js",
+    "text": "onupload dependera si esta online o no para saber si se intenta subir;",
+    "kind": "TODO",
+    "line": 114
+  },
+  {
+    "file": "videos\\VideoController.js",
+    "text": "12582912 son 12MB ;",
+    "kind": "TODO",
+    "line": 149
+  },
+  {
+    "file": "videos\\VideoController.js",
+    "text": "no logro reproducir los videos grabados con el media de cordova , en cambio si lo puedo hacer con los grabados con la camara filmadora fuera de ajustevapp, sera por la ubicacion del archivo???",
+    "kind": "TODO",
+    "line": 176
+  },
+  {
+    "file": "videos\\videoService.js",
+    "text": "el campo deleted es boolean , pero debe asignarsele 1 o 0",
+    "kind": "TODO",
+    "line": 34
+  },
+  {
+    "file": "videos\\videoService.js",
+    "text": "es el path la mejor forma y mas efectiva de hacer el where de la consulta",
+    "kind": "TODO",
+    "line": 55
+  },
+  {
+    "file": "videos\\videoService.js",
+    "text": "el campo deleted es boolean , pero debe asignarsele 1 o 0",
+    "kind": "TODO",
+    "line": 57
+  },
+  {
+    "file": "videos\\videoService.js",
+    "text": "mucho cuidado por ejemplo el path debe ser nvarchar() NO  NCHAR",
+    "kind": "TODO",
+    "line": 58
   }
 ]

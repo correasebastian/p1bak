@@ -20,7 +20,8 @@ app.controller('VideoCtrl', [
   'zumeroService',
   'momentService',
   'gpsService',
-  function (s, videoService, $ionicPlatform, $ionicScrollDelegate, fileTransferService, $filter, $stateParams, $ionicNavBarDelegate, copyFileService, videoThumbnailService, getVideoService, checkFileService, titleService, offlineService, onlineStatusService, intermediateService, toastService, errorService, zumeroService, momentService, gpsService) {
+  '$log',
+  function (s, videoService, $ionicPlatform, $ionicScrollDelegate, fileTransferService, $filter, $stateParams, $ionicNavBarDelegate, copyFileService, videoThumbnailService, getVideoService, checkFileService, titleService, offlineService, onlineStatusService, intermediateService, toastService, errorService, zumeroService, momentService, gpsService, $log) {
     $ionicPlatform.ready(function () {
       titleService.title = intermediateService.data.placa;
       // $stateParams.id;
@@ -41,6 +42,7 @@ app.controller('VideoCtrl', [
       var insertVideo = function (imageURI, sync, thumbnail, onupload) {
         videoService.insertVideo(intermediateService.data.idinspeccion, imageURI, sync, thumbnail, onupload).then(function () {
           console.log('en el controller despues de insert sqlite video ');
+          $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom(true);
         });
       };
       var updateVideo = function (imageURI, sync, thumbnail, onupload) {
@@ -112,7 +114,7 @@ app.controller('VideoCtrl', [
           // TODO: onupload dependera si esta online o no para saber si se intenta subir;
           var onUpload = true;
           insertVideo(obj.path, sync, thumbnailSrc, onUpload);
-          $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom(true);
+          // $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom(true);
           preFileUpload(obj);
         }, errorService.consoleError);
       };
@@ -159,6 +161,24 @@ app.controller('VideoCtrl', [
             alert('el archivo supera el tama\xF1a maximo permitido. maximo 12MB');
           }
         }, errorService.consoleError);  // $cordovaCamera.cleanup().then(fnSuccess,errorService.consoleError); // only for FILE_URI  
+      };
+      function success(r) {
+        console.log('Success', r);
+      }
+      function error(code) {
+        if (code === 1) {
+          console.log('No file handler found');
+        } else {
+          console.log('Undefined error');
+        }
+      }
+      s.play = function () {
+        // TODO : no logro reproducir los videos grabados con el media de cordova , en cambio si lo puedo hacer con los grabados con la camara filmadora fuera de ajustevapp, sera por la ubicacion del archivo???
+        // cordova.plugins.disusered.open('file:///data/data/com.ajustev.b/files/20150507_174726.mp4', success, error);
+        cordova.plugins.disusered.open('file:/storage/emulated/0/dcim/camera/20150504_063009.mp4', success, error);
+      };
+      s.playVideo = function (fullPath) {
+        videoService.playVideo(fullPath).then(success).catch(errorService.consoleError);
       };
     });
   }

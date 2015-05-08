@@ -27,6 +27,9 @@
 </div>
   <ion-content delegate-handle="mainScroll">
   <!-- {{videos}} -->
+<!--    <button class="button button-full button-positive" on-tap="play()">
+      play
+    </button> -->
     	<div class="list card mt" ng-repeat="p in videos | unique" >
 		<!--   <div class="item item-avatar">
 		    <img src="avatar.jpg">
@@ -35,7 +38,7 @@
 		    <p>{{p.sync}}  on sync</p>
 		  </div> -->
 
-		  <div class="item item-image">
+		  <div class="item item-image" on-tap="playVideo(p.path)">
 		    <img ng-src={{p.thumbnail}}>
 		  </div>
 

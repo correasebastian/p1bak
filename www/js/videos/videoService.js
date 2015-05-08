@@ -3,7 +3,8 @@ app.factory('videoService', [
   'sqliteService',
   'intermediateService',
   'momentService',
-  function ($cordovaCapture, sqliteService, intermediateService, momentService) {
+  'playVds',
+  function ($cordovaCapture, sqliteService, intermediateService, momentService, playVds) {
     var videoServiceFactory = {};
     videoServiceFactory.videos = [];
     var _all = function () {
@@ -73,11 +74,16 @@ app.factory('videoService', [
         console.error(err);
       });
     };
+    var _playVideo = function (fullPath) {
+      var fileName = fullPath.replace(/^.*[\\\/]/, '');
+      return playVds.playVd(fileName);
+    };
     videoServiceFactory.all = _all;
     videoServiceFactory.takedVid = _takedVid;
     videoServiceFactory.getVideos = _getVideos;
     videoServiceFactory.insertVideo = _insertVideo;
     videoServiceFactory.updateVideo = _updateVideo;
+    videoServiceFactory.playVideo = _playVideo;
     return videoServiceFactory;
   }
 ]);

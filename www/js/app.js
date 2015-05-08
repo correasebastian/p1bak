@@ -78,7 +78,7 @@ var app = angular.module('starter', [
     url: '/video/:id',
     views: {
       'menuContent': {
-        templateUrl: 'templates/video.html',
+        templateUrl: 'js/videos/video.html',
         controller: 'VideoCtrl'
       }
     }
