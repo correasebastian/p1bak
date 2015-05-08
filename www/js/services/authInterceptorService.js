@@ -16,6 +16,12 @@ app.factory('authInterceptorService', [
       }
       return config;
     };
+    // optional method
+    var _requestError = function (rejection) {
+      // do something on error
+      console.log('reject request', rejection);
+      return $q.reject(rejection);
+    };
     var _responseError = function (rejection) {
       // var authService = $injector.get('authService');
       // var query = 'INSERT  INTO [logs]([ex],[email],[fecha])  VALUES(?,?,?)';
@@ -40,10 +46,15 @@ app.factory('authInterceptorService', [
         authService.logOut();
         $location.path('/login');
       }
+      if (rejection.status === 0) {
+        var authService = $injector.get('authService');
+        authService.toggleServer();
+      }
       return $q.reject(rejection);
     };
     authInterceptorServiceFactory.request = _request;
     authInterceptorServiceFactory.responseError = _responseError;
+    authInterceptorServiceFactory.requestError = _requestError;
     return authInterceptorServiceFactory;
   }
 ]);

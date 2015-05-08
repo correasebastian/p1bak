@@ -174,36 +174,6 @@
     "line": 187
   },
   {
-    "file": "placas\\PlacasController.js",
-    "text": "seria bueno que la consulta de placas supiera todo, como por ejemplo si ya se califico, si ya tiene alguna foto o un video, puede ser marcandolo con alguna clase",
-    "kind": "TODO",
-    "line": 59
-  },
-  {
-    "file": "placas\\PlacasController.js",
-    "text": "puedo poder obj=null, para que me elimine la base de datos si ya esta creada y vuelva a sincronizar, esto seria beneficioso si tengo que hacer un cambio en la base de ddatos que requiera reconstruirla",
-    "kind": "TODO",
-    "line": 62
-  },
-  {
-    "file": "placas\\PlacasController.js",
-    "text": "organizar el focus en el input del popup",
-    "kind": "TODO",
-    "line": 68
-  },
-  {
-    "file": "placas\\PlacasController.js",
-    "text": "si las placas son iguales, puede ser que se haya sincronizado y no se haya acyaulizado la lista de placas, entonces se pasaria un idinspeccion que no ,es esto cuando offline creo una placa, me pongo online y luego on pause hago el sync, aunque hayq ue pensar que cuando le pongo online, deberia sincronizar si hay señal 4g o wifi para imagenes o para todo",
-    "kind": "TODO",
-    "line": 116
-  },
-  {
-    "file": "placas\\PlacasController.js",
-    "text": "aqui podria evaluar si ya se califico o no, si no se ha calificado podria desplegar el modal de clase carroceria",
-    "kind": "TODO",
-    "line": 134
-  },
-  {
     "file": "services\\accesoriosService.js",
     "text": "una bandera para saber que ya se setio, una vez, y evitar mas consulats, a menos que se haga una actualizacion del servidor",
     "kind": "TODO",
@@ -214,6 +184,12 @@
     "text": "seria bueno iniciar estos ddl sin valores,  pero tendria que validar que si se seleccione algo;",
     "kind": "TODO",
     "line": 90
+  },
+  {
+    "file": "services\\authService.js",
+    "text": "STATUS 0 MEANS UNREACHABLE URL",
+    "kind": "TODO",
+    "line": 71
   },
   {
     "file": "services\\cordovaEventsService.js",
@@ -300,12 +276,6 @@
     "line": 41
   },
   {
-    "file": "settings\\settingsSrv.js",
-    "text": "ejemplo traido de insertcollection fom ngcordova",
-    "kind": "TODO",
-    "line": 135
-  },
-  {
     "file": "videos\\VideoController.js",
     "text": "onupload dependera si esta online o no para saber si se intenta subir;",
     "kind": "TODO",
@@ -346,5 +316,41 @@
     "text": "mucho cuidado por ejemplo el path debe ser nvarchar() NO  NCHAR",
     "kind": "TODO",
     "line": 58
+  },
+  {
+    "file": "settings\\settingsSrv.js",
+    "text": "ejemplo traido de insertcollection fom ngcordova",
+    "kind": "TODO",
+    "line": 135
+  },
+  {
+    "file": "placas\\PlacasController.js",
+    "text": "seria bueno que la consulta de placas supiera todo, como por ejemplo si ya se califico, si ya tiene alguna foto o un video, puede ser marcandolo con alguna clase",
+    "kind": "TODO",
+    "line": 59
+  },
+  {
+    "file": "placas\\PlacasController.js",
+    "text": "puedo poder obj=null, para que me elimine la base de datos si ya esta creada y vuelva a sincronizar, esto seria beneficioso si tengo que hacer un cambio en la base de ddatos que requiera reconstruirla",
+    "kind": "TODO",
+    "line": 62
+  },
+  {
+    "file": "placas\\PlacasController.js",
+    "text": "organizar el focus en el input del popup",
+    "kind": "TODO",
+    "line": 68
+  },
+  {
+    "file": "placas\\PlacasController.js",
+    "text": "si las placas son iguales, puede ser que se haya sincronizado y no se haya acyaulizado la lista de placas, entonces se pasaria un idinspeccion que no ,es esto cuando offline creo una placa, me pongo online y luego on pause hago el sync, aunque hayq ue pensar que cuando le pongo online, deberia sincronizar si hay señal 4g o wifi para imagenes o para todo",
+    "kind": "TODO",
+    "line": 116
+  },
+  {
+    "file": "placas\\PlacasController.js",
+    "text": "aqui podria evaluar si ya se califico o no, si no se ha calificado podria desplegar el modal de clase carroceria",
+    "kind": "TODO",
+    "line": 134
   }
 ]

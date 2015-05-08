@@ -5,7 +5,8 @@ app.factory('authService', [
   'localStorageService',
   'ngAuthSettings',
   'momentService',
-  function ($http, $q, localStorageService, ngAuthSettings, momentService) {
+  'toastService',
+  function ($http, $q, localStorageService, ngAuthSettings, momentService, toastService) {
     var serviceBase = ngAuthSettings.apiServiceBaseUri;
     var authServiceFactory = {};
     var _authentication = {
@@ -21,7 +22,7 @@ app.factory('authService', [
     };
     var _saveRegistration = function (registration) {
       _logOut();
-      return $http.post(serviceBase + 'api/account/register', registration).then(function (response) {
+      return $http.post(ngAuthSettings.apiServiceBaseUri + 'api/account/register', registration).then(function (response) {
         return response;
       });
     };
@@ -34,7 +35,7 @@ app.factory('authService', [
       //tengo que revisar los cross origin, en la base de datos , y habilitarlo en el navegador chrome , importante
       var deferred = $q.defer();
       var d = moment();
-      $http.post(serviceBase + 'token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).success(function (response) {
+      $http.post(ngAuthSettings.apiServiceBaseUri + 'token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).success(function (response) {
         // console.log(moment(response..expires).format('YYYY-MM-DD'))
         rp = response;
         if (loginData.useRefreshTokens) {
@@ -66,6 +67,11 @@ app.factory('authService', [
         _authentication.useRefreshTokens = loginData.useRefreshTokens;
         deferred.resolve(response);
       }).error(function (err, status) {
+        console.log(err, status, 'error callin logging');
+        //TODO: STATUS 0 MEANS UNREACHABLE URL
+        /*if (status === 0) {
+          var server = authServiceFactory.toggleServer();
+        }*/
         _logOut();
         deferred.reject(err);
       });
@@ -92,7 +98,7 @@ app.factory('authService', [
         if (authData.useRefreshTokens) {
           var data = 'grant_type=refresh_token&refresh_token=' + authData.refreshToken + '&client_id=' + ngAuthSettings.clientId;
           localStorageService.remove('authorizationData');
-          $http.post(serviceBase + 'token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).success(function (response) {
+          $http.post(ngAuthSettings.apiServiceBaseUri + 'token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).success(function (response) {
             localStorageService.set('authorizationData', {
               token: response.access_token,
               userName: response.userName,
@@ -110,7 +116,7 @@ app.factory('authService', [
     };
     var _obtainAccessToken = function (externalData) {
       var deferred = $q.defer();
-      $http.get(serviceBase + 'api/account/ObtainLocalAccessToken', {
+      $http.get(ngAuthSettings.apiServiceBaseUri + 'api/account/ObtainLocalAccessToken', {
         params: {
           provider: externalData.provider,
           externalAccessToken: externalData.externalAccessToken
@@ -134,7 +140,7 @@ app.factory('authService', [
     };
     var _registerExternal = function (registerExternalData) {
       var deferred = $q.defer();
-      $http.post(serviceBase + 'api/account/registerexternal', registerExternalData).success(function (response) {
+      $http.post(ngAuthSettings.apiServiceBaseUri + 'api/account/registerexternal', registerExternalData).success(function (response) {
         localStorageService.set('authorizationData', {
           token: response.access_token,
           userName: response.userName,
@@ -151,6 +157,24 @@ app.factory('authService', [
       });
       return deferred.promise;
     };
+    var _toggleServer = function () {
+      if (ngAuthSettings.apiServiceBaseUri === 'http://190.145.39.138/auth/') {
+        ngAuthSettings.apiServiceBaseUri = 'http://201.232.104.196/auth/';
+        toastService.showShortBottom('Cambiando a servidor 196');
+      } else {
+        ngAuthSettings.apiServiceBaseUri = 'http://190.145.39.138/auth/';
+        toastService.showShortBottom('Cambiando a servidor 138');
+      }
+      authServiceFactory.getServer();
+    };
+    var _getServer = function () {
+      if (ngAuthSettings.apiServiceBaseUri === 'http://190.145.39.138/auth/') {
+        authServiceFactory.server = '138';
+      } else {
+        authServiceFactory.server = '196';
+      }
+    };
+    _getServer(ngAuthSettings.apiServiceBaseUri);
     authServiceFactory.saveRegistration = _saveRegistration;
     authServiceFactory.login = _login;
     authServiceFactory.logOut = _logOut;
@@ -160,6 +184,8 @@ app.factory('authService', [
     authServiceFactory.obtainAccessToken = _obtainAccessToken;
     authServiceFactory.externalAuthData = _externalAuthData;
     authServiceFactory.registerExternal = _registerExternal;
+    authServiceFactory.toggleServer = _toggleServer;
+    authServiceFactory.getServer = _getServer;
     return authServiceFactory;
   }
 ]);
