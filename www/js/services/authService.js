@@ -22,7 +22,7 @@ app.factory('authService', [
     };
     var _saveRegistration = function (registration) {
       _logOut();
-      return $http.post(ngAuthSettings.apiServiceBaseUri + 'api/account/register', registration).then(function (response) {
+      return $http.post(ngAuthSettings.apiServiceBaseUri + '/auth/api/account/register', registration).then(function (response) {
         return response;
       });
     };
@@ -35,7 +35,7 @@ app.factory('authService', [
       //tengo que revisar los cross origin, en la base de datos , y habilitarlo en el navegador chrome , importante
       var deferred = $q.defer();
       var d = moment();
-      $http.post(ngAuthSettings.apiServiceBaseUri + 'token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).success(function (response) {
+      $http.post(ngAuthSettings.apiServiceBaseUri + '/auth/token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).success(function (response) {
         // console.log(moment(response..expires).format('YYYY-MM-DD'))
         rp = response;
         if (loginData.useRefreshTokens) {
@@ -98,7 +98,7 @@ app.factory('authService', [
         if (authData.useRefreshTokens) {
           var data = 'grant_type=refresh_token&refresh_token=' + authData.refreshToken + '&client_id=' + ngAuthSettings.clientId;
           localStorageService.remove('authorizationData');
-          $http.post(ngAuthSettings.apiServiceBaseUri + 'token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).success(function (response) {
+          $http.post(ngAuthSettings.apiServiceBaseUri + '/auth/token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).success(function (response) {
             localStorageService.set('authorizationData', {
               token: response.access_token,
               userName: response.userName,
@@ -116,7 +116,7 @@ app.factory('authService', [
     };
     var _obtainAccessToken = function (externalData) {
       var deferred = $q.defer();
-      $http.get(ngAuthSettings.apiServiceBaseUri + 'api/account/ObtainLocalAccessToken', {
+      $http.get(ngAuthSettings.apiServiceBaseUri + '/auth/api/account/ObtainLocalAccessToken', {
         params: {
           provider: externalData.provider,
           externalAccessToken: externalData.externalAccessToken
@@ -140,7 +140,7 @@ app.factory('authService', [
     };
     var _registerExternal = function (registerExternalData) {
       var deferred = $q.defer();
-      $http.post(ngAuthSettings.apiServiceBaseUri + 'api/account/registerexternal', registerExternalData).success(function (response) {
+      $http.post(ngAuthSettings.apiServiceBaseUri + '/auth/api/account/registerexternal', registerExternalData).success(function (response) {
         localStorageService.set('authorizationData', {
           token: response.access_token,
           userName: response.userName,

@@ -24,7 +24,7 @@ app.factory('gpsService', function ($timeout, errorService, $localStorage, momen
     if (!$localStorage.latestGps || momentService.diffNow($localStorage.latestGps) > 7) {
       var opt = {
         maximumAge: 3000,
-        timeout: 150000,
+        timeout: 360000,
         enableHighAccuracy: true
       };
       navigator.geolocation.getCurrentPosition(function (position) {

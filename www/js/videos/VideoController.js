@@ -39,8 +39,8 @@ app.controller('VideoCtrl', [
       // var errorService.consoleError = function (e) {
       //   console.log('error', e);
       // };
-      var insertVideo = function (imageURI, sync, thumbnail, onupload) {
-        videoService.insertVideo(intermediateService.data.idinspeccion, imageURI, sync, thumbnail, onupload).then(function () {
+      var insertVideo = function (imageURI, sync, thumbnail, onupload, defaultPath) {
+        videoService.insertVideo(intermediateService.data.idinspeccion, imageURI, sync, thumbnail, onupload, defaultPath).then(function () {
           console.log('en el controller despues de insert sqlite video ');
           $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom(true);
         });
@@ -87,7 +87,7 @@ app.controller('VideoCtrl', [
           });
         }
       };
-      var rtnObjVideo = function (placa, path, sync, onUpload, thumbnail) {
+      var rtnObjVideo = function (placa, path, sync, onUpload, thumbnail, defaultPath) {
         var obj = {
           placa: placa,
           path: path,
@@ -95,7 +95,8 @@ app.controller('VideoCtrl', [
           onUpload: onUpload,
           //s.oss.online === true ? true : false
           thumbnail: thumbnail,
-          rutaSrv: momentService.rutaSrv(path)
+          rutaSrv: momentService.rutaSrv(path),
+          defaultPath: defaultPath
         };
         return obj;
       };
@@ -113,7 +114,7 @@ app.controller('VideoCtrl', [
           var sync = false;
           // TODO: onupload dependera si esta online o no para saber si se intenta subir;
           var onUpload = true;
-          insertVideo(obj.path, sync, thumbnailSrc, onUpload);
+          insertVideo(obj.path, sync, thumbnailSrc, onUpload, obj.defaultPath);
           // $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom(true);
           preFileUpload(obj);
         }, errorService.consoleError);
@@ -129,15 +130,17 @@ app.controller('VideoCtrl', [
           gpsService.gpsHtml(intermediateService.data.idinspeccion);
           // console.log(videoData);
           angular.forEach(videoData, function (value, key) {
-            // console.log(key + ': ' + value);
-            copyFileService.copyFile(value.fullPath).then(function () {
-              // console.log(checkFileService.fileEntry, checkFileService.file);
-              var res = checkFileService.fileEntry;
-              var obj = rtnObjVideo(intermediateService.data.placa, res.nativeURL, false, true, '');
-              // console.log(res, 'copyok');
-              s.videos.push(obj);
-              loadThumbnail(obj);  // preFileUpload(obj);
-            }, errorService.consoleError);
+            (function () {
+              var defaultPath = value.fullPath;
+              copyFileService.copyFile(defaultPath).then(function () {
+                // console.log(checkFileService.fileEntry, checkFileService.file);
+                var res = checkFileService.fileEntry;
+                var obj = rtnObjVideo(intermediateService.data.placa, res.nativeURL, false, true, '', defaultPath);
+                // console.log(res, 'copyok');
+                s.videos.push(obj);
+                loadThumbnail(obj);  // preFileUpload(obj);
+              }, errorService.consoleError);
+            }());
           });
         }, errorService.consoleError);  // $cordovaCamera.cleanup().then(fnSuccess,errorService.consoleError); // only for FILE_URI  
       };
@@ -148,15 +151,17 @@ app.controller('VideoCtrl', [
           var resVideoCompress = checkFileService.fileEntry;
           // TODO: 12582912 son 12MB ;
           if (checkFileService.file.size < 12582912) {
-            // console.log(getVideoService.fileEntry);
-            copyFileService.copyFile(resVideoCompress.nativeURL).then(function () {
-              // console.log(copyFileService.fileEntry, copyFileService.file);
-              var res = checkFileService.fileEntry;
-              var obj = rtnObjVideo(intermediateService.data.placa, res.nativeURL, false, true, '');
-              // console.log(res, 'copyok');
-              s.videos.push(obj);
-              loadThumbnail(obj);  // preFileUpload(res.nativeURL);
-            }, errorService.consoleError);
+            (function () {
+              var defaultPath = value.fullPath;
+              copyFileService.copyFile(defaultPath).then(function () {
+                // console.log(checkFileService.fileEntry, checkFileService.file);
+                var res = checkFileService.fileEntry;
+                var obj = rtnObjVideo(intermediateService.data.placa, res.nativeURL, false, true, '', defaultPath);
+                // console.log(res, 'copyok');
+                s.videos.push(obj);
+                loadThumbnail(obj);  // preFileUpload(obj);
+              }, errorService.consoleError);
+            }());
           } else {
             alert('el archivo supera el tama\xF1a maximo permitido. maximo 12MB');
           }

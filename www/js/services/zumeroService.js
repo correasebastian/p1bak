@@ -7,8 +7,9 @@ app.factory('zumeroService', [
   'updateSyncService',
   'toastService',
   '$timeout',
+  'ngAuthSettings',
   // 'onlineStatusService',
-  function ($q, $cordovaDevice, $cordovaSQLite, offlineService, intermediateService, updateSyncService, toastService, $timeout) {
+  function ($q, $cordovaDevice, $cordovaSQLite, offlineService, intermediateService, updateSyncService, toastService, $timeout, ngAuthSettings) {
     var zumero = null;
     var zumeroServiceFactory = {};
     var _setDbPath = function () {
@@ -25,7 +26,8 @@ app.factory('zumeroService', [
       //open db con sqliteplugin brody
       db = $cordovaSQLite.openDB(zumeroServiceFactory.dbfileComplete, 1);
       zumero = cordova.require('cordova/plugin/zumero');
-      zumeroServiceFactory.server = 'http://190.145.39.138:8080/';
+      zumeroServiceFactory.server = ngAuthSettings.apiServiceBaseUri + ':8080/';
+      //http://190.145.39.138:8080/';
       //'http://192.168.0.51:8080/';
       // TODO: DEPENDE SI ESTOY EN MI CASA O EN LA OFICINA'http://192.168.1.13:8080/';
       zumeroServiceFactory.packageName = 'com.ajustev.b';

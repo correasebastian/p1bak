@@ -130,7 +130,8 @@ var app = angular.module('starter', [
   $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|file|blob|cdvfile|content):|data:image\//);
   $compileProvider.debugInfoEnabled(true);
 });
-var serviceBase = 'http://190.145.39.138/auth/';
+var serviceBase = 'http://ajustevsiva.com';
+//auth/';// 'http://190.145.39.138/auth/';
 app.constant('ngAuthSettings', {
   apiServiceBaseUri: serviceBase,
   clientId: 'ngAuthApp'

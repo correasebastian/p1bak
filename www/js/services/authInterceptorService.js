@@ -47,8 +47,7 @@ app.factory('authInterceptorService', [
         $location.path('/login');
       }
       if (rejection.status === 0) {
-        var authService = $injector.get('authService');
-        authService.toggleServer();
+        var authService = $injector.get('authService');  // authService.toggleServer();
       }
       return $q.reject(rejection);
     };

@@ -3,8 +3,8 @@
   playVds.$inject = ['$q'];
   function playVds($q) {
     return { playVd: playVd };
-    function playVd(fileName) {
-      var path = 'file:/storage/emulated/0/dcim/camera/' + fileName;
+    function playVd(path) {
+      // var path = 'file:/storage/emulated/0/dcim/camera/' + fileName;
       var q = $q.defer();
       try {
         cordova.plugins.disusered.open(path, function (res) {

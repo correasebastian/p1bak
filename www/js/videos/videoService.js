@@ -29,8 +29,8 @@ app.factory('videoService', [
         console.log(error);
       });
     };
-    var _insertVideo = function (idinspeccion, path, sync, thumbnail, onUpload) {
-      var query = 'INSERT INTO idVideos(idinspeccion, path,sync,uuid,thumbnail, onUpload, placa, fecha, rutaSrv ) VALUES (?,?,?,?,?,?,?,?, ?)';
+    var _insertVideo = function (idinspeccion, path, sync, thumbnail, onUpload, defaultPath) {
+      var query = 'INSERT INTO idVideos(idinspeccion, path,sync,uuid,thumbnail, onUpload, placa, fecha, rutaSrv, defaultPath  ) VALUES (?,?,?,?,?,?,?,?, ?,?)';
       // TODO: el campo deleted es boolean , pero debe asignarsele 1 o 0
       sync = sync ? 1 : 0;
       onUpload = onUpload ? 1 : 0;
@@ -44,7 +44,8 @@ app.factory('videoService', [
         onUpload,
         intermediateService.data.placa,
         momentService.getDateTime(),
-        momentService.rutaSrv(path)
+        momentService.rutaSrv(path),
+        defaultPath
       ];
       return sqliteService.executeQuery(query, binding).then(function (res) {
       }, function (err) {
@@ -76,7 +77,7 @@ app.factory('videoService', [
     };
     var _playVideo = function (fullPath) {
       var fileName = fullPath.replace(/^.*[\\\/]/, '');
-      return playVds.playVd(fileName);
+      return playVds.playVd(fullPath);
     };
     videoServiceFactory.all = _all;
     videoServiceFactory.takedVid = _takedVid;

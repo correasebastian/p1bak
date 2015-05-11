@@ -1,6 +1,7 @@
 app.factory('fileTransferService', [
   '$cordovaFileTransfer',
-  function ($cordovaFileTransfer) {
+  'ngAuthSettings',
+  function ($cordovaFileTransfer, ngAuthSettings) {
     var fileTransferServiceFactory = {};
     fileTransferServiceFactory.setTimeOut = 17000;
     var _fileUpload = function (obj) {
@@ -14,7 +15,8 @@ app.factory('fileTransferService', [
         mimetype = 'video/mp4';
         fileTransferServiceFactory.setTimeOut = 60000;
       }
-      var server = 'http://190.145.39.138/auth/api/file';
+      var server = 'http://www.ajustevsiva.com';
+      // 'http://190.145.39.138/auth/api/file';
       // 'https://www.ajustevsiva.com/auth/api/file';
       var options = {};
       options.fileKey = 'file';
@@ -36,7 +38,7 @@ app.factory('fileTransferService', [
       //$scope.data.timeout;
       //500;//30000;//miliseconds
       console.time('fileUpload');
-      return $cordovaFileTransfer.upload(server, obj.path, options).then(function (success) {
+      return $cordovaFileTransfer.upload(ngAuthSettings.apiServiceBaseUri + '/auth/api/file', obj.path, options).then(function (success) {
         console.log('succes en el servicio');
         // console.timeEnd('fileUpload');
         return success;  //TODO: verificar si puedo poner el error aca y disparar el ooflinemode desde aca y no desde todos los controllers
