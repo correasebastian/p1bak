@@ -3,6 +3,7 @@ app.factory('intermediateService', function ($timeout) {
   intermediateServiceFactory.data = {
     isTakingPic: false,
     isTakingVid: false,
+    isTakingGeo: false,
     navBarSearch: false,
     placa: null,
     idinspeccionSync: false,

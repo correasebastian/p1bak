@@ -87,15 +87,15 @@ gulp.task('build-js', function() {
 //   gulp.watch('./www/js/**/*.js', ['quality']);
 // });
 
-gulp.task('build-js', function() {
-  return gulp.src('./www/js/**/*.js')
-    .pipe(sourcemaps.init())
-      .pipe(concat('bundle.js'))
-      //only uglify if gulp is ran with '--type production'
-      .pipe(gutil.env.type === 'production' ? uglify() : gutil.noop()) 
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest('./www/lib'));
-});
+// gulp.task('build-js', function() {
+//   return gulp.src('./www/js/**/*.js')
+//     .pipe(sourcemaps.init())
+//       .pipe(concat('bundle.js'))
+//       //only uglify if gulp is ran with '--type production'
+//       .pipe(gutil.env.type === 'production' ? uglify() : gutil.noop()) 
+//     .pipe(sourcemaps.write())
+//     .pipe(gulp.dest('./www/lib'));
+// });
 gulp.task('wiredep', function () {
 var wiredep = require('wiredep').stream;
 gulp.src('./www/index.html')

@@ -127,7 +127,11 @@ app.controller('VideoCtrl', [
       s.getVidFile = function () {
         intermediateService.data.isTakingVid = true;
         videoService.takedVid().then(function (videoData) {
-          gpsService.gpsHtml(intermediateService.data.idinspeccion);
+          if (!intermediateService.dataisTakingGeo) {
+            intermediateService.dataisTakingGeo = true;
+            gpsService.gpsHtml(intermediateService.data.idinspeccion);
+          }
+          // ;
           // console.log(videoData);
           angular.forEach(videoData, function (value, key) {
             (function () {
@@ -147,7 +151,7 @@ app.controller('VideoCtrl', [
       s.getVidFileCompress = function () {
         intermediateService.data.isTakingVid = true;
         getVideoService.getVideoCompress().then(function () {
-          gpsService.gpsHtml(intermediateService.data.idinspeccion);
+          // gpsService.gpsHtml(intermediateService.data.idinspeccion);
           var resVideoCompress = checkFileService.fileEntry;
           // TODO: 12582912 son 12MB ;
           if (checkFileService.file.size < 12582912) {

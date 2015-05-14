@@ -75,13 +75,13 @@
     "file": "Fotos\\FotoController.js",
     "text": "es mejor h¿guardar aqui el sqlite y luego actualizarlo si sube exitoso;",
     "kind": "TODO",
-    "line": 204
+    "line": 208
   },
   {
     "file": "Fotos\\FotoController.js",
     "text": "es mejor llamar a una funcion, por que asi se ejecuta para cada uno, y se ejecuta bien, en vez de llamar filupload desde aca",
     "kind": "TODO",
-    "line": 209
+    "line": 213
   },
   {
     "file": "Fotos\\fotosService.js",
@@ -124,36 +124,6 @@
     "text": "verificar si esto se puede hacer en el run, pero con state.go app.placas",
     "kind": "TODO",
     "line": 14
-  },
-  {
-    "file": "placas\\PlacasController.js",
-    "text": "seria bueno que la consulta de placas supiera todo, como por ejemplo si ya se califico, si ya tiene alguna foto o un video, puede ser marcandolo con alguna clase",
-    "kind": "TODO",
-    "line": 59
-  },
-  {
-    "file": "placas\\PlacasController.js",
-    "text": "puedo poder obj=null, para que me elimine la base de datos si ya esta creada y vuelva a sincronizar, esto seria beneficioso si tengo que hacer un cambio en la base de ddatos que requiera reconstruirla",
-    "kind": "TODO",
-    "line": 62
-  },
-  {
-    "file": "placas\\PlacasController.js",
-    "text": "organizar el focus en el input del popup",
-    "kind": "TODO",
-    "line": 68
-  },
-  {
-    "file": "placas\\PlacasController.js",
-    "text": "si las placas son iguales, puede ser que se haya sincronizado y no se haya acyaulizado la lista de placas, entonces se pasaria un idinspeccion que no ,es esto cuando offline creo una placa, me pongo online y luego on pause hago el sync, aunque hayq ue pensar que cuando le pongo online, deberia sincronizar si hay señal 4g o wifi para imagenes o para todo",
-    "kind": "TODO",
-    "line": 116
-  },
-  {
-    "file": "placas\\PlacasController.js",
-    "text": "aqui podria evaluar si ya se califico o no, si no se ha calificado podria desplegar el modal de clase carroceria",
-    "kind": "TODO",
-    "line": 134
   },
   {
     "file": "inspeccion\\InspeccionController.js",
@@ -204,10 +174,82 @@
     "line": 187
   },
   {
+    "file": "placas\\PlacasController.js",
+    "text": "seria bueno que la consulta de placas supiera todo, como por ejemplo si ya se califico, si ya tiene alguna foto o un video, puede ser marcandolo con alguna clase",
+    "kind": "TODO",
+    "line": 59
+  },
+  {
+    "file": "placas\\PlacasController.js",
+    "text": "puedo poder obj=null, para que me elimine la base de datos si ya esta creada y vuelva a sincronizar, esto seria beneficioso si tengo que hacer un cambio en la base de ddatos que requiera reconstruirla",
+    "kind": "TODO",
+    "line": 62
+  },
+  {
+    "file": "placas\\PlacasController.js",
+    "text": "organizar el focus en el input del popup",
+    "kind": "TODO",
+    "line": 68
+  },
+  {
+    "file": "placas\\PlacasController.js",
+    "text": "si las placas son iguales, puede ser que se haya sincronizado y no se haya acyaulizado la lista de placas, entonces se pasaria un idinspeccion que no ,es esto cuando offline creo una placa, me pongo online y luego on pause hago el sync, aunque hayq ue pensar que cuando le pongo online, deberia sincronizar si hay señal 4g o wifi para imagenes o para todo",
+    "kind": "TODO",
+    "line": 116
+  },
+  {
+    "file": "placas\\PlacasController.js",
+    "text": "aqui podria evaluar si ya se califico o no, si no se ha calificado podria desplegar el modal de clase carroceria",
+    "kind": "TODO",
+    "line": 134
+  },
+  {
     "file": "settings\\settingsSrv.js",
     "text": "ejemplo traido de insertcollection fom ngcordova",
     "kind": "TODO",
     "line": 135
+  },
+  {
+    "file": "videos\\VideoController.js",
+    "text": "onupload dependera si esta online o no para saber si se intenta subir;",
+    "kind": "TODO",
+    "line": 115
+  },
+  {
+    "file": "videos\\VideoController.js",
+    "text": "12582912 son 12MB ;",
+    "kind": "TODO",
+    "line": 156
+  },
+  {
+    "file": "videos\\VideoController.js",
+    "text": "no logro reproducir los videos grabados con el media de cordova , en cambio si lo puedo hacer con los grabados con la camara filmadora fuera de ajustevapp, sera por la ubicacion del archivo???",
+    "kind": "TODO",
+    "line": 185
+  },
+  {
+    "file": "videos\\videoService.js",
+    "text": "el campo deleted es boolean , pero debe asignarsele 1 o 0",
+    "kind": "TODO",
+    "line": 34
+  },
+  {
+    "file": "videos\\videoService.js",
+    "text": "es el path la mejor forma y mas efectiva de hacer el where de la consulta",
+    "kind": "TODO",
+    "line": 56
+  },
+  {
+    "file": "videos\\videoService.js",
+    "text": "el campo deleted es boolean , pero debe asignarsele 1 o 0",
+    "kind": "TODO",
+    "line": 58
+  },
+  {
+    "file": "videos\\videoService.js",
+    "text": "mucho cuidado por ejemplo el path debe ser nvarchar() NO  NCHAR",
+    "kind": "TODO",
+    "line": 59
   },
   {
     "file": "services\\accesoriosService.js",
@@ -310,47 +352,5 @@
     "text": "me parece mas logico retornar un reject si esta en modo offline",
     "kind": "TODO",
     "line": 43
-  },
-  {
-    "file": "videos\\VideoController.js",
-    "text": "onupload dependera si esta online o no para saber si se intenta subir;",
-    "kind": "TODO",
-    "line": 115
-  },
-  {
-    "file": "videos\\VideoController.js",
-    "text": "12582912 son 12MB ;",
-    "kind": "TODO",
-    "line": 153
-  },
-  {
-    "file": "videos\\VideoController.js",
-    "text": "no logro reproducir los videos grabados con el media de cordova , en cambio si lo puedo hacer con los grabados con la camara filmadora fuera de ajustevapp, sera por la ubicacion del archivo???",
-    "kind": "TODO",
-    "line": 183
-  },
-  {
-    "file": "videos\\videoService.js",
-    "text": "el campo deleted es boolean , pero debe asignarsele 1 o 0",
-    "kind": "TODO",
-    "line": 34
-  },
-  {
-    "file": "videos\\videoService.js",
-    "text": "es el path la mejor forma y mas efectiva de hacer el where de la consulta",
-    "kind": "TODO",
-    "line": 56
-  },
-  {
-    "file": "videos\\videoService.js",
-    "text": "el campo deleted es boolean , pero debe asignarsele 1 o 0",
-    "kind": "TODO",
-    "line": 58
-  },
-  {
-    "file": "videos\\videoService.js",
-    "text": "mucho cuidado por ejemplo el path debe ser nvarchar() NO  NCHAR",
-    "kind": "TODO",
-    "line": 59
   }
 ]

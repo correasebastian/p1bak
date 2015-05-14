@@ -29,8 +29,12 @@ app.factory('gpsService', function ($timeout, errorService, $localStorage, momen
       };
       navigator.geolocation.getCurrentPosition(function (position) {
         console.log(position);
+        intermediateService.dataisTakingGeo = false;
         _insertGpsLog(idinspeccion, position.coords);
-      }, errorService.consoleError, opt);
+      }, function () {
+        intermediateService.dataisTakingGeo = false;
+        return errorService.consoleError;
+      }, opt);
     }
   };
   var _insertGpsLog = function (idinspeccion, coords) {
