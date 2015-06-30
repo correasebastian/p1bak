@@ -21,16 +21,25 @@
               </select> 
       </label>
 
-        <label class="item item-input item-select" ng-hide="clases.length <1 || cl.tipo==null">
+      <label class="item item-input item-select" ng-hide="clases.length <1 || cl.tipo==null">
+          <div class="input-label">
+            Clase
+          </div>
+            <select  ng-model="cl.idclase" ng-change="getCarrocerias(cl.idclase)" ng-options="item.value as item.label for item in clases" >                    
+            </select> 
+      </label>
+
+        <label class="item item-input item-select" ng-show="cl.tipo==844">
         <div class="input-label">
-          Clase
+          Info adicional
         </div>
-          <select  ng-model="cl.idclase" ng-change="getCarrocerias(cl.idclase)" ng-options="item.value as item.label for item in clases" >                    
-                </select> 
+         <select ng-model="cl.conjuntoPanel" name="D3"  ng-options="item.value as item.label for item in conjuntoPanel" >       <!-- <option value="500">Conjunto</option>
+                <option value="550">Panel</option> -->
+           </select>
       </label>
 
 
-        <label class="item item-input item-select" ng-hide="carrocerias.length <1 || cl.idclase==null">
+        <label class="item item-input item-select" ng-hide="carrocerias.length <1 || cl.idclase==null || (cl.tipo==844 && cl.conjuntoPanel== null)"  >
         <div class="input-label">
           Carroceria
         </div>
@@ -39,15 +48,7 @@
       </label>
 
 
-        <label class="item item-input item-select" ng-show="cl.tipo==844">
-        <div class="input-label">
-          Info adicional
-        </div>
-         <select ng-model="cl.conjuntoPanel" name="D3"  >
-                                        <option value="500">Conjunto</option>
-                                        <option value="550">Panel</option>
-           </select>
-      </label>
+      
 
   </div>
 

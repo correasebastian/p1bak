@@ -122,12 +122,15 @@ app.factory('inspeccionService', [
     var _cl = {
       idclase: null,
       idcarroceria: null,
-      tipo: null
+      tipo: null,
+      conjuntoPanel: null
     };
     inspeccionServiceFactory.clases = [];
     inspeccionServiceFactory.carrocerias = [];
+    inspeccionServiceFactory.tipos = [];
+    inspeccionServiceFactory.conjuntoPanel = [];
     // TODO: para la implementacion de pesados y motos, ya si debe ser una consulta
-    inspeccionServiceFactory.tipos = [{
+    /*    inspeccionServiceFactory.tipos = [{
         value: 829,
         label: 'Livianos'
       }  // ,
@@ -135,7 +138,21 @@ app.factory('inspeccionService', [
          //   value: 844,
          //   label: 'Pesados'
          // }
-];
+];*/
+    var _getTipos = function () {
+      var query = 'select idtipovehiculo as value , nombre as label from tipos';
+      var binding = [];
+      return sqliteService.executeQuery(query, binding).then(function (res) {
+        return inspeccionServiceFactory.tipos = sqliteService.rtnArray(res);
+      }, errorService.consoleError);
+    };
+    var _getConjuntoPanel = function () {
+      var query = 'SELECT    IdTipo as value, Nombre as label FROM    Base_Tipos  WHERE     (IdMaestroTipos = 73)';
+      var binding = [];
+      return sqliteService.executeQuery(query, binding).then(function (res) {
+        return inspeccionServiceFactory.conjuntoPanel = sqliteService.rtnArray(res);
+      }, errorService.consoleError);
+    };
     var _getClases = function () {
       if (angular.isDefined(_cl.tipo) && angular.isNumber(parseInt(_cl.tipo))) {
         var query = 'SELECT  distinct cc.idclase as value  , bt.Nombre as label  FROM clases_tipoVehiculo ct  inner join   clases_carrocerias cc on cc.idclase=ct.idclase   inner join Base_Tipos bt on bt.IdTipo=cc.idclase  where ct.idtipovehiculo=?';
@@ -144,6 +161,7 @@ app.factory('inspeccionService', [
           // TODO: ASI NO SIRVE , no se actualiza el expuesto ,,_clases = sqliteService.rtnArray(res);
           inspeccionServiceFactory.clases = sqliteService.rtnArray(res);
           _cl.idclase = null;
+          _cl.conjuntoPanel = null;
           inspeccionServiceFactory.carrocerias = [];
         }, errorService.consoleError);
       }
@@ -159,11 +177,23 @@ app.factory('inspeccionService', [
       }
     };
     var _setIdClaCa = function () {
-      var query = 'SELECT [idclasecarroceria] ,[idclase] ,[idcarroceria]  ,[idcodigocalificacion]  ,[idextrainfo]   FROM [clases_carrocerias] WHERE idclase=? and idcarroceria=? ';
-      var binding = [
-        parseInt(_cl.idclase),
-        parseInt(_cl.idcarroceria)
-      ];
+      console.log(_cl.conjuntoPanel);
+      var query = null;
+      var binding = [];
+      if (!_cl.conjuntoPanel) {
+        query = 'SELECT [idclasecarroceria] ,[idclase] ,[idcarroceria]  ,[idcodigocalificacion]  ,[idextrainfo]   FROM [clases_carrocerias] WHERE idclase=? and idcarroceria=? ';
+        binding = [
+          parseInt(_cl.idclase),
+          parseInt(_cl.idcarroceria)
+        ];
+      } else {
+        query = 'SELECT [idclasecarroceria] ,[idclase] ,[idcarroceria]  ,[idcodigocalificacion]  ,[idextrainfo]   FROM [clases_carrocerias] WHERE idclase=? and idcarroceria=? and idextrainfo=? ';
+        binding = [
+          parseInt(_cl.idclase),
+          parseInt(_cl.idcarroceria),
+          parseInt(_cl.conjuntoPanel)
+        ];
+      }
       return sqliteService.executeQuery(query, binding).then(function (res) {
         inspeccionServiceFactory.idClaseCarroceria = sqliteService.rtnArray(res)[0].idclasecarroceria;
         return _getToInspect(sqliteService.rtnArray(res)[0].idcodigocalificacion);
@@ -288,6 +318,8 @@ app.factory('inspeccionService', [
     inspeccionServiceFactory.getCarrocerias = _getCarrocerias;
     inspeccionServiceFactory.setIdClaCa = _setIdClaCa;
     inspeccionServiceFactory.getAlreadyInspect = _getAlreadyInspect;
+    inspeccionServiceFactory.getTipos = _getTipos;
+    inspeccionServiceFactory.getConjuntoPanel = _getConjuntoPanel;
     // inspeccionServiceFactory.clearTipo = _clearTipo;
     return inspeccionServiceFactory;
   }

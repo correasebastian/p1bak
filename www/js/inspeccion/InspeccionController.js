@@ -104,6 +104,16 @@ app.controller('InspeccionCtrl', function ($scope, titleService, inspeccionServi
     $scope.openModalOne = function () {
       $scope.modalOne.show();
     };
+    $scope.getTipos = function () {
+      inspeccionService.getTipos().then(function () {
+        $scope.tipos = inspeccionService.tipos;
+      });
+    };
+    $scope.getConjuntoPanel = function () {
+      inspeccionService.getConjuntoPanel().then(function () {
+        $scope.conjuntoPanel = inspeccionService.conjuntoPanel;
+      });
+    };
     $scope.getClases = function (idtipo) {
       inspeccionService.getClases().then(function () {
         $scope.clases = inspeccionService.clases;
@@ -134,7 +144,8 @@ app.controller('InspeccionCtrl', function ($scope, titleService, inspeccionServi
       });
     };
     $scope.init = function () {
-      $scope.tipos = inspeccionService.tipos;
+      $scope.getTipos();
+      $scope.getConjuntoPanel();
       $scope.cl = inspeccionService.cl;
       // TODO: aqui valido si ya se califico o si apenas se va a realizar
       if ($scope.alreadySaved) {
