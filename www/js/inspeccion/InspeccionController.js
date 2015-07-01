@@ -149,7 +149,9 @@ app.controller('InspeccionCtrl', function ($scope, titleService, inspeccionServi
       $scope.cl = inspeccionService.cl;
       // TODO: aqui valido si ya se califico o si apenas se va a realizar
       if ($scope.alreadySaved) {
-        $scope.getAlreadyInspect();
+        inspeccionService.getRevEst().then(function () {
+          $scope.getAlreadyInspect();
+        });
       } else {
       }
     };

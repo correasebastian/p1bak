@@ -30,10 +30,10 @@ app.factory('placasService', [
     var _getPlacas = function () {
       // var query = 'select * from idinspeccion';
       var query = 'select i.idinspeccion, placa, i.sync, bt.Nombre as servicio, ';
-      query += '        case when iss.idinspeccion is null then 0 else 1 end as calificado ';
+      query += '        case when iss.idinspeccion is null then 0 else 1 end as calificado , iss.idsubproceso as idsubproceso ';
       query += '          from idinspeccion i ';
       query += '        left join  Base_Tipos bt on bt.IdTipo= i.appidsrv ';
-      query += '        left join (select idinspeccion from  idsubprocesoseguimiento ';
+      query += '        left join (select idinspeccion, idsubproceso from  idsubprocesoseguimiento ';
       query += '                  where idestado=477) ';
       query += '       iss on iss.idinspeccion=i.idinspeccion';
       query += '      WHERE UserName=? and fecha> ?';

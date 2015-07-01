@@ -17,7 +17,8 @@ app.factory('inspeccionService', [
     inspeccionServiceFactory.item = {};
     inspeccionServiceFactory.data = {
       kilometraje: '',
-      observacion: ''
+      observacion: '',
+      revEst: null
     };
     var _setItems = function () {
       angular.forEach(preItems, function (obj, key) {
@@ -54,7 +55,8 @@ app.factory('inspeccionService', [
         obj.idParentItem,
         obj.nombre,
         parseInt(obj.sl.value),
-        obj.sl.label
+        obj.sl.label,
+        intermediateService.data.placa
       ];
       return binding;
     };
@@ -74,7 +76,7 @@ app.factory('inspeccionService', [
                                       // });
     };
     var _insertAllItems = function () {
-      var query = 'INSERT INTO [idpropiedades] ([idinspeccion] ,[idsubproceso] ,[iditem],[idparentitem]  ,[nombre] ,[idopcion]  ,[seleccion] ) VALUES (?,?,?,?,?,?,?)';
+      var query = 'INSERT INTO [idpropiedades] ([idinspeccion] ,[idsubproceso] ,[iditem],[idparentitem]  ,[nombre] ,[idopcion]  ,[seleccion], [placa] ) VALUES (?,?,?,?,?,?,?, ?)';
       var bindings = [];
       angular.forEach(inspeccionServiceFactory.all, function (obj, key) {
         bindings.push(_rtnBinding(obj));
@@ -86,8 +88,9 @@ app.factory('inspeccionService', [
       var binding = [
         intermediateService.data.idinspeccion,
         // inspeccionServiceFactory.idinspeccion,
-        829,
-        //_cl.tipo,
+        // 829,
+        // _cl.tipo,
+        inspeccionServiceFactory.data.revEst,
         inspeccionServiceFactory.data.observacion,
         intermediateService.data.placa
       ];
@@ -163,6 +166,7 @@ app.factory('inspeccionService', [
         return sqliteService.executeQuery(query, binding).then(function (res) {
           // TODO: ASI NO SIRVE , no se actualiza el expuesto ,,_clases = sqliteService.rtnArray(res);
           inspeccionServiceFactory.clases = sqliteService.rtnArray(res);
+          inspeccionServiceFactory.data.revEst = _cl.tipo;
           _cl.idclase = null;
           _cl.conjuntoPanel = null;
           inspeccionServiceFactory.carrocerias = [];
@@ -216,6 +220,7 @@ app.factory('inspeccionService', [
       inspeccionServiceFactory.all = array;
     };
     var _setAlreadyInspectJson = function (array) {
+      // var deferred = $q.defer();     
       angular.forEach(array, function (value, key) {
         value.controlJson = angular.fromJson(value.controlJson);
         // TODO: el json de controlJson devuelve un value= "" string, ver si se puede mejorar;
@@ -227,6 +232,8 @@ app.factory('inspeccionService', [
         value.sl = sl;
       });
       inspeccionServiceFactory.all = array;
+      _sections();  // deferred.resolve();      
+                    // return deferred.promise;
     };
     var _clearObsKm = function () {
       inspeccionServiceFactory.data.kilometraje = '';
@@ -248,7 +255,8 @@ app.factory('inspeccionService', [
       query += 'inner join Base_Tipos bt on bt.IdTipo =oif.customsection ';
       query += 'where oif.idservicio=? and cpc.idcodigocalificacion=? ';
       var binding = [
-        _cl.tipo,
+        inspeccionServiceFactory.data.revEst,
+        // _cl.tipo,
         //829,
         //parseInt(_cl.tipo),
         idcodigocalificacion
@@ -276,7 +284,8 @@ app.factory('inspeccionService', [
       var binding = [
         intermediateService.data.idinspeccion,
         // inspeccionServiceFactory.idinspeccion,
-        829
+        // 829
+        inspeccionServiceFactory.data.revEst
       ];
       return sqliteService.executeQuery(query, binding).then(function (res) {
         var obsKm = sqliteService.rtnArray(res)[0];
@@ -285,21 +294,22 @@ app.factory('inspeccionService', [
       }, errorService.consoleError);
     };
     var _getAlreadyInspect = function () {
-      var query = 'select oif.idservicio , cpc.iditem, oif.idParentItem, oif.nombre,customsection, customorder , controlJson , idp.idopcion as value, idp.seleccion as label ';
+      var query = 'select oif.idservicio , cpc.iditem, oif.idParentItem, oif.nombre,customsection, customorder , controlJson , idp.idopcion as value, idp.seleccion as label , bt.Orden as Orden ';
       query += 'from  viewVdos oif inner join calificacionpiezascodigo cpc on  cpc.iditem= oif.iditem  and oif.tipo=1 ';
       query += 'inner join controlElementos ce on ce.idcontrol =oif.idcontrol ';
       query += 'inner join  clases_carrocerias cc on cc.idcodigocalificacion=cpc.idcodigocalificacion ';
       query += 'inner join idinspeccion i on i.idClaseCarroceria=cc.idclasecarroceria ';
       query += 'inner join idpropiedades idp on idp.idinspeccion=i.idinspeccion and idp.iditem = cpc.iditem ';
+      query += 'inner join Base_Tipos bt on bt.IdTipo =oif.customsection ';
       query += 'where  i.idinspeccion =? and oif.idservicio=?    ';
       var binding = [
         intermediateService.data.idinspeccion,
         // inspeccionServiceFactory.idinspeccion,
-        829
+        // 829
+        inspeccionServiceFactory.data.revEst
       ];
       return sqliteService.executeQuery(query, binding).then(function (res) {
         _setAlreadyInspectJson(sqliteService.rtnArray(res));
-        _sections();
         return _serObsKm();
       }, errorService.consoleError);
     };
@@ -314,18 +324,31 @@ app.factory('inspeccionService', [
       }, errorService.consoleError);
     };
     var _insertState = function (idestado) {
-      var query = 'INSERT INTO [idsubprocesoseguimiento] ([idinspeccion]    ,[idsubproceso]   ,[idestado]   ,[fecha]  )  VALUES    (?,?,?,?)';
+      var query = 'INSERT INTO [idsubprocesoseguimiento] ([idinspeccion]    ,[idsubproceso]   ,[idestado]   ,[fecha] , [placa] )  VALUES    (?,?,?,?,?)';
       var binding = [
         intermediateService.data.idinspeccion,
         // inspeccionServiceFactory.idinspeccion,
-        829,
-        //_cl.tipo,
+        // 829,
+        // _cl.tipo,
+        inspeccionServiceFactory.data.revEst,
         idestado,
-        momentService.getDateTime()
+        momentService.getDateTime(),
+        intermediateService.data.placa
       ];
       return sqliteService.executeQuery(query, binding).then(function (res) {
         inspeccionServiceFactory.alreadySaved = true;
         zumeroService.zync(3);  // inspeccionServiceFactory.cl.tipo = null;
+      }, errorService.consoleError);
+    };
+    var _getRevEst = function () {
+      var idestado = 477;
+      var query = 'SELECT [idsubproceso]    FROM [idsubprocesoseguimiento]where idinspeccion=? and idestado=? ';
+      var binding = [
+        intermediateService.data.idinspeccion,
+        idestado
+      ];
+      return sqliteService.executeQuery(query, binding).then(function (res) {
+        return inspeccionServiceFactory.data.revEst = sqliteService.rtnArray(res)[0].idsubproceso;
       }, errorService.consoleError);
     };
     inspeccionServiceFactory.getItems = _getItems;
@@ -338,6 +361,7 @@ app.factory('inspeccionService', [
     inspeccionServiceFactory.getAlreadyInspect = _getAlreadyInspect;
     inspeccionServiceFactory.getTipos = _getTipos;
     inspeccionServiceFactory.getConjuntoPanel = _getConjuntoPanel;
+    inspeccionServiceFactory.getRevEst = _getRevEst;
     // inspeccionServiceFactory.clearTipo = _clearTipo;
     return inspeccionServiceFactory;
   }

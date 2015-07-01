@@ -153,25 +153,25 @@
     "file": "inspeccion\\inspeccionService.js",
     "text": "logica para saber si ya fue calificado",
     "kind": "TODO",
-    "line": 43
+    "line": 44
   },
   {
     "file": "inspeccion\\inspeccionService.js",
     "text": "para la implementacion de pesados y motos, ya si debe ser una consulta",
     "kind": "TODO",
-    "line": 135
+    "line": 138
   },
   {
     "file": "inspeccion\\inspeccionService.js",
     "text": "ASI NO SIRVE , no se actualiza el expuesto ,,_clases = sqliteService.rtnArray(res);",
     "kind": "TODO",
-    "line": 164
+    "line": 167
   },
   {
     "file": "inspeccion\\inspeccionService.js",
     "text": "el json de controlJson devuelve un value= \"\" string, ver si se puede mejorar;",
     "kind": "TODO",
-    "line": 221
+    "line": 226
   },
   {
     "file": "placas\\PlacasController.js",
