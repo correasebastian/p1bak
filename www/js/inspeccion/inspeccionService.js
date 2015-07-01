@@ -8,6 +8,8 @@ app.factory('inspeccionService', [
   'intermediateService',
   function (sqliteService, $q, $filter, errorService, momentService, zumeroService, intermediateService) {
     var inspeccionServiceFactory = {};
+    i = inspeccionServiceFactory;
+    f = $filter;
     inspeccionServiceFactory.all = [];
     inspeccionServiceFactory.sections = [];
     inspeccionServiceFactory.alreadySaved = false;
@@ -29,7 +31,8 @@ app.factory('inspeccionService', [
       inspeccionServiceFactory.all = preItems;
     };
     var _sections = function () {
-      inspeccionServiceFactory.sections = $filter('orderBy')($filter('unique')(inspeccionServiceFactory.all, 'customsection'), 'customsection');
+      // inspeccionServiceFactory.sections = $filter('orderBy')($filter('unique')(inspeccionServiceFactory.all, 'customsection'), 'customsection');  
+      inspeccionServiceFactory.sections = $filter('orderBy')($filter('unique')(inspeccionServiceFactory.all, 'customsection'), 'Orden');
     };
     var _getItems = function () {
       var query = 'select * from idinspeccion';
@@ -180,7 +183,7 @@ app.factory('inspeccionService', [
       console.log(_cl.conjuntoPanel);
       var query = null;
       var binding = [];
-      if (!_cl.conjuntoPanel) {
+      if (_cl.conjuntoPanel === null) {
         query = 'SELECT [idclasecarroceria] ,[idclase] ,[idcarroceria]  ,[idcodigocalificacion]  ,[idextrainfo]   FROM [clases_carrocerias] WHERE idclase=? and idcarroceria=? ';
         binding = [
           parseInt(_cl.idclase),
@@ -195,8 +198,9 @@ app.factory('inspeccionService', [
         ];
       }
       return sqliteService.executeQuery(query, binding).then(function (res) {
-        inspeccionServiceFactory.idClaseCarroceria = sqliteService.rtnArray(res)[0].idclasecarroceria;
-        return _getToInspect(sqliteService.rtnArray(res)[0].idcodigocalificacion);
+        var arr = sqliteService.rtnArray(res)[0];
+        inspeccionServiceFactory.idClaseCarroceria = arr.idclasecarroceria;
+        return _getToInspect(arr.idcodigocalificacion, inspeccionServiceFactory.idClaseCarroceria);
       }, errorService.consoleError);
     };
     var _setJson = function (array) {
@@ -235,18 +239,31 @@ app.factory('inspeccionService', [
     //     tipo: null
     //   };
     // };
-    var _getToInspect = function (idcodigocalificacion) {
-      var query = 'select oif.idservicio , cpc.iditem, idParentItem, nombre,customsection, customorder , controlJson from  viewV3 oif ';
-      //siempre dejar un espacio en blanco  
+    var _getToInspect = function (idcodigocalificacion, idClaseCarroceria) {
+      var query = 'select oif.idservicio  as idservicio, cpc.iditem as iditem, idParentItem, oif.nombre as nombre,customsection, customorder , controlJson, bt.Orden as Orden ';
+      //siempre dejar un espacio en blanco 
+      query += 'from  viewV3 oif  ';
       query += 'inner join calificacionpiezascodigo cpc on  cpc.iditem= oif.iditem  and oif.tipo=1 ';
       query += 'inner join controlElementos ce on ce.idcontrol =oif.idcontrol ';
-      query += 'where oif.idservicio=? and cpc.idcodigocalificacion=?';
+      query += 'inner join Base_Tipos bt on bt.IdTipo =oif.customsection ';
+      query += 'where oif.idservicio=? and cpc.idcodigocalificacion=? ';
       var binding = [
         _cl.tipo,
         //829,
         //parseInt(_cl.tipo),
         idcodigocalificacion
       ];
+      if (_cl.conjuntoPanel !== null) {
+        console.log('para la carroceria');
+        query += 'union ';
+        query += 'select oif.idservicio as idservicio , cpc.iditem as iditem, idParentItem,  oif.nombre  as nombre ,customsection, customorder , controlJson, bt.Orden as Orden  ';
+        query += 'from calificacionPiezasCodigoCarroceria cpc    ';
+        query += 'inner join viewV3 oif on  cpc.iditem= oif.iditem  and oif.tipo=1 ';
+        query += 'inner join Base_Tipos bt on bt.IdTipo =oif.customsection ';
+        query += 'inner join controlElementos ce on ce.idcontrol =oif.idcontrol ';
+        query += 'where  cpc.idclasecarroceria=?';
+        binding.push(idClaseCarroceria);
+      }
       return sqliteService.executeQuery(query, binding).then(function (res) {
         _setJson(sqliteService.rtnArray(res));
         _sections();

@@ -3,13 +3,13 @@
     "file": "app.js",
     "text": "para que se consideren sanas las ng-src que tengan esta sintaxis;",
     "kind": "TODO",
-    "line": 129
+    "line": 131
   },
   {
     "file": "app.js",
     "text": "verificar si existe en el localstorage alguna bandera que diga si ya se sync alguna vez",
     "kind": "TODO",
-    "line": 241
+    "line": 243
   },
   {
     "file": "Fotos\\FotoController.js",
@@ -153,25 +153,25 @@
     "file": "inspeccion\\inspeccionService.js",
     "text": "logica para saber si ya fue calificado",
     "kind": "TODO",
-    "line": 40
+    "line": 43
   },
   {
     "file": "inspeccion\\inspeccionService.js",
     "text": "para la implementacion de pesados y motos, ya si debe ser una consulta",
     "kind": "TODO",
-    "line": 132
+    "line": 135
   },
   {
     "file": "inspeccion\\inspeccionService.js",
     "text": "ASI NO SIRVE , no se actualiza el expuesto ,,_clases = sqliteService.rtnArray(res);",
     "kind": "TODO",
-    "line": 161
+    "line": 164
   },
   {
     "file": "inspeccion\\inspeccionService.js",
     "text": "el json de controlJson devuelve un value= \"\" string, ver si se puede mejorar;",
     "kind": "TODO",
-    "line": 217
+    "line": 221
   },
   {
     "file": "placas\\PlacasController.js",

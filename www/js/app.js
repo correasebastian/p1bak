@@ -14,6 +14,8 @@
 // var cc = null;
 // pruebas locales
 var db = null;
+var f = null;
+var i = null;
 // var services = {};
 // var ngCordova = {};
 // var alreadyInspect = false;
