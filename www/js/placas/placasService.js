@@ -10,6 +10,7 @@ app.factory('placasService', [
   function (sqliteService, $rootScope, momentService, authService, deviceService, zumeroService, intermediateService, updateSyncService) {
     var placasServiceFactory = {};
     placasServiceFactory.all = [];
+    placasServiceFactory.srvs = [];
     var _selectAll = function () {
       var test = [{
           idinspeccion: 1,
@@ -28,9 +29,10 @@ app.factory('placasService', [
     };
     var _getPlacas = function () {
       // var query = 'select * from idinspeccion';
-      var query = 'select i.idinspeccion, placa, i.sync, ';
+      var query = 'select i.idinspeccion, placa, i.sync, bt.Nombre as servicio, ';
       query += '        case when iss.idinspeccion is null then 0 else 1 end as calificado ';
       query += '          from idinspeccion i ';
+      query += '        left join  Base_Tipos bt on bt.IdTipo= i.appidsrv ';
       query += '        left join (select idinspeccion from  idsubprocesoseguimiento ';
       query += '                  where idestado=477) ';
       query += '       iss on iss.idinspeccion=i.idinspeccion';
@@ -63,8 +65,8 @@ app.factory('placasService', [
     //                                                       //   return ;
     //                                                       // });
     // };
-    var _insertPLaca = function (placa) {
-      var query = 'INSERT INTO idinspeccion(placa, fecha,UserName,uuid, sync) VALUES (?,?,?,?, ?)';
+    var _insertPLaca = function (placa, srv) {
+      var query = 'INSERT INTO idinspeccion(placa, fecha,UserName,uuid, sync, appidsrv) VALUES (?,?,?,?, ?, ?)';
       var sync = 0;
       // 0 means false
       var binding = [
@@ -72,7 +74,8 @@ app.factory('placasService', [
         momentService.getDateTime(),
         authService.authentication.userName,
         deviceService.data.uuid,
-        sync
+        sync,
+        srv
       ];
       intermediateService.data.placa = placa;
       intermediateService.data.idinspeccionSync = false;
@@ -106,9 +109,19 @@ app.factory('placasService', [
         console.error(err);
       });
     };
+    var _getSrvs = function () {
+      var query = 'SELECT [IdTipo] as value ,[Nombre] as label FROM Base_Tipos bt  inner join ro_servicios rs on rs.idSrv=bt.IdTipo   where rs.enabled=1   order by label';
+      var binding = [];
+      return sqliteService.executeQuery(query, binding).then(function (res) {
+        return placasServiceFactory.srvs = sqliteService.rtnArray(res);
+      }, function (error) {
+        console.log(error);
+      });
+    };
     placasServiceFactory.selectAll = _selectAll;
     placasServiceFactory.getPlacas = _getPlacas;
     placasServiceFactory.insertPLaca = _insertPLaca;
+    placasServiceFactory.getSrvs = _getSrvs;
     // placasServiceFactory.insertDevice = _insertDevice;
     return placasServiceFactory;
   }

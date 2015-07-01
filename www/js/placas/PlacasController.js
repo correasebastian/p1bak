@@ -26,7 +26,12 @@ app.controller('PlacasCtrl', [
       // pc = $scope;
       // $scope.placasService = placasService;
       $scope.placas = placasService.all;
+      $scope.services = [];
       $scope.obj = { filter: '' };
+      $scope.data = {
+        placa: null,
+        sl: null
+      };
       // zumeroService.zync(1).then(function () {
       //   $scope.placasService.selectAll();
       //   console.log(placasService.all);
@@ -56,26 +61,46 @@ app.controller('PlacasCtrl', [
           $scope.hide();
         });
       };
-      // TODO: seria bueno que la consulta de placas supiera todo, como por ejemplo si ya se califico, si ya tiene alguna foto o un video, puede ser marcandolo con alguna clase
-      if (!$localStorage.data) {
-        $scope.show();
-        // TODO: puedo poder obj=null, para que me elimine la base de datos si ya esta creada y vuelva a sincronizar, esto seria beneficioso si tengo que hacer un cambio en la base de ddatos que requiera reconstruirla
-        $timeout($scope.fInit, 300);
-      } else {
-        $scope.getPlacas();
-      }
+      $scope.cleanData = function () {
+        $scope.data.placa = null;
+        $scope.data.sl = null;
+      };
       $scope.placaPopup = function () {
-        // TODO: organizar el focus en el input del popup
-        var myprompt = $ionicPopup.prompt({
-          title: 'Nueva Placa',
-          template: 'Ingrese la nueva placa',
-          inputType: 'text',
-          inputPlaceholder: 'Placa'
-        });
-        myprompt.then(function (placa) {
-          $scope.addPlaca(placa);
-        }, function (e) {
-        });
+        placasService.getSrvs().then(function () {
+          $scope.services = placasService.srvs;
+          var myprompt = $ionicPopup.prompt({
+            title: 'Nueva Placa',
+            // template: 'Ingrese la nueva placa',
+            templateUrl: 'templates/insertPlaca.html',
+            scope: $scope,
+            buttons: [
+              {
+                text: 'Cancel',
+                onTap: function (e) {
+                  $scope.cleanData();
+                }
+              },
+              {
+                text: '<b>Save</b>',
+                type: 'button-positive',
+                onTap: function (e) {
+                  if ($scope.data.placa === null || $scope.data.sl === null) {
+                    //don't allow the user to close unless he enters wifi password
+                    e.preventDefault();
+                  } else {
+                    return $scope.data.placa;
+                  }
+                }
+              }
+            ]
+          });
+          myprompt.then(function (placa) {
+            if (placa !== null) {
+              $scope.addPlaca(placa);
+            }
+          }, function (e) {
+          });
+        });  // TODO: organizar el focus en el input del popup
       };
       $scope.addPlaca = function (placa) {
         if (angular.isUndefined(placa)) {
@@ -95,9 +120,10 @@ app.controller('PlacasCtrl', [
           return;
         }
         toastService.showLongBottom('Ingresando nueva placa');
-        placasService.insertPLaca(placa).then(function () {
+        placasService.insertPLaca(placa, $scope.data.sl).then(function () {
           console.log('en el controller');
           $scope.placas = placasService.all;
+          $scope.cleanData();
           $ionicScrollDelegate.scrollTop();
         });
       };
@@ -149,6 +175,17 @@ app.controller('PlacasCtrl', [
       $scope.createException = function () {
         throw new Error('Something has gone terribly wrong!');
       };
+      $scope.onInitSrv = function () {
+        $scope.services.length < 2 ? $scope.data.sl = $scope.services[0].value : $scope.data.sl = null;
+      };
+      // TODO: seria bueno que la consulta de placas supiera todo, como por ejemplo si ya se califico, si ya tiene alguna foto o un video, puede ser marcandolo con alguna clase
+      if (!$localStorage.data) {
+        $scope.show();
+        // TODO: puedo poder obj=null, para que me elimine la base de datos si ya esta creada y vuelva a sincronizar, esto seria beneficioso si tengo que hacer un cambio en la base de ddatos que requiera reconstruirla
+        $timeout($scope.fInit, 300);
+      } else {
+        $scope.getPlacas();
+      }
     });
   }
 ]);

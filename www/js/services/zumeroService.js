@@ -8,8 +8,9 @@ app.factory('zumeroService', [
   'toastService',
   '$timeout',
   'ngAuthSettings',
+  '$interval',
   // 'onlineStatusService',
-  function ($q, $cordovaDevice, $cordovaSQLite, offlineService, intermediateService, updateSyncService, toastService, $timeout, ngAuthSettings) {
+  function ($q, $cordovaDevice, $cordovaSQLite, offlineService, intermediateService, updateSyncService, toastService, $timeout, ngAuthSettings, $interval) {
     var zumero = null;
     var zumeroServiceFactory = {};
     var _setDbPath = function () {
@@ -45,20 +46,25 @@ app.factory('zumeroService', [
         console.log('offline mode activado');
       } else {
         console.time('zync' + i);
-        var timer = $timeout(function () {
+        /*var timer = $timeout(function () {
           toastService.showShortBottom('sincronizando..');
-        }, 2500);
+        }, 2500);*/
+        var interval = $interval(function () {
+          toastService.showShortBottom('sincronizando..');
+        }, 1500);
         zumero.sync(zumeroServiceFactory.dbpath, '', zumeroServiceFactory.server, zumeroServiceFactory.dbfile, null, null, null, function () {
           console.log('ok');
           console.timeEnd('zync' + i);
           if (!intermediateService.data.idinspeccionSync && intermediateService.data.placa) {
-            $timeout.cancel(timer);
+            /*   $timeout.cancel(timer);*/
+            $interval.cancel(interval);
             // updateSyncService.updateSync(intermediateService.data.placa, true).then(function () {
             updateSyncService.selectIdinspeccionSync(intermediateService.data.placa).then(function () {
               q.resolve('zync ok');
             });  // });
           } else {
-            $timeout.cancel(timer);
+            /*$timeout.cancel(timer);*/
+            $interval.cancel(interval);
             q.resolve('zync ok');
           }
         }, function (error) {

@@ -140,7 +140,7 @@ app.factory('inspeccionService', [
          // }
 ];*/
     var _getTipos = function () {
-      var query = 'select idtipovehiculo as value , nombre as label from tipos';
+      var query = 'select idtipovehiculo as value , nombre as label from tipos where enabled=1';
       var binding = [];
       return sqliteService.executeQuery(query, binding).then(function (res) {
         return inspeccionServiceFactory.tipos = sqliteService.rtnArray(res);

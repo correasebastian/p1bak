@@ -175,33 +175,27 @@
   },
   {
     "file": "placas\\PlacasController.js",
-    "text": "seria bueno que la consulta de placas supiera todo, como por ejemplo si ya se califico, si ya tiene alguna foto o un video, puede ser marcandolo con alguna clase",
-    "kind": "TODO",
-    "line": 59
-  },
-  {
-    "file": "placas\\PlacasController.js",
-    "text": "puedo poder obj=null, para que me elimine la base de datos si ya esta creada y vuelva a sincronizar, esto seria beneficioso si tengo que hacer un cambio en la base de ddatos que requiera reconstruirla",
-    "kind": "TODO",
-    "line": 62
-  },
-  {
-    "file": "placas\\PlacasController.js",
-    "text": "organizar el focus en el input del popup",
-    "kind": "TODO",
-    "line": 68
-  },
-  {
-    "file": "placas\\PlacasController.js",
     "text": "si las placas son iguales, puede ser que se haya sincronizado y no se haya acyaulizado la lista de placas, entonces se pasaria un idinspeccion que no ,es esto cuando offline creo una placa, me pongo online y luego on pause hago el sync, aunque hayq ue pensar que cuando le pongo online, deberia sincronizar si hay señal 4g o wifi para imagenes o para todo",
     "kind": "TODO",
-    "line": 116
+    "line": 142
   },
   {
     "file": "placas\\PlacasController.js",
     "text": "aqui podria evaluar si ya se califico o no, si no se ha calificado podria desplegar el modal de clase carroceria",
     "kind": "TODO",
-    "line": 134
+    "line": 160
+  },
+  {
+    "file": "placas\\PlacasController.js",
+    "text": "seria bueno que la consulta de placas supiera todo, como por ejemplo si ya se califico, si ya tiene alguna foto o un video, puede ser marcandolo con alguna clase",
+    "kind": "TODO",
+    "line": 181
+  },
+  {
+    "file": "placas\\PlacasController.js",
+    "text": "puedo poder obj=null, para que me elimine la base de datos si ya esta creada y vuelva a sincronizar, esto seria beneficioso si tengo que hacer un cambio en la base de ddatos que requiera reconstruirla",
+    "kind": "TODO",
+    "line": 184
   },
   {
     "file": "services\\accesoriosService.js",
@@ -279,31 +273,31 @@
     "file": "services\\zumeroService.js",
     "text": "DEPENDE SI ESTOY EN MI CASA O EN LA OFICINA'http://192.168.1.13:8080/';",
     "kind": "TODO",
-    "line": 32
+    "line": 33
   },
   {
     "file": "services\\zumeroService.js",
     "text": "recordar k esto es una promesa y desencadena acciones, si es resuelta o si es reject , vallidar",
     "kind": "TODO",
-    "line": 36
+    "line": 37
   },
   {
     "file": "services\\zumeroService.js",
     "text": "abriri el puerto para zumero en el firewall",
     "kind": "TODO",
-    "line": 38
+    "line": 39
   },
   {
     "file": "services\\zumeroService.js",
     "text": "crear una servicio global para de ahi sacar el idinspeccion actual, incusive despues de un zync para saber que es el adecuado",
     "kind": "TODO",
-    "line": 39
+    "line": 40
   },
   {
     "file": "services\\zumeroService.js",
     "text": "me parece mas logico retornar un reject si esta en modo offline",
     "kind": "TODO",
-    "line": 43
+    "line": 44
   },
   {
     "file": "settings\\settingsSrv.js",
