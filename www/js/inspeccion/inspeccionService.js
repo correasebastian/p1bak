@@ -242,7 +242,8 @@ app.factory('inspeccionService', [
       query += 'inner join controlElementos ce on ce.idcontrol =oif.idcontrol ';
       query += 'where oif.idservicio=? and cpc.idcodigocalificacion=?';
       var binding = [
-        829,
+        _cl.tipo,
+        //829,
         //parseInt(_cl.tipo),
         idcodigocalificacion
       ];
