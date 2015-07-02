@@ -314,9 +314,10 @@ app.factory('inspeccionService', [
       }, errorService.consoleError);
     };
     var _updateIdClaseCarroceria = function () {
-      var query = 'UPDATE [idinspeccion]   SET [idClaseCarroceria] =? WHERE idinspeccion=?';
+      var query = 'UPDATE [idinspeccion]   SET [idClaseCarroceria] =? , [revEst]=?  WHERE idinspeccion=?';
       var binding = [
         inspeccionServiceFactory.idClaseCarroceria,
+        inspeccionServiceFactory.data.revEst,
         intermediateService.data.idinspeccion
       ];
       return sqliteService.executeQuery(query, binding).then(function (res) {

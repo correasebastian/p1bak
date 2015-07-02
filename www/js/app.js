@@ -16,6 +16,7 @@
 var db = null;
 var f = null;
 var i = null;
+var z = null;
 // var services = {};
 // var ngCordova = {};
 // var alreadyInspect = false;
@@ -164,6 +165,7 @@ app.constant('ngAuthSettings', {
   $ionicPlatform.ready(function () {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
+    z = zumeroService;
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }

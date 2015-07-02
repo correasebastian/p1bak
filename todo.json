@@ -3,13 +3,13 @@
     "file": "app.js",
     "text": "para que se consideren sanas las ng-src que tengan esta sintaxis;",
     "kind": "TODO",
-    "line": 131
+    "line": 132
   },
   {
     "file": "app.js",
     "text": "verificar si existe en el localstorage alguna bandera que diga si ya se sync alguna vez",
     "kind": "TODO",
-    "line": 243
+    "line": 245
   },
   {
     "file": "Fotos\\FotoController.js",
@@ -198,6 +198,12 @@
     "line": 184
   },
   {
+    "file": "settings\\settingsSrv.js",
+    "text": "ejemplo traido de insertcollection fom ngcordova",
+    "kind": "TODO",
+    "line": 135
+  },
+  {
     "file": "services\\accesoriosService.js",
     "text": "una bandera para saber que ya se setio, una vez, y evitar mas consulats, a menos que se haga una actualizacion del servidor",
     "kind": "TODO",
@@ -273,37 +279,37 @@
     "file": "services\\zumeroService.js",
     "text": "DEPENDE SI ESTOY EN MI CASA O EN LA OFICINA'http://192.168.1.13:8080/';",
     "kind": "TODO",
-    "line": 33
+    "line": 38
   },
   {
     "file": "services\\zumeroService.js",
     "text": "recordar k esto es una promesa y desencadena acciones, si es resuelta o si es reject , vallidar",
     "kind": "TODO",
-    "line": 37
+    "line": 42
   },
   {
     "file": "services\\zumeroService.js",
     "text": "abriri el puerto para zumero en el firewall",
     "kind": "TODO",
-    "line": 39
+    "line": 49
   },
   {
     "file": "services\\zumeroService.js",
     "text": "crear una servicio global para de ahi sacar el idinspeccion actual, incusive despues de un zync para saber que es el adecuado",
     "kind": "TODO",
-    "line": 40
+    "line": 50
+  },
+  {
+    "file": "services\\zumeroService.js",
+    "text": "el proceso se realiza en backgroud, pero bloquea la base de datos por eso no me puedo mover entre vistas, por que hacen consultas a la ase de datos",
+    "kind": "TODO",
+    "line": 51
   },
   {
     "file": "services\\zumeroService.js",
     "text": "me parece mas logico retornar un reject si esta en modo offline",
     "kind": "TODO",
-    "line": 44
-  },
-  {
-    "file": "settings\\settingsSrv.js",
-    "text": "ejemplo traido de insertcollection fom ngcordova",
-    "kind": "TODO",
-    "line": 135
+    "line": 68
   },
   {
     "file": "videos\\VideoController.js",
