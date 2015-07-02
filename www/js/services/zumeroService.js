@@ -88,12 +88,14 @@ app.factory('zumeroService', [
             // $interval.cancel(interval);
             // updateSyncService.updateSync(intermediateService.data.placa, true).then(function () {
             updateSyncService.selectIdinspeccionSync(intermediateService.data.placa).then(function () {
+              toastService.showShortBottom('sinc: ok');
               q.resolve('zync ok');
             });  // });
           } else {
             /*$timeout.cancel(timer);*/
             _hide();
             // $interval.cancel(interval);
+            toastService.showShortBottom('sinc: ok');
             q.resolve('zync ok');
           }
         }, function (error) {
@@ -105,6 +107,7 @@ app.factory('zumeroService', [
           if (error.code === 456) {
             offlineService.data.offlineMode = true;
           }
+          toastService.showShortBottom('sinc: error');
           q.reject(error);
         });
       }

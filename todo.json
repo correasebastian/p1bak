@@ -198,12 +198,6 @@
     "line": 184
   },
   {
-    "file": "settings\\settingsSrv.js",
-    "text": "ejemplo traido de insertcollection fom ngcordova",
-    "kind": "TODO",
-    "line": 135
-  },
-  {
     "file": "services\\accesoriosService.js",
     "text": "una bandera para saber que ya se setio, una vez, y evitar mas consulats, a menos que se haga una actualizacion del servidor",
     "kind": "TODO",
@@ -310,6 +304,12 @@
     "text": "me parece mas logico retornar un reject si esta en modo offline",
     "kind": "TODO",
     "line": 68
+  },
+  {
+    "file": "settings\\settingsSrv.js",
+    "text": "ejemplo traido de insertcollection fom ngcordova",
+    "kind": "TODO",
+    "line": 135
   },
   {
     "file": "videos\\VideoController.js",
