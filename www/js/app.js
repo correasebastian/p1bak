@@ -17,6 +17,7 @@ var db = null;
 var f = null;
 var i = null;
 var z = null;
+var p = null;
 // var services = {};
 // var ngCordova = {};
 // var alreadyInspect = false;
@@ -86,7 +87,7 @@ var app = angular.module('starter', [
       }
     }
   }).state('app.inspeccion', {
-    url: '/inspeccion/:id/:placa/:calificado',
+    url: '/inspeccion/:id/:placa/:calificado/:revest',
     views: {
       'menuContent': {
         templateUrl: 'js/inspeccion/inspeccion.html',
@@ -166,6 +167,7 @@ app.constant('ngAuthSettings', {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     z = zumeroService;
+    p = placasService;
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }

@@ -51,6 +51,12 @@ app.controller('PlacasCtrl', [
         placasService.getPlacas().then(function () {
           console.log('en el controller');
           $scope.placas = placasService.all;
+          console.log($scope.services.length);
+          if ($scope.services.length < 1) {
+            placasService.getSrvs().then(function () {
+              $scope.services = placasService.srvs;
+            });
+          }
         });
       };
       $scope.fInit = function () {
@@ -66,40 +72,39 @@ app.controller('PlacasCtrl', [
         $scope.data.sl = null;
       };
       $scope.placaPopup = function () {
-        placasService.getSrvs().then(function () {
-          $scope.services = placasService.srvs;
-          var myprompt = $ionicPopup.prompt({
-            title: 'Nueva Placa',
-            // template: 'Ingrese la nueva placa',
-            templateUrl: 'templates/insertPlaca.html',
-            scope: $scope,
-            buttons: [
-              {
-                text: 'Cancel',
-                onTap: function (e) {
-                  $scope.cleanData();
-                }
-              },
-              {
-                text: '<b>Save</b>',
-                type: 'button-positive',
-                onTap: function (e) {
-                  if ($scope.data.placa === null || $scope.data.sl === null) {
-                    //don't allow the user to close unless he enters wifi password
-                    e.preventDefault();
-                  } else {
-                    return $scope.data.placa;
-                  }
+        // placasService.getSrvs().then(function () {
+        // $scope.services = placasService.srvs;
+        var myprompt = $ionicPopup.prompt({
+          title: 'Nueva Placa',
+          // template: 'Ingrese la nueva placa',
+          templateUrl: 'templates/insertPlaca.html',
+          scope: $scope,
+          buttons: [
+            {
+              text: 'Cancel',
+              onTap: function (e) {
+                $scope.cleanData();
+              }
+            },
+            {
+              text: '<b>Save</b>',
+              type: 'button-positive',
+              onTap: function (e) {
+                if ($scope.data.placa === null || $scope.data.sl === null) {
+                  //don't allow the user to close unless he enters wifi password
+                  e.preventDefault();
+                } else {
+                  return $scope.data.placa;
                 }
               }
-            ]
-          });
-          myprompt.then(function (placa) {
-            if (placa !== null) {
-              $scope.addPlaca(placa);
             }
-          }, function (e) {
-          });
+          ]
+        });
+        myprompt.then(function (placa) {
+          if (placa !== null) {
+            $scope.addPlaca(placa);
+          }  /* }, function (e) {
+          });*/
         });  // TODO: organizar el focus en el input del popup
       };
       $scope.addPlaca = function (placa) {
@@ -161,7 +166,8 @@ app.controller('PlacasCtrl', [
         $state.go('app.inspeccion', {
           id: obj.idinspeccion,
           placa: obj.placa,
-          calificado: obj.calificado
+          calificado: obj.calificado,
+          revest: obj.revEst
         });
       };
       $scope.goAccesorios = function (obj) {
@@ -176,7 +182,16 @@ app.controller('PlacasCtrl', [
         throw new Error('Something has gone terribly wrong!');
       };
       $scope.onInitSrv = function () {
-        $scope.services.length < 2 ? $scope.data.sl = $scope.services[0].value : $scope.data.sl = null;
+        if ($scope.services.length > 0) {
+          $scope.services.length < 2 ? $scope.data.sl = $scope.services[0].value : $scope.data.sl = null;
+        }
+      };
+      $scope.setOpciones = function (revEst) {
+        // console.log(revEst);
+        if (!revEst) {
+          return false;
+        }
+        return true;
       };
       // TODO: seria bueno que la consulta de placas supiera todo, como por ejemplo si ya se califico, si ya tiene alguna foto o un video, puede ser marcandolo con alguna clase
       if (!$localStorage.data) {

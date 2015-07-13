@@ -29,13 +29,14 @@ app.factory('placasService', [
     };
     var _getPlacas = function () {
       // var query = 'select * from idinspeccion';
-      var query = 'select i.idinspeccion, placa, i.sync, bt.Nombre as servicio, ';
+      var query = 'select i.idinspeccion, placa, i.sync, bt.Nombre as servicio, ro.idsub as revEst, ';
       query += '        case when iss.idinspeccion is null then 0 else 1 end as calificado , iss.idsubproceso as idsubproceso ';
       query += '          from idinspeccion i ';
       query += '        left join  Base_Tipos bt on bt.IdTipo= i.appidsrv ';
+      query += '        left join  Ro_Servicios ro on ro.idSrv= i.appidsrv ';
       query += '        left join (select idinspeccion, idsubproceso from  idsubprocesoseguimiento ';
       query += '                  where idestado=477) ';
-      query += '       iss on iss.idinspeccion=i.idinspeccion';
+      query += '         iss on iss.idinspeccion=i.idinspeccion';
       query += '      WHERE UserName=? and fecha> ?';
       query += ' Order by i.idinspeccion DESC Limit 10';
       var binding = [
@@ -110,7 +111,7 @@ app.factory('placasService', [
       });
     };
     var _getSrvs = function () {
-      var query = 'SELECT [IdTipo] as value ,[Nombre] as label FROM Base_Tipos bt  inner join ro_servicios rs on rs.idSrv=bt.IdTipo   where rs.enabled=1   order by label';
+      var query = 'SELECT [IdTipo] as value ,[Nombre] as label, rs.idsub as revEst FROM Base_Tipos bt  inner join ro_servicios rs on rs.idSrv=bt.IdTipo   where rs.enabled=1   order by label';
       var binding = [];
       return sqliteService.executeQuery(query, binding).then(function (res) {
         return placasServiceFactory.srvs = sqliteService.rtnArray(res);

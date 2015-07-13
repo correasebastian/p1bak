@@ -3,13 +3,13 @@
     "file": "app.js",
     "text": "para que se consideren sanas las ng-src que tengan esta sintaxis;",
     "kind": "TODO",
-    "line": 132
+    "line": 133
   },
   {
     "file": "app.js",
     "text": "verificar si existe en el localstorage alguna bandera que diga si ya se sync alguna vez",
     "kind": "TODO",
-    "line": 245
+    "line": 247
   },
   {
     "file": "Fotos\\FotoController.js",
@@ -129,25 +129,25 @@
     "file": "inspeccion\\InspeccionController.js",
     "text": "como esto se sincroniza una sola vez, no hay problema con el idinspeccion, el problema esta en accesorios y en fotos, que se sube uno a uno, entonces podria cambiar, o en accesorios hacer un beforleave de view, mi pregunta es , si no abandona la view, como sincronizo? otra mas si paso a background puedo sincronizar???",
     "kind": "TODO",
-    "line": 19
+    "line": 20
   },
   {
     "file": "inspeccion\\InspeccionController.js",
     "text": "esta variable me la da la pbase de satos, si ya esta calificado o no",
     "kind": "TODO",
-    "line": 20
+    "line": 21
   },
   {
     "file": "inspeccion\\InspeccionController.js",
     "text": "para deshabilitar el update, aunque ya esta montado, me preocupa es el zync cada que se haga un update",
     "kind": "TODO",
-    "line": 56
+    "line": 57
   },
   {
     "file": "inspeccion\\InspeccionController.js",
     "text": "aqui valido si ya se califico o si apenas se va a realizar",
     "kind": "TODO",
-    "line": 150
+    "line": 151
   },
   {
     "file": "inspeccion\\inspeccionService.js",
@@ -177,25 +177,25 @@
     "file": "placas\\PlacasController.js",
     "text": "si las placas son iguales, puede ser que se haya sincronizado y no se haya acyaulizado la lista de placas, entonces se pasaria un idinspeccion que no ,es esto cuando offline creo una placa, me pongo online y luego on pause hago el sync, aunque hayq ue pensar que cuando le pongo online, deberia sincronizar si hay señal 4g o wifi para imagenes o para todo",
     "kind": "TODO",
-    "line": 142
+    "line": 147
   },
   {
     "file": "placas\\PlacasController.js",
     "text": "aqui podria evaluar si ya se califico o no, si no se ha calificado podria desplegar el modal de clase carroceria",
     "kind": "TODO",
-    "line": 160
+    "line": 165
   },
   {
     "file": "placas\\PlacasController.js",
     "text": "seria bueno que la consulta de placas supiera todo, como por ejemplo si ya se califico, si ya tiene alguna foto o un video, puede ser marcandolo con alguna clase",
     "kind": "TODO",
-    "line": 181
+    "line": 196
   },
   {
     "file": "placas\\PlacasController.js",
     "text": "puedo poder obj=null, para que me elimine la base de datos si ya esta creada y vuelva a sincronizar, esto seria beneficioso si tengo que hacer un cambio en la base de ddatos que requiera reconstruirla",
     "kind": "TODO",
-    "line": 184
+    "line": 199
   },
   {
     "file": "services\\accesoriosService.js",

@@ -16,7 +16,7 @@
         <div class="input-label">
           Tipo
         </div>
-         <select id="ddltipoveh" name="D0" ng-model="cl.tipo" ng-options="item.value as item.label for item in tipos" ng-change="getClases(cl.tipo)" >                    
+         <select id="ddltipoveh" name="D0" ng-model="cl.tipo" ng-options="item.value as item.label for item in tipos | filter: {value:revEst}" ng-change="getClases(cl.tipo)" >                    
                
               </select> 
       </label>
@@ -25,7 +25,7 @@
           <div class="input-label">
             Clase
           </div>
-            <select  ng-model="cl.idclase" ng-change="getCarrocerias(cl.idclase)" ng-options="item.value as item.label for item in clases" >                    
+            <select  ng-model="cl.idclase" ng-change="getCarrocerias(cl.idclase)" ng-options="item.value as item.label for item in clases  | orderBy : 'label'" >                    
             </select> 
       </label>
 
@@ -33,7 +33,7 @@
         <div class="input-label">
           Info adicional
         </div>
-         <select ng-model="cl.conjuntoPanel" name="D3"  ng-options="item.value as item.label for item in conjuntoPanel" >       <!-- <option value="500">Conjunto</option>
+         <select ng-model="cl.conjuntoPanel" name="D3"  ng-options="item.value as item.label for item in conjuntoPanel | orderBy : 'label'" >       <!-- <option value="500">Conjunto</option>
                 <option value="550">Panel</option> -->
            </select>
       </label>
@@ -43,7 +43,7 @@
         <div class="input-label">
           Carroceria
         </div>
-        <select  ng-model="cl.idcarroceria" ng-options="item.value as item.label for item in carrocerias" ng-change="setIdClaCa()">
+        <select  ng-model="cl.idcarroceria" ng-options="item.value as item.label for item in carrocerias | orderBy : 'label'" ng-change="setIdClaCa()">
                 </select> 
       </label>
 

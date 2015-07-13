@@ -61,10 +61,10 @@
         <!-- <i class="icon ion-chevron-right icon-accessory"></i> -->
 
         <ion-option-button class="button-assertive icon ion-camera" on-touch="goFotos(placa)" ></ion-option-button>
-        <ion-option-button class="button-calm icon ion-videocamera" on-touch="goVideo(placa)"></ion-option-button>
-        <ion-option-button class="button-light icon ion-document-text" on-touch="goInspeccion(placa)"></ion-option-button>
-        <ion-option-button class="button-balanced icon ion-clipboard" on-touch="goAccesorios(placa)"></ion-option-button>
-        <ion-option-button class="button-energized icon ion-android-car" on-touch="goCodFas(placa)"></ion-option-button>
+        <ion-option-button class="button-calm icon ion-videocamera" on-touch="goVideo(placa)" ng-show="setOpciones(placa.revEst)"></ion-option-button>
+        <ion-option-button class="button-light icon ion-document-text" on-touch="goInspeccion(placa)" ng-show="setOpciones(placa.revEst)"></ion-option-button>
+        <ion-option-button class="button-balanced icon ion-clipboard" on-touch="goAccesorios(placa)" ng-show="setOpciones(placa.revEst)"></ion-option-button>
+        <ion-option-button class="button-energized icon ion-android-car" on-touch="goCodFas(placa)" ng-show="setOpciones(placa.revEst)"></ion-option-button>
       </ion-item>
     </ion-list>
     <!-- <button ng-click="createException()" class="btn btn-default btn-lg">Throw Exception</button> -->

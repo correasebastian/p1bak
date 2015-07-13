@@ -6,6 +6,7 @@ app.controller('InspeccionCtrl', function ($scope, titleService, inspeccionServi
     inspeccionService.alreadySaved = parseInt($stateParams.calificado) === 1 ? true : false;
     $scope.alreadySaved = inspeccionService.alreadySaved;
     titleService.title = intermediateService.data.placa;
+    $scope.revEst = parseInt($stateParams.revest);
     //$stateParams.id;
     // parseInt($stateParams.id);
     //parseInt($stateParams.id);
