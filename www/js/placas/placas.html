@@ -1,28 +1,21 @@
 <ion-view view-title="placas" cache-view="false" hide-back-button="true" hide-nav-bar="false">
-<div class="float-button fbAdd">
-    <span class="height-fix">
+    <div class="float-button fbAdd">
+        <span class="height-fix">
       <a on-touch="placaPopup()"  class="button content button-icon ">
       <!-- ui-sref="add-trip" -->
         <i class="ion-plus-round my-icon"> </i>
       </a>
     </span>
-  </div>
-  <ion-nav-buttons side="left">
-         
-     <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
-    </button>
-            
-   
-
-        </ion-nav-buttons> 
-<ion-nav-buttons side="right">
-         
-      <button ng-click="setFocus()" ng-hide="hasFocus" class="button button-positive button-clear button-icon icon ion-search animated" >
+    </div>
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
         
-    </button>
-            
-   
-          <span ng-show="hasFocus" class="animated">
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button ng-click="setFocus()" ng-hide="hasFocus" class="button button-positive button-clear button-icon icon ion-search animated">
+        </button>
+        <span ng-show="hasFocus" class="animated">
             <label class="item-input-wrapper animated">
               <i class="icon ion-search placeholder-icon"></i>
               <input id="searchPrimary" ng-blur="noFocus()" type="search" placeholder="Search" ng-model="obj.filter">
@@ -31,42 +24,37 @@
               Cancel
             </button>
           </span>
-
-            <button ng-click="setOfflineMode(false)" ng-hide="!off.offlineMode || hasFocus "  class="button button-positive button-clear button-icon icon ion-toggle animated" >
-    <!-- {{off.offlineMode}} -->Offline
-    </button>
-       <button ng-click="setOfflineMode(true)" ng-hide="off.offlineMode || hasFocus " class="button button-positive button-clear button-icon icon ion-toggle-filled animated" >
-        <!-- {{off.offlineMode}} -->Online
-     </button>
-
-        </ion-nav-buttons> 
-
-  <ion-content>
- <!--  {{placas}} -->
-    <ion-list>
-    <!-- item-avatar -->
-    <!-- class="item-icon-right item-remove-animate" esta clase animate me molesta a la hora de abrir las opciones -->
-    <!--collection-repeat funciona mucho mejor que ng-repeat, y me amntiene bien el filtro-->
-
-<!--     o tambien puede ser track por placa.placa, y antes de ingresar una verificar que no exista puede ser con un filtro , primero debe ir el filtro y luego el track, parece-->
-      <ion-item  collection-repeat="placa in placas | filter:{placa:obj.filter}  | orderBy:'-idinspeccion' track by placa.idinspeccion " type="item-text-wrap" >
-      <!-- href="#/tab/placas/{{placa.placa}}" -->
-        <!-- <img ng-src="{{placa.face}}"> -->
-        <!-- <h2>{{placa.idinspeccion}}</h2> -->
-        <h2>{{placa.placa}}</h2>
-        <p>{{placa.servicio}}</p>
-        <span class="item-note">
+        <button ng-click="setOfflineMode(false)" ng-hide="!off.offlineMode || hasFocus " class="button button-positive button-clear button-icon icon ion-toggle animated">
+            <!-- {{off.offlineMode}} -->Offline
+        </button>
+        <button ng-click="setOfflineMode(true)" ng-hide="off.offlineMode || hasFocus " class="button button-positive button-clear button-icon icon ion-toggle-filled animated">
+            <!-- {{off.offlineMode}} -->Online
+        </button>
+    </ion-nav-buttons>
+    <ion-content>
+        <!--  {{placas}} -->
+        <ion-list>
+            <!-- item-avatar -->
+            <!-- class="item-icon-right item-remove-animate" esta clase animate me molesta a la hora de abrir las opciones -->
+            <!--collection-repeat funciona mucho mejor que ng-repeat, y me amntiene bien el filtro-->
+            <!--     o tambien puede ser track por placa.placa, y antes de ingresar una verificar que no exista puede ser con un filtro , primero debe ir el filtro y luego el track, parece-->
+            <ion-item collection-repeat="placa in placas | filter:{placa:obj.filter}  | orderBy:'-idinspeccion' track by placa.idinspeccion " type="item-text-wrap">
+                <!-- href="#/tab/placas/{{placa.placa}}" -->
+                <!-- <img ng-src="{{placa.face}}"> -->
+                <!-- <h2>{{placa.idinspeccion}}</h2> -->
+                <h2>{{placa.placa}}</h2>
+                <p>{{placa.servicio}}</p>
+                <span class="item-note">
         {{placa.placa}}
         </span>
-        <!-- <i class="icon ion-chevron-right icon-accessory"></i> -->
-
-        <ion-option-button class="button-assertive icon ion-camera" on-touch="goFotos(placa)" ></ion-option-button>
-        <ion-option-button class="button-calm icon ion-videocamera" on-touch="goVideo(placa)" ng-show="setOpciones(placa.revEst)"></ion-option-button>
-        <ion-option-button class="button-light icon ion-document-text" on-touch="goInspeccion(placa)" ng-show="setOpciones(placa.revEst)"></ion-option-button>
-        <ion-option-button class="button-balanced icon ion-clipboard" on-touch="goAccesorios(placa)" ng-show="setOpciones(placa.revEst)"></ion-option-button>
-        <ion-option-button class="button-energized icon ion-android-car" on-touch="goCodFas(placa)" ng-show="setOpciones(placa.revEst)"></ion-option-button>
-      </ion-item>
-    </ion-list>
-    <!-- <button ng-click="createException()" class="btn btn-default btn-lg">Throw Exception</button> -->
-  </ion-content>
+                <!-- <i class="icon ion-chevron-right icon-accessory"></i> -->
+                <ion-option-button class="button-assertive icon ion-camera" on-touch="goFotos(placa)"></ion-option-button>
+                <ion-option-button class="button-calm icon ion-videocamera" on-touch="goVideo(placa)" ng-show="setOpciones(placa.revEst)"></ion-option-button>
+                <ion-option-button class="button-light icon ion-document-text" on-touch="goInspeccion(placa)" ng-show="setOpciones(placa.revEst)"></ion-option-button>
+                <ion-option-button class="button-balanced icon ion-clipboard" on-touch="goAccesorios(placa)" ng-show="setOpciones(placa.revEst)"></ion-option-button>
+                <ion-option-button class="button-energized icon ion-android-car" on-touch="goCodFas(placa)" ng-show="setOpciones(placa.revEst)"></ion-option-button>
+            </ion-item>
+        </ion-list>
+        <!-- <button ng-click="createException()" class="btn btn-default btn-lg">Throw Exception</button> -->
+    </ion-content>
 </ion-view>

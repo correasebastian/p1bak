@@ -17,8 +17,7 @@
           Tipo
         </div>
          <select id="ddltipoveh" name="D0" ng-model="cl.tipo" ng-options="item.value as item.label for item in tipos | filter: {value:revEst}" ng-change="getClases(cl.tipo)" >                    
-               
-              </select> 
+         </select> 
       </label>
 
       <label class="item item-input item-select" ng-hide="clases.length <1 || cl.tipo==null">
@@ -44,7 +43,7 @@
           Carroceria
         </div>
         <select  ng-model="cl.idcarroceria" ng-options="item.value as item.label for item in carrocerias | orderBy : 'label'" ng-change="setIdClaCa()">
-                </select> 
+        </select> 
       </label>
 
 

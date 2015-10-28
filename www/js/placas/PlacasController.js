@@ -18,7 +18,7 @@ app.controller('PlacasCtrl', [
   '$filter',
   'intermediateService',
   '$timeout',
-  function ($scope, zumeroService, $ionicPlatform, placasService, $ionicNavBarDelegate, $location, $ionicPopup, $ionicScrollDelegate, focus, $state, titleService, $ionicModal, toastService, firstInitService, $localStorage, $ionicLoading, $filter, intermediateService, $timeout) {
+  function ($timeout) {
     $ionicPlatform.ready(function () {
       // $scope.placas = placasService.all;
       // placasService.selectAll();

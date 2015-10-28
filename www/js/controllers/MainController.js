@@ -1,4 +1,4 @@
-app.controller('MainCtrl', function ($scope, $ionicNavBarDelegate, offlineService, titleService, intermediateService, onlineStatusService, zumeroService, toastService, unsyncService, $state, authService) {
+  app.controller('MainCtrl', function ($scope, $ionicNavBarDelegate, offlineService, titleService, intermediateService, onlineStatusService, zumeroService, toastService, unsyncService, $state, authService) {
   $scope.off = offlineService.data;
   $scope.intermediate = intermediateService.data;
   $scope.setOfflineMode = function (bool) {
